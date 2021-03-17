@@ -1,0 +1,95 @@
+commit 53e788b909bf749fc59b86725e602d42c72fdca3
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 12:12:00 2021 +0200
+
+    harjoitus kohta
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit e76e399896f42832644ae4e30a3237f45bebf9cf
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 12:09:43 2021 +0200
+
+    tiedostoja luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 18cd679e7baa23f3eca6232d12216158002952d4
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 12:05:51 2021 +0200
+
+    teidostoja muutettu
+
+ eka.txt    | 1 +
+ kolmas.txt | 2 ++
+ 2 files changed, 3 insertions(+)
+
+commit 304396156c560d77e368d3b490177a40c351f807
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 12:05:00 2021 +0200
+
+    nimi muunnettu
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7b1fdeeea55be7f6703d6de287c8070f2614b5d5
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 12:03:47 2021 +0200
+
+    toinen poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit b7f28a68437e72bb6128bef2553c557e4a5532e2
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 12:02:03 2021 +0200
+
+    stuff kansio lisätty
+
+ stuff/asd.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e6be69c59095c455b280387286c56b5f55ced086
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 12:00:39 2021 +0200
+
+    toinen ja kolmas muutettu
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 2efd3dc1c99b204094fc9ce105fb4d9f3c74427d
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 11:59:49 2021 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 991f0a37b2e7f24a2317db4bf7980666bee840f6
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 11:57:29 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit db32ae2d8a11e8a3448130318969214353e94931
+Author: asnabryg <8mixu8@gmail.com>
+Date:   Wed Mar 17 11:54:59 2021 +0200
+
+    tiedosto.txt. luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
