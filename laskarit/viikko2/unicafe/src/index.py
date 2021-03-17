@@ -1,3 +1,4 @@
+
 from maksukortti import Maksukortti
 from kassapaate import Kassapaate
 
