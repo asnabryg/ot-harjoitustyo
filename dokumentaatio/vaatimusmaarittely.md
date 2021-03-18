@@ -11,8 +11,14 @@ suurentaa myös, jolloin pelin tavoitelaatan numerokin suurentuu. Peliä myös v
 - Kun ruudukossa ei ole enää tyhjiä ruutuja, eikä pelaaja pysty yhdistämään laattoja, peli loppuu.
 - Pelin loputtua, peli tallentaa tuloksen top5 taulukkoon, jos pistemäärä on enemmän kuin taulukossa olevalla.
   - Samalla peli pyytää pelaajan nimimerkkiä, jolloin nähdään kuka tuloksen saavutti.
-
+  
+## Käyttöliittymä luonnos
+![](./kuvat/2048_hahmotelma.jpg)
 
 ## Pelin toimintaympäristö rajoitteet
 - ohjelmiston tulee toimia Linux- ja OSX-käytöjärjestelmillä
 - pelin parhaimmat tulokset tallennetaan paikallisen koneen levylle
+
+## Jatkokehitysideoita
+- 5x5 ja 6x6 lisä vaihtoehtoina pelialueena
+- kaikkiin pelialueisiin oma top5 pelaajatulokset
