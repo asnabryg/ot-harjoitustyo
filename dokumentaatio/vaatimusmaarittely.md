@@ -7,6 +7,7 @@ suurentaa myös, jolloin pelin tavoitelaatan numerokin suurentuu. Peliä myös v
 
 ## Pelattavuus
 - Peliä pelataan nuolinäppäimillä tai pelissä olevalla käyttöliittymällä hiirellä painattaessa.
+- Uusi laatta ilmestyy kentälle, jokaisella liu'utuksella, uuden laatana numero on 2 tai 4.
 - Pisteitä keräntyy aina, kun pelaaja saa yhdistettyä kaksi laattaa.
 - Kun ruudukossa ei ole enää tyhjiä ruutuja, eikä pelaaja pysty yhdistämään laattoja, peli loppuu.
 - Pelin loputtua, peli tallentaa tuloksen top5 taulukkoon, jos pistemäärä on enemmän kuin taulukossa olevalla.
