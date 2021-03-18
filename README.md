@@ -8,5 +8,5 @@ Projekti on yleinen 2048 pulmapeli. Pelissä liu'utetaan numeroituja laattoja ja
 Peli toimii 3.6.0 tai siitä vanhemmalla Python-versiolla
 
 ## Dokumentaatio
-- [vaatimuusmäärittely](./dokumentaatio/vaatimuusmaarittely.md)
+- [vaatimuusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
