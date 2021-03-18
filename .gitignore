@@ -4,3 +4,6 @@
 /laskarit/viikko2/unicafe/.coverage
 /laskarit/viikko2/unicafe/htmlcov
 /laskarit/viikko2/unicafe/.vscode
+/src/__pycache__/
+/.vscode/
+/ot-harjoitustyo.code-workspace
