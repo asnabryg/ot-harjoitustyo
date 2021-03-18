@@ -1,7 +1,11 @@
 
 from ui.ui import Userinterface
 
-if __name__ == '__main__':
+def main():
+    print("Start!")
     ui = Userinterface()
+
+if __name__ == '__main__':
+    main()
 
     
