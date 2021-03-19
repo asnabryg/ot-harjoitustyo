@@ -58,7 +58,8 @@ class Game2048:
         """Hakee jokaisen 0 kohdan pelialustasta ja valitsee yhden randomisti
 
         Returns:
-            tuple: random 0 kohdan koordinaatti pelialustassa, jos löytyi vähintään yksi koordinaatti, muuten None
+            tuple: random 0 kohdan koordinaatti pelialustassa,
+            jos löytyi vähintään yksi koordinaatti, muuten None
         """
         empty_places = []
         for y in range(self.__size): # pylint: disable=invalid-name
@@ -76,7 +77,7 @@ class Game2048:
         Returns:
             boolean: True, jos onnistui, muuten False
         """
-        
+
         yx_coordinate = self.get_random_empty_place()
         if yx_coordinate is None:
             # Gameover
