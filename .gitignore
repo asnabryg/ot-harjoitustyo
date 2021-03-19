@@ -12,3 +12,5 @@ laskarit/viikko2/maksukortti/src/tests/__pycache__/maksukortti_test.cpython-38-p
 /2048/.coverage
 2048/htmlcov/
 2048/src/tests/__pycache__/
+2048/data/database.sqlite
+2048/src/ui/__pycache__/
