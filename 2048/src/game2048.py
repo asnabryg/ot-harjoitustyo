@@ -64,7 +64,6 @@ class Game2048:
         empty_places = []
         for y in range(self.__size): # pylint: disable=invalid-name
             for x in range(self.__size): # pylint: disable=invalid-name
-                # hakee jokaisen 0 kohdan listaan
                 if self.__board[y][x] == 0:
                     empty_places.append((y, x))
         if len(empty_places) == 0:
