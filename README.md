@@ -7,7 +7,7 @@ Tämä projekti toimii Helsingin yliopiston kurssin Ohjelmistotekniikka, kevät 
 - [gitlog.txt](./laskarit/viikko1/gitlog.txt)
 - [komentorivit.txt](./laskarit/viikko1/gitlog.txt)
 ### Viikko 2
-- [coverage report](./laskarit/viikko2/coverageReport)
+- [coverage report](./laskarit/viikko2/coverageReport.png)
 
 # 2048 peli
 Projekti on yleinen 2048 pulmapeli. Pelissä liu'utetaan numeroituja laattoja ja yritetään yhdistää saman numeroiset laatat. Tavoitteena on saada laatta, jonka numero on 2048 tai enemmän 4x4 kokoisella pelialueella. Pelissä tallentuu parhain pistemäärä omalle paikalliselle koneelle.
