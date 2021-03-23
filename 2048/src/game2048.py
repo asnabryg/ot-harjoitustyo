@@ -104,11 +104,15 @@ class Game2048:
         """
         if self.get_random_empty_place() is None:
             for y in range(self.__size):
-                for x in range(self.__size-1):
-                    if self.__board[y][x] == self.__board[y][x+1]:
-                        return False
-                    if self.__board[x][y] == self.__board[x][y+1]:
-                        return False 
+                for x in range(self.__size):
+                    if x+1 < self.__size:
+                        if self.__board[y][x] == self.__board[y][x+1]:
+                            return False
+                    if x+1 < self.__size:
+                        if self.__board[x][y] == self.__board[x+1][y]:
+                            return False
+        else:
+            return False
         return True
         
 
@@ -150,7 +154,7 @@ class Game2048:
 
         for y in range(self.__size):
             row = []
-            for x in range(self.__size-1, -1, -1):
+            for x in range(self.__size):
                 if self.__board[y][x] != 0:
                     row.append(self.__board[y][x])
             new_row = []
@@ -210,7 +214,7 @@ class Game2048:
         Lopuksi lisää uuden laattarivin pelialustaan."""
         for x in range(self.__size):
             row = []
-            for y in range(self.__size-1, -1, -1):
+            for y in range(self.__size):
                 if self.__board[y][x] != 0:
                     row.append(self.__board[y][x])
             new_row = []
