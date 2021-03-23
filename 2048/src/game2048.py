@@ -116,7 +116,7 @@ class Game2048:
     def move_left(self):
         """Liikuttaa ensin pelin laattoja kokonaan vasemmalle,
         sen jälkeen yhdistää vierekkäiset saman numeroiset laatat vaakasuoralla akselilla vasemmalta oikealle.
-        Lopuksi lisää uuden laatan pelialustaan."""
+        Lopuksi lisää uuden laattarivin pelialustaan."""
 
         for y in range(self.__size):
             row = []
@@ -146,7 +146,7 @@ class Game2048:
     def move_right(self):
         """Liikuttaa ensin pelin laattoja kokonaan oikealle,
         sen jälkeen yhdistää vierekkäiset saman numeroiset laatat vaakasuoralla akselilla oikealta vasemmalle.
-        Lopuksi lisää uuden laatan pelialustaan."""
+        Lopuksi lisää uuden laattarivin pelialustaan."""
 
         for y in range(self.__size):
             row = []
@@ -175,9 +175,63 @@ class Game2048:
         self.add_new_tile()
     
     def move_up(self):
+        """Liikuttaa ensin pelin laattoja kokonaan ylös,
+        sen jälkeen yhdistää peräkkäiset saman numeroiset laatat pystysuoralla akselilla ylhäältä alas.
+        Lopuksi lisää uuden laattarivin pelialustaan."""
+        for x in range(self.__size):
+            row = []
+            for y in range(self.__size):
+                if self.__board[y][x] != 0:
+                    row.append(self.__board[y][x])
+            new_row = []
+            if len(row) >= 2:
+                y = 0
+                while y <= len(row)-1:
+                    if y+1 < len(row):
+                        if row[y] == row[y+1]:
+                            new_row.append(row[y] + row[y+1])
+                            y += 1
+                        else:
+                            new_row.append(row[y])
+                    else:
+                        new_row.append(row[y])
+                    y += 1
+            else:
+                new_row = row
+            for _ in range(self.__size - len(new_row)):
+                new_row.append(0)
+            for y in range(self.__size):
+                self.__board[y][x] = new_row[y]
         self.add_new_tile()
     
     def move_down(self):
+        """Liikuttaa ensin pelin laattoja kokonaan alas,
+        sen jälkeen yhdistää peräkkäiset saman numeroiset laatat pystysuoralla akselilla alhaalta ylös.
+        Lopuksi lisää uuden laattarivin pelialustaan."""
+        for x in range(self.__size):
+            row = []
+            for y in range(self.__size-1, -1, -1):
+                if self.__board[y][x] != 0:
+                    row.append(self.__board[y][x])
+            new_row = []
+            if len(row) >= 2:
+                y = len(row) - 1
+                while y >= 0:
+                    if y-1 >= 0:
+                        if row[y] == row[y-1]:
+                            new_row.insert(0, row[y] + row[y-1])
+                            y -= 1
+                        else:
+                            new_row.insert(0, row[y])
+                    else:
+                        new_row.insert(0, row[y])
+                    y -= 1
+            else:
+                new_row = row
+            for _ in range(self.__size - len(new_row)):
+                new_row.insert(0, 0)
+            for y in range(self.__size):
+                self.__board[y][x] = new_row[y]
         self.add_new_tile()
     
     def print_board(self):
