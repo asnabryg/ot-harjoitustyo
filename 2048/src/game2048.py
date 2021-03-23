@@ -1,6 +1,5 @@
 
 import random
-from sqlite3.dbapi2 import PARSE_COLNAMES
 
 
 class Game2048:
@@ -239,6 +238,8 @@ class Game2048:
         self.add_new_tile()
     
     def print_board(self):
+        """Tulostaa komentoriville pelialustan matriisina.
+        """
         print()
         for row in self.__board:
             print(row)

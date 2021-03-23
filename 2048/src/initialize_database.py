@@ -1,5 +1,4 @@
 
-from sqlite3.dbapi2 import Cursor
 from database_connection import get_database_connection
 
 def drop_tables(connection):
@@ -13,7 +12,7 @@ def drop_tables(connection):
     connection.commit()
 
 def create_tables(connection):
-    """Lisää uuden Highsscores taulukon tietokantaan.
+    """Lisää uuden Highscores taulukon tietokantaan.
 
     Args:
         connection: tietokantayhteys tiedostoon
@@ -29,6 +28,8 @@ def initialize_database():
     create_tables(connection)
 
 def create_tables_if_not_exists():
+    """Luo taulukot tietokantaan, jos niitö ei vielä olemassa. Ei poista taulukoita, jos olemassa.
+    """
     connection = get_database_connection()
     cursor = connection.cursor()
     cursor.execute(
