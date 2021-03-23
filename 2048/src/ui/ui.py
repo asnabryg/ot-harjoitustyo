@@ -15,7 +15,7 @@ class Userinterface:
             rep: Pisteiden hallinta
     """
     def __init__(self):
-        """Luokan konstruktori, joka käynnstää pelin
+        """Luokan konstruktori, joka käynnistää pelin
         """
         self.game = Game2048(4)
         self.rep = ScoreRepository()

@@ -93,17 +93,18 @@ class Game2048:
             rnd = 2
         self.__board[yx_coordinate[0]][yx_coordinate[1]] = rnd
         return True
-    
+
     def check_if_gameover(self):
         """Tarkistaa onko peli tilanteessa, missä pelaaja ei enää pysty liikuttamaan
         laattoja ja pelissä ei ole tyhjiä ruutuja.
- 
+
         Returns:
             boolean: True, jos peli päättynyt
         """
+
         if self.get_random_empty_place() is None:
-            for y in range(self.__size):
-                for x in range(self.__size):
+            for y in range(self.__size):  # pylint: disable=invalid-name
+                for x in range(self.__size):  # pylint: disable=invalid-name
                     if x+1 < self.__size:
                         if self.__board[y][x] == self.__board[y][x+1]:
                             return False
@@ -113,62 +114,62 @@ class Game2048:
         else:
             return False
         return True
-        
-
 
     def move_left(self):
         """Liikuttaa ensin pelin laattoja kokonaan vasemmalle,
-        sen jälkeen yhdistää vierekkäiset saman numeroiset laatat vaakasuoralla akselilla vasemmalta oikealle.
+        sen jälkeen yhdistää vierekkäiset saman numeroiset laatat
+        vaakasuoralla akselilla vasemmalta oikealle.
         Lopuksi lisää uuden laattarivin pelialustaan."""
 
-        for y in range(self.__size):
+        for y in range(self.__size):  # pylint: disable=invalid-name
             row = []
-            for x in range(self.__size):
+            for x in range(self.__size):  # pylint: disable=invalid-name
                 if self.__board[y][x] != 0:
                     row.append(self.__board[y][x])
             new_row = []
             if len(row) >= 2:
-                x = 0
+                x = 0  # pylint: disable=invalid-name
                 while x <= len(row)-1:
                     if x+1 < len(row):
                         if row[x] == row[x+1]:
                             new_row.append(row[x] + row[x+1])
-                            x += 1
+                            x += 1  # pylint: disable=invalid-name
                         else:
                             new_row.append(row[x])
                     else:
                         new_row.append(row[x])
-                    x += 1
+                    x += 1  # pylint: disable=invalid-name
             else:
                 new_row = row
             for _ in range(self.__size - len(new_row)):
                 new_row.append(0)
             self.__board[y] = new_row
         self.add_new_tile()
-    
+
     def move_right(self):
         """Liikuttaa ensin pelin laattoja kokonaan oikealle,
-        sen jälkeen yhdistää vierekkäiset saman numeroiset laatat vaakasuoralla akselilla oikealta vasemmalle.
+        sen jälkeen yhdistää vierekkäiset saman numeroiset laatat
+        vaakasuoralla akselilla oikealta vasemmalle.
         Lopuksi lisää uuden laattarivin pelialustaan."""
 
-        for y in range(self.__size):
+        for y in range(self.__size):  # pylint: disable=invalid-name
             row = []
-            for x in range(self.__size):
+            for x in range(self.__size):  # pylint: disable=invalid-name
                 if self.__board[y][x] != 0:
                     row.append(self.__board[y][x])
             new_row = []
             if len(row) >= 2:
-                x = len(row)-1
+                x = len(row)-1  # pylint: disable=invalid-name
                 while x >= 0:
                     if x-1 >= 0:
                         if row[x] == row[x-1]:
                             new_row.insert(0, row[x] + row[x-1])
-                            x -= 1
+                            x -= 1  # pylint: disable=invalid-name
                         else:
                             new_row.insert(0, row[x])
                     else:
                         new_row.insert(0, row[x])
-                    x -= 1
+                    x -= 1  # pylint: disable=invalid-name
             else:
                 new_row = row
             for _ in range(self.__size - len(new_row)):
@@ -176,70 +177,75 @@ class Game2048:
 
             self.__board[y] = new_row
         self.add_new_tile()
-    
+
     def move_up(self):
         """Liikuttaa ensin pelin laattoja kokonaan ylös,
-        sen jälkeen yhdistää peräkkäiset saman numeroiset laatat pystysuoralla akselilla ylhäältä alas.
+        sen jälkeen yhdistää peräkkäiset saman numeroiset laatat
+        pystysuoralla akselilla ylhäältä alas.
         Lopuksi lisää uuden laattarivin pelialustaan."""
-        for x in range(self.__size):
+
+        for x in range(self.__size):  # pylint: disable=invalid-name
             row = []
-            for y in range(self.__size):
+            for y in range(self.__size):  # pylint: disable=invalid-name
                 if self.__board[y][x] != 0:
                     row.append(self.__board[y][x])
             new_row = []
             if len(row) >= 2:
-                y = 0
+                y = 0  # pylint: disable=invalid-name
                 while y <= len(row)-1:
                     if y+1 < len(row):
                         if row[y] == row[y+1]:
                             new_row.append(row[y] + row[y+1])
-                            y += 1
+                            y += 1  # pylint: disable=invalid-name
                         else:
                             new_row.append(row[y])
                     else:
                         new_row.append(row[y])
-                    y += 1
+                    y += 1  # pylint: disable=invalid-name
             else:
                 new_row = row
             for _ in range(self.__size - len(new_row)):
                 new_row.append(0)
-            for y in range(self.__size):
+            for y in range(self.__size):  # pylint: disable=invalid-name
                 self.__board[y][x] = new_row[y]
         self.add_new_tile()
-    
+
     def move_down(self):
         """Liikuttaa ensin pelin laattoja kokonaan alas,
-        sen jälkeen yhdistää peräkkäiset saman numeroiset laatat pystysuoralla akselilla alhaalta ylös.
+        sen jälkeen yhdistää peräkkäiset saman numeroiset laatat
+        pystysuoralla akselilla alhaalta ylös.
         Lopuksi lisää uuden laattarivin pelialustaan."""
-        for x in range(self.__size):
+
+        for x in range(self.__size):  # pylint: disable=invalid-name
             row = []
-            for y in range(self.__size):
+            for y in range(self.__size):  # pylint: disable=invalid-name
                 if self.__board[y][x] != 0:
                     row.append(self.__board[y][x])
             new_row = []
             if len(row) >= 2:
-                y = len(row) - 1
+                y = len(row) - 1  # pylint: disable=invalid-name
                 while y >= 0:
                     if y-1 >= 0:
                         if row[y] == row[y-1]:
                             new_row.insert(0, row[y] + row[y-1])
-                            y -= 1
+                            y -= 1  # pylint: disable=invalid-name
                         else:
                             new_row.insert(0, row[y])
                     else:
                         new_row.insert(0, row[y])
-                    y -= 1
+                    y -= 1  # pylint: disable=invalid-name
             else:
                 new_row = row
             for _ in range(self.__size - len(new_row)):
                 new_row.insert(0, 0)
-            for y in range(self.__size):
+            for y in range(self.__size):  # pylint: disable=invalid-name
                 self.__board[y][x] = new_row[y]
         self.add_new_tile()
-    
+
     def print_board(self):
         """Tulostaa komentoriville pelialustan matriisina.
         """
+
         print()
         for row in self.__board:
             print(row)

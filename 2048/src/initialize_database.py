@@ -1,5 +1,4 @@
 
-from sqlite3.dbapi2 import connect
 from database_connection import get_database_connection, get_fake_database_connection
 
 def drop_tables(connection):
