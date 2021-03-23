@@ -1,5 +1,6 @@
 
 import random
+from sqlite3.dbapi2 import PARSE_COLNAMES
 
 
 class Game2048:
@@ -10,15 +11,19 @@ class Game2048:
         __board: pelialusta 2d matriisina
     """
 
-    def __init__(self, size, r_seed=None):
+    def __init__(self, size, board=None, r_seed=None):
         """Luokan konstruktori, joka luo uuden pelialusta.
 
         Args:
             n (int): pelialustan koko (leveys ja pituus)
+            board (list[list], valinnainen): Aloitus pelialusta. Oletus: None
             r_seed (int, valinnainen): Käytetään pytesteihin. Oletus: None.
         """
         self.__size = size
-        self.__board = self.new_board(size)
+        if board is None:
+            self.__board = self.new_board(size)
+        else:
+            self.__board = board
         print(self.__board)
         if r_seed is not None:
             # for pytests only
@@ -89,3 +94,94 @@ class Game2048:
             rnd = 2
         self.__board[yx_coordinate[0]][yx_coordinate[1]] = rnd
         return True
+    
+    def check_if_gameover(self):
+        """Tarkistaa onko peli tilanteessa, missä pelaaja ei enää pysty liikuttamaan
+        laattoja ja pelissä ei ole tyhjiä ruutuja.
+ 
+        Returns:
+            boolean: True, jos peli päättynyt
+        """
+        if self.get_random_empty_place() is None:
+            for y in range(self.__size):
+                for x in range(self.__size-1):
+                    if self.__board[y][x] == self.__board[y][x+1]:
+                        return False
+                    if self.__board[x][y] == self.__board[x][y+1]:
+                        return False 
+        return True
+        
+
+
+    def move_left(self):
+        """Liikuttaa ensin pelin laattoja kokonaan vasemmalle,
+        sen jälkeen yhdistää vierekkäiset saman numeroiset laatat vaakasuoralla akselilla vasemmalta oikealle.
+        Lopuksi lisää uuden laatan pelialustaan."""
+
+        for y in range(self.__size):
+            row = []
+            for x in range(self.__size):
+                if self.__board[y][x] != 0:
+                    row.append(self.__board[y][x])
+            new_row = []
+            if len(row) >= 2:
+                x = 0
+                while x <= len(row)-1:
+                    if x+1 < len(row):
+                        if row[x] == row[x+1]:
+                            new_row.append(row[x] + row[x+1])
+                            x += 1
+                        else:
+                            new_row.append(row[x])
+                    else:
+                        new_row.append(row[x])
+                    x += 1
+            else:
+                new_row = row
+            for _ in range(self.__size - len(new_row)):
+                new_row.append(0)
+            self.__board[y] = new_row
+        self.add_new_tile()
+    
+    def move_right(self):
+        """Liikuttaa ensin pelin laattoja kokonaan oikealle,
+        sen jälkeen yhdistää vierekkäiset saman numeroiset laatat vaakasuoralla akselilla oikealta vasemmalle.
+        Lopuksi lisää uuden laatan pelialustaan."""
+
+        for y in range(self.__size):
+            row = []
+            for x in range(self.__size-1, -1, -1):
+                if self.__board[y][x] != 0:
+                    row.append(self.__board[y][x])
+            new_row = []
+            if len(row) >= 2:
+                x = len(row)-1
+                while x >= 0:
+                    if x-1 >= 0:
+                        if row[x] == row[x-1]:
+                            new_row.insert(0, row[x] + row[x-1])
+                            x -= 1
+                        else:
+                            new_row.insert(0, row[x])
+                    else:
+                        new_row.insert(0, row[x])
+                    x -= 1
+            else:
+                new_row = row
+            for _ in range(self.__size - len(new_row)):
+                new_row.insert(0, 0)
+
+            self.__board[y] = new_row
+        self.add_new_tile()
+    
+    def move_up(self):
+        self.add_new_tile()
+    
+    def move_down(self):
+        self.add_new_tile()
+    
+    def print_board(self):
+        print()
+        for row in self.__board:
+            print(row)
+        print()
