@@ -4,6 +4,7 @@ from game2048 import Game2048
 
 
 class TestGame(unittest.TestCase):
+    
     def setUp(self):
         seed = 0
         self.game = Game2048(4, r_seed=seed)

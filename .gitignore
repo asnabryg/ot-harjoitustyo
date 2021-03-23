@@ -1,3 +1,4 @@
+
 2048/src/tests/__pycache__2048/src/ui/__pycache__/
 /laskarit/viikko2/unicafe/src/__pycache__/
 /laskarit/viikko2/unicafe/src/tests/__pycache__/
@@ -15,3 +16,4 @@ laskarit/viikko2/maksukortti/src/tests/__pycache__/maksukortti_test.cpython-38-p
 2048/data/database.sqlite
 2048/src/ui/__pycache__/
 2048/src/tests/__pycache__/game_test.cpython-38-pytest-6.2.2.pyc
+2048/data/fake_database.sqlite

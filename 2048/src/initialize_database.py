@@ -1,5 +1,6 @@
 
-from database_connection import get_database_connection
+from sqlite3.dbapi2 import connect
+from database_connection import get_database_connection, get_fake_database_connection
 
 def drop_tables(connection):
     """Poistaa Highscore taulukon tietokannasta, jos se on olemassa.
@@ -24,6 +25,12 @@ def create_tables(connection):
 def initialize_database():
     """Luo uuden tyhjän tietokantatiedoston."""
     connection = get_database_connection()
+    drop_tables(connection)
+    create_tables(connection)
+
+def initialize_fake_database():
+    """Luo uuden tyhjän tietokantatiedoston. Tämä metodi tarkoitettu testaukseen"""
+    connection = get_fake_database_connection()
     drop_tables(connection)
     create_tables(connection)
 

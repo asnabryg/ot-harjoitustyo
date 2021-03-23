@@ -19,3 +19,20 @@ class Userinterface:
         """
         self.game = Game2048(4)
         self.rep = ScoreRepository()
+
+    def run():
+        pass
+
+    def run_test(self):
+        print(self.rep.get_top5())
+        pelaajat = [("Mixu", 123), ("Pelaaja2", 12), ("ASDSADSAd", 1233451), ("Testi1", 1233)]
+        for pelaaja in pelaajat:
+            print(self.rep.add_new_highscore(pelaaja[0], pelaaja[1]))
+        print(self.rep.get_top5())
+        p1 = "asd"
+        s1 = 0
+        print("asd", self.rep.check_if_highscore(123))
+        print("asd", self.rep.check_if_highscore(1))
+        print(self.rep.add_new_highscore(p1, s1))
+        print(self.rep.get_top5())
+
