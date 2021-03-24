@@ -12,7 +12,7 @@ Tämä projekti toimii Helsingin yliopiston kurssin Ohjelmistotekniikka, kevät 
 ### Viikko 3
 - [Monopoly UML](./laskarit/viikko3/monopoly_uml.jpg)
 - [HSL sekvenssikaavio](./laskarit/viikko3/hsl_sekvenssikaavio.png)
-- [Machine sekvessiokaavio](./laskarit/viikko3/machine_sekvenssikaavio_laskari.png)
+- [Machine sekvenssikaavio](./laskarit/viikko3/machine_sekvenssikaavio_laskari.png)
 
 # 2048 peli
 Projekti on yleinen 2048 pulmapeli. Pelissä liu'utetaan numeroituja laattoja ja yritetään yhdistää saman numeroiset laatat. Tavoitteena on saada laatta, jonka numero on 2048 tai enemmän 4x4 kokoisella pelialueella. Pelissä tallentuu parhain pistemäärä omalle paikalliselle koneelle.
