@@ -7,3 +7,4 @@
 |       | 3    | sqlite3 lisääminen projektiin ja testien kirjoitus sen koodiin, pylint muunnoksia |
 | 7.4   | 1    | Testattu, että pelin suoritus onnistuu melkki.cs.helsinki palvelimella |
 |       | 1    | README.md ja kayttoohje.md päivitys ja uuden taskin lisäys |
+|       | 4    | UI koodin kirjoitus aloitettu |
