@@ -31,7 +31,7 @@ class Userinterface:
 
     def execute(self):
         pg.init()
-        screen = pg.display.set_mode((640, 480))
+        screen = pg.display.set_mode((740, 500))
         pg.display.set_caption("2048")
         clock = pg.time.Clock()
 
