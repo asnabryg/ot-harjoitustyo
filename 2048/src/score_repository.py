@@ -44,7 +44,8 @@ class ScoreRepository:
                     LIMIT 5;"""
         result = cursor.execute(sql, (board_size, )).fetchall()
 
-        for i in range(len(result)):
+        length = len(result)
+        for i in range(length):
             result[i] = tuple(result[i])
 
         cursor.close()

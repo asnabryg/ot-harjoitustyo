@@ -41,7 +41,3 @@ def create_tables_if_not_exists():
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS Highscores (board_size INTEGER, player_name TEXT, score INT);")
     connection.commit()
-
-
-if __name__ == '__main__':
-    initialize_database()

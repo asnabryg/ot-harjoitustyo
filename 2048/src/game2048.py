@@ -1,7 +1,6 @@
 
 import random
 
-
 class Game2048:
     """Luokka, jossa on pelin logiikka ja pelialusta.
 

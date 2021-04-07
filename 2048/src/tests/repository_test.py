@@ -11,6 +11,7 @@ class TestRepository(unittest.TestCase):
         self.rep = ScoreRepository(get_fake_database_connection())
         self.test_rep = ScoreRepository()
     
+    
     def test_add_new_highscores_and_get_top5(self):
         self.rep.add_new_highscore("pelaaja1", 100)
         self.rep.add_new_highscore("pelaaja2", 150)
