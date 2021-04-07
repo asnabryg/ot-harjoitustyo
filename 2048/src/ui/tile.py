@@ -142,7 +142,7 @@ class Tile(pg.sprite.Sprite):
                 size = 20
             
 
-            self.font = pg.font.SysFont("Comic Sans", size)
+            self.font = pg.font.SysFont("default", size)
             self.text = self.font.render(str(tile_value), 1, (255, 255, 255))
 
             R, G, B = self.color[0] - 60, self.color[1] - 60, self.color[2] - 60

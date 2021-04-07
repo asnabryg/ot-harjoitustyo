@@ -20,7 +20,7 @@ class Userinterface:
     def __init__(self):
         """Luokan konstruktori, joka käynnistää pelin.
         """
-        self.size = 4
+        self.size = 5
         self.cell_size = 80
         self.game = Game2048(self.size)
         self.game.add_new_tile()
