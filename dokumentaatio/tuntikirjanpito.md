@@ -5,3 +5,5 @@
 | 19.2  | 2    | dokumentaation kirjoittamista, pylintin asennus, sqlite3 harjoittelua |
 | 23.2  | 3    | Pelilogiikan koodaamista ja niiden testien kirjoittaminen |
 |       | 3    | sqlite3 lisääminen projektiin ja testien kirjoitus sen koodiin, pylint muunnoksia |
+| 7.4   | 1    | Testattu, että pelin suoritus onnistuu melkki.cs.helsinki palvelimella |
+|       | 1    | READ.ME päivitys ja uuden taskin lisäys |
