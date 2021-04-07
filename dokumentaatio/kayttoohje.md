@@ -7,7 +7,7 @@
 Tämä asettaa PATH-muuttujaan polun Poetryn binääriin.
 
 ## Pelin asennus
-Lataa projektin viimeisin [lähdekoodi](https://github.com/asnabryg/ot-harjoitustyo/releases) valitsemalla *Assets*-osion alta *2048_source_code_*(versionumero).
+Lataa projektin viimeisin [lähdekoodi](https://github.com/asnabryg/ot-harjoitustyo/releases) valitsemalla *Assets*-osion alta *2048_source_code_*(versionumero).zip.
 
 Suorita seuraavat komennot kansiossa **2048/**
 
