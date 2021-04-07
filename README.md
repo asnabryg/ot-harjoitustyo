@@ -29,7 +29,7 @@ poetry install
 poetry run invoke start
 ```
 
-# Komentorivitoiminnot
+## Komentorivitoiminnot
 Kommennot pitää suorittaa 2048/ kansion sisällä, jotta ne toimivat
 
 ### Pelin suorittaminen:
