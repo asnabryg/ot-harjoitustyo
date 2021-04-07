@@ -3,6 +3,8 @@ from score_repository import ScoreRepository
 from game2048 import Game2048
 import pygame as pg
 import os
+from ui.game_view import GameView
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 # polku tämän tiedoston hakemistoon
@@ -18,12 +20,50 @@ class Userinterface:
         """Luokan konstruktori, joka käynnistää pelin
         """
         self.game = Game2048(4)
+        self.game.add_new_tile()
         self.rep = ScoreRepository()
 
-    def run():
-        pass
+    def get_game_view(self, screen):
+        game = GameView(self.game)
+        screen.fill((0, 0, 200))
+        game.all_sprites.draw(screen)
+        pg.display.flip()
 
-    def run_test(self):
+    def execute(self):
+        pg.init()
+        screen = pg.display.set_mode((640, 480))
+        pg.display.set_caption("2048")
+        clock = pg.time.Clock()
+
+        self.get_game_view(screen)
+
+        pressed = False
+        while True:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    exit()
+                
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_LEFT:
+                        self.game.move_left()
+                        pressed = True
+                    if event.key == pg.K_RIGHT:
+                        self.game.move_right()
+                        pressed = True
+                    if event.key == pg.K_UP:
+                        self.game.move_up()
+                        pressed = True
+                    if event.key == pg.K_DOWN:
+                        self.game.move_down()
+                        pressed = True
+            
+            if pressed:
+                self.get_game_view(screen)
+                pressed = False
+
+            clock.tick(25)
+
+    def execute_test(self):
         print(self.rep.get_top5())
         pelaajat = [("Mixu", 123), ("Pelaaja2", 12), ("ASDSADSAd", 1233451), ("Testi1", 1233)]
         for pelaaja in pelaajat:

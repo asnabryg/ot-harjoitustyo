@@ -6,8 +6,7 @@ def main():
     print("Start!")
 
     ui = Userinterface()  # pylint: disable=invalid-name
-    ui.run_test()
-
+    ui.execute()
 
 
 

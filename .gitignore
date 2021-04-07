@@ -18,3 +18,5 @@ laskarit/viikko2/maksukortti/src/tests/__pycache__/maksukortti_test.cpython-38-p
 2048/src/tests/__pycache__/game_test.cpython-38-pytest-6.2.2.pyc
 2048/data/fake_database.sqlite
 /releases
+2048/.vscode/
+tile_pics_kra/
