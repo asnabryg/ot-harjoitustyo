@@ -5,8 +5,9 @@ class Game2048:
     """Luokka, jossa on pelin logiikka ja pelialusta.
 
     Attributes:
-        __n: pelialustan pituus ja leveys
-        __board: pelialusta 2d matriisina
+        __n: pelialustan pituus ja leveys,
+        __board: pelialusta 2d matriisina,
+        __score: pelin pistetilanne
     """
 
     def __init__(self, size, board=None, r_seed=None):
@@ -14,10 +15,11 @@ class Game2048:
 
         Args:
             n (int): pelialustan koko (leveys ja pituus)
-            board (list[list], valinnainen): Aloitus pelialusta. Oletus: None
-            r_seed (int, valinnainen): Käytetään pytesteihin. Oletus: None.
+            board (list[list], valinnainen): Aloitus pelialusta. Oletus: None,
+            r_seed (int, valinnainen): Käytetään pytesteihin. Oletus: None,
         """
         self.__size = size
+        self.__score = 0
         if board is None:
             self.__board = self.new_board(size)
         else:
@@ -42,6 +44,14 @@ class Game2048:
             list[list]: pelialusta
         """
         return self.__board
+    
+    def get_score(self):
+        """Palauttaa sen hetkisen pelin pistetilanteen
+
+        Returns:
+            int: pisteet
+        """
+        return self.__score
 
     def new_board(self, size):
         """Luo uuden tyhjän pelialustan 2d matriisina
@@ -131,7 +141,9 @@ class Game2048:
                 while x <= len(row)-1:
                     if x+1 < len(row):
                         if row[x] == row[x+1]:
-                            new_row.append(row[x] + row[x+1])
+                            value = row[x] + row[x+1]
+                            new_row.append(value)
+                            self.__score += value
                             x += 1  # pylint: disable=invalid-name
                         else:
                             new_row.append(row[x])
@@ -162,7 +174,9 @@ class Game2048:
                 while x >= 0:
                     if x-1 >= 0:
                         if row[x] == row[x-1]:
-                            new_row.insert(0, row[x] + row[x-1])
+                            value = row[x] + row[x-1]
+                            new_row.insert(0, value)
+                            self.__score += value
                             x -= 1  # pylint: disable=invalid-name
                         else:
                             new_row.insert(0, row[x])
@@ -194,7 +208,9 @@ class Game2048:
                 while y <= len(row)-1:
                     if y+1 < len(row):
                         if row[y] == row[y+1]:
-                            new_row.append(row[y] + row[y+1])
+                            value = row[y] + row[y+1]
+                            new_row.append(value)
+                            self.__score += value
                             y += 1  # pylint: disable=invalid-name
                         else:
                             new_row.append(row[y])
@@ -226,7 +242,9 @@ class Game2048:
                 while y >= 0:
                     if y-1 >= 0:
                         if row[y] == row[y-1]:
-                            new_row.insert(0, row[y] + row[y-1])
+                            value = row[y] + row[y-1]
+                            new_row.insert(0, value)
+                            self.__score += value
                             y -= 1  # pylint: disable=invalid-name
                         else:
                             new_row.insert(0, row[y])
