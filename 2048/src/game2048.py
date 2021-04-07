@@ -22,7 +22,7 @@ class Game2048:
             self.__board = self.new_board(size)
         else:
             self.__board = board
-        print(self.__board)
+
         if r_seed is not None:
             # for pytests only
             random.seed(r_seed)

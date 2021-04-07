@@ -4,6 +4,7 @@ from game2048 import Game2048
 import pygame as pg
 import os
 from ui.game_view import GameView
+import time
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
@@ -13,30 +14,35 @@ dirname = os.path.dirname(__file__)
 class Userinterface:
     """Luokka, jonka avulla pelin käyttöliittymä toimii.
     Attrbutes:
-            game: uusi peli
+            game: uusi peli, 
             rep: Pisteiden hallinta
     """
     def __init__(self):
-        """Luokan konstruktori, joka käynnistää pelin
+        """Luokan konstruktori, joka käynnistää pelin.
         """
-        self.game = Game2048(4)
+        self.size = 4
+        self.cell_size = 80
+        self.game = Game2048(self.size)
         self.game.add_new_tile()
         self.rep = ScoreRepository()
 
     def get_game_view(self, screen):
-        game = GameView(self.game)
+        game = GameView(self.game, self.cell_size)
         screen.fill((0, 0, 200))
         game.all_sprites.draw(screen)
         pg.display.flip()
 
     def execute(self):
         pg.init()
-        screen = pg.display.set_mode((740, 500))
+        screen = pg.display.set_mode((self.size*self.cell_size + 2*self.cell_size+300, 
+                                        self.size*self.cell_size + 2*self.cell_size))
         pg.display.set_caption("2048")
         clock = pg.time.Clock()
 
         self.get_game_view(screen)
 
+        auto_play = False
+        auto_counter = 0
         pressed = False
         while True:
             for event in pg.event.get():
@@ -47,19 +53,45 @@ class Userinterface:
                     if event.key == pg.K_LEFT:
                         self.game.move_left()
                         pressed = True
+                        auto_play = False
                     if event.key == pg.K_RIGHT:
                         self.game.move_right()
                         pressed = True
+                        auto_play = False
                     if event.key == pg.K_UP:
                         self.game.move_up()
                         pressed = True
+                        auto_play = False
                     if event.key == pg.K_DOWN:
                         self.game.move_down()
                         pressed = True
-            
+                        auto_play = False
+                    if event.key == pg.K_SPACE:
+                        if auto_play:
+                            auto_play = False
+                        else:
+                            auto_play = True
+                        time.sleep(0.1)
+
+            if auto_play:
+                auto_counter += 1
             if pressed:
                 self.get_game_view(screen)
                 pressed = False
+            if auto_play:
+                if auto_counter == 0:
+                    self.game.move_down()
+                    self.get_game_view(screen)
+                if auto_counter == 1:
+                    self.game.move_left()
+                    self.get_game_view(screen)
+                if auto_counter == 2:
+                    self.game.move_up()
+                    self.get_game_view(screen)
+                if auto_counter == 3:
+                    self.game.move_right()
+                    self.get_game_view(screen)
+                    auto_counter = -1
 
             clock.tick(25)
 

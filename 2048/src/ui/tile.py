@@ -9,23 +9,25 @@ class Tile(pg.sprite.Sprite):
     Luokka perii pygamesta sprite luokan.
     """
 
-    def __init__(self, tile_value=0, x=0, y=0):
+    def __init__(self, tile_value=0, x=0, y=0, cell_size=80):
         """Luokan konstruktori, joka luo uuden laatan ja antaa arvon ja xy -koordinaatti
         positioni siihen.
         Jos arvo on 0, laatta on taustalaatta.
         Laatan väri muuttuu arvon mukaan.
 
         Args:
-            tile_value (int): Laatan arvo
-            x (int): x arvo
-            y (int): y arvo
+            tile_value (int): Laatan arvo,
+            x (int): x arvo,
+            y (int): y arvo,
+            cell_size (int): cell width and heigth size
+
         """
 
         super().__init__()
         self.value = tile_value
 
         file = "tile.png" if tile_value > 0 else "tile0.png"
-        self.img = pg.image.load(os.path.join(dirname, "assets", file)).convert_alpha()
+        self.img = pg.image.load(os.path.join(dirname, "./../assets", file)).convert_alpha()
 
         self.color = (0, 0, 0)
         if tile_value > 0:
@@ -63,7 +65,7 @@ class Tile(pg.sprite.Sprite):
                 self.color = (236, 187, 2)
                 self.img.fill(self.color, None, pg.BLEND_RGBA_MULT)
             elif tile_value == 4096:
-                self.color = (236, 187, 2)
+                self.color = (96, 182, 146)
                 self.img.fill(self.color, None, pg.BLEND_RGBA_MULT)
             elif tile_value == 8192:
                 self.color = (96, 198, 255)
@@ -105,7 +107,7 @@ class Tile(pg.sprite.Sprite):
         self.rect = self.img.get_rect()
         self.rect.x = x
         self.rect.y = y
-        self.image = pg.transform.scale(self.img, (80, 80))
+        self.image = pg.transform.scale(self.img, (cell_size, cell_size))
 
         if tile_value > 0:
             div = 5
