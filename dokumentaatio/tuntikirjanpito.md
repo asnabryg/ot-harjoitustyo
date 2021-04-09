@@ -9,4 +9,4 @@
 |       | 1    | README.md ja kayttoohje.md päivitys ja uuden taskin lisäys |
 |       | 5    | UI koodin kirjoitus aloitettu |
 | 9.4   | 3    | Lisätty nuolinäppäimet käyttöjärjestelmään |
-|       | 1    | Lisätty menu ja restart nappi + muita ui:n parannuksia |
+|       | 2    | Lisätty menu ja restart nappi + muita ui:n parannuksia |
