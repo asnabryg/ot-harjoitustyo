@@ -25,7 +25,7 @@ class GameView():
         self.buttons = pg.sprite.Group()
         self.cell_size = cell_size
         self.all_sprites = pg.sprite.Group()
-        self.m_x = (310//6)
+        self.m_x = (310//8)
         self.m_y = (240//2)
         self.initialize()
 
@@ -38,9 +38,19 @@ class GameView():
         score = self.game.get_score()
         text = "Score: " + str(score)
         margin = 15
+        W = self.cell_size*self.game.get_size() - margin*2
         score_x = self.m_x + margin
         score_y = self.m_y - (self.cell_size - margin)
-        self.texts.add(Text(text, score_x, score_y, 35, (255, 255, 255), self.cell_size*self.game.get_size() - margin*2, 50, (0, 0, 180)))
+        self.texts.add(Text(text, score_x, score_y, 30, (255, 255, 255),
+                       W, 50, (0, 0, 180)))
+
+        highscore = self.game.get_score()
+        text = "Best score: " + str(highscore)
+        margin = 15
+        score_x = self.m_x + self.cell_size*self.game.get_size() + margin
+        score_y = self.m_y - (self.cell_size - margin)
+        self.texts.add(Text(text, score_x, score_y, 30, (255, 255, 255),
+                       self.screen_size[0] - score_x - margin, 50, (0, 0, 180)))
 
         for y in range(size):
             for x in range(size):
@@ -65,6 +75,7 @@ class GameView():
 
         b_press_up_color = (0, 0, 220)
         b_press_down_color = (0, 0, 100)
+        y_margin = 30
 
         if "b_up" in b_press:
             b_color = b_press_down_color
@@ -76,7 +87,7 @@ class GameView():
                       img_file="button_up.png",
                       b_color=b_color,
                       position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2),
-                                (self.m_y + y // 2) - b_size * 1.5),
+                                (self.m_y + y // 2) - b_size * 1.5 + y_margin),
                       size=(b_size, b_size),
                       rotate=0)
 
@@ -90,7 +101,7 @@ class GameView():
                         img_file="button_up.png",
                         b_color=b_color,
                         position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2),
-                                  (self.m_y + y // 2) - b_size * 1.5 + b_size * 2),
+                                  (self.m_y + y // 2) - b_size * 1.5 + b_size * 2 + y_margin),
                         size=(b_size, b_size),
                         rotate=180)
         
@@ -104,7 +115,7 @@ class GameView():
                          img_file="button_up.png",
                          b_color=b_color,
                          position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2) + b_size,
-                                   (self.m_y + y // 2) - b_size * 1.5 + b_size),
+                                   (self.m_y + y // 2) - b_size * 1.5 + b_size + y_margin),
                          size=(b_size, b_size),
                          rotate=-90)
 
@@ -118,7 +129,7 @@ class GameView():
                         img_file="button_up.png",
                         b_color=b_color,
                         position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2) - b_size,
-                                  (self.m_y + y // 2) - b_size * 1.5 + b_size),
+                                  (self.m_y + y // 2) - b_size * 1.5 + b_size + y_margin),
                         size=(b_size, b_size),
                         rotate=90)
 
@@ -126,6 +137,37 @@ class GameView():
         self.buttons.add(b_down)
         self.buttons.add(b_right)
         self.buttons.add(b_left)
+
+        if "b_restart" in b_press:
+            b_color = (100, 0, 0)
+        else:
+            b_color = (200, 0, 0)
+        b_restart = Button(tag="b_restart",
+                        text="Restart",
+                        text_color=(240, 240, 240),
+                        img_file="default",
+                        b_color=b_color,
+                        position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) - 90//1.5,
+                                  self.m_y),
+                        size=(90, 35),
+                        rotate=0)
+        
+        if "b_menu" in b_press:
+            b_color = (100, 0, 0)
+        else:
+            b_color = (200, 0, 0)
+        b_menu = Button(tag="b_menu",
+                           text="Menu",
+                           text_color=(240, 240, 240),
+                           img_file="default",
+                           b_color=b_color,
+                           position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) + 90//1.5,
+                                       self.m_y),
+                           size=(90, 35),
+                           rotate=0)
+
+        self.buttons.add(b_restart)
+        self.buttons.add(b_menu)
 
         self.all_sprites.add(self.buttons)
 

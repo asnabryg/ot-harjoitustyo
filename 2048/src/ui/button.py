@@ -42,7 +42,7 @@ class Button(pg.sprite.Sprite):
 
         if text is not None:
             self.font = pg.font.SysFont("default", 30)
-            self.text = self.font.render(text, 1, (255, 255, 255))
+            self.text = self.font.render(text, 1, text_color)
         
             R, G, B = b_color[0] - 60, b_color[1] - 60, b_color[2] - 60
             R = 0 if R < 0 else R
@@ -51,7 +51,7 @@ class Button(pg.sprite.Sprite):
             self.text_outline = self.font.render(text, 1, (R, G, B))
 
             text_x = size[0] // 2 - self.text.get_width() // 2
-            text_y = size[1] // 2 - self.text.get_height() // 2
+            text_y = (size[1] // 2 - self.text.get_height() // 2) + 2
             self.image.blit(self.text_outline, (text_x+1, text_y+1))
             self.image.blit(self.text_outline, (text_x-1, text_y-1))
             self.image.blit(self.text_outline, (text_x+1, text_y-1))
