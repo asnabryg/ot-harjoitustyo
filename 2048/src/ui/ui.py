@@ -20,7 +20,7 @@ class Userinterface:
     def __init__(self):
         """Luokan konstruktori, joka käynnistää pelin.
         """
-        self.size = 4
+        self.size = 5
         self.cell_size = 80
         self.screen_size = (self.size*self.cell_size + 2*self.cell_size + 300,
                             self.size*self.cell_size + 2*self.cell_size)
@@ -32,8 +32,16 @@ class Userinterface:
     def get_game_view(self, screen):
         self.game_view = GameView(self.game, self.cell_size, self.screen_size)
         screen.fill((0, 0, 200))
+        self.update_screen(screen)
+    
+    def update_screen(self, screen):
         self.game_view.all_sprites.draw(screen)
         pg.display.flip()
+    
+    def press_button_anim(self, button_tag: str, screen, sleep_time=0.02):
+        self.game_view.update_buttons({button_tag})
+        self.update_screen(screen)
+        time.sleep(sleep_time)
 
     def execute(self):
         pg.init()
@@ -57,36 +65,44 @@ class Userinterface:
                     for button in buttons:
                         if button.rect.collidepoint(mouse_pos):
                             if button.tag == "b_up":
+                                self.press_button_anim("b_up", screen)
                                 self.game.move_up()
                                 pressed = True
                                 auto_play = False
                             if button.tag == "b_down":
+                                self.press_button_anim("b_down", screen)
                                 self.game.move_down()
                                 pressed = True
                                 auto_play = False
                             if button.tag == "b_right":
+                                self.press_button_anim("b_right", screen)
                                 self.game.move_right()
                                 pressed = True
                                 auto_play = False
                             if button.tag == "b_left":
+                                self.press_button_anim("b_left", screen)
                                 self.game.move_left()
                                 pressed = True
                                 auto_play = False
                 
                 if event.type == pg.KEYDOWN:
                     if event.key == pg.K_LEFT:
+                        self.press_button_anim("b_left", screen)
                         self.game.move_left()
                         pressed = True
                         auto_play = False
                     if event.key == pg.K_RIGHT:
+                        self.press_button_anim("b_right", screen)
                         self.game.move_right()
                         pressed = True
                         auto_play = False
                     if event.key == pg.K_UP:
+                        self.press_button_anim("b_up", screen)
                         self.game.move_up()
                         pressed = True
                         auto_play = False
                     if event.key == pg.K_DOWN:
+                        self.press_button_anim("b_down", screen)
                         self.game.move_down()
                         pressed = True
                         auto_play = False
@@ -95,7 +111,7 @@ class Userinterface:
                             auto_play = False
                         else:
                             auto_play = True
-                        time.sleep(0.1)
+                        time.sleep(0.02)
 
             if auto_play:
                 auto_counter += 1
@@ -104,15 +120,19 @@ class Userinterface:
                 pressed = False
             if auto_play:
                 if auto_counter == 0:
+                    self.press_button_anim("b_down", screen, 0)
                     self.game.move_down()
                     self.get_game_view(screen)
                 if auto_counter == 1:
+                    self.press_button_anim("b_left", screen, 0)
                     self.game.move_left()
                     self.get_game_view(screen)
                 if auto_counter == 2:
+                    self.press_button_anim("b_up", screen, 0)
                     self.game.move_up()
                     self.get_game_view(screen)
                 if auto_counter == 3:
+                    self.press_button_anim("b_right", screen, 0)
                     self.game.move_right()
                     self.get_game_view(screen)
                     auto_counter = -1
