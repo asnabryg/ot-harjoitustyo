@@ -8,3 +8,4 @@
 | 7.4   | 1    | Testattu, että pelin suoritus onnistuu melkki.cs.helsinki palvelimella |
 |       | 1    | README.md ja kayttoohje.md päivitys ja uuden taskin lisäys |
 |       | 5    | UI koodin kirjoitus aloitettu |
+| 9.4   | 3    | Lisätty nuolinäppäimet käyttöjärjestelmään |
