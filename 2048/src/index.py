@@ -3,8 +3,9 @@ from ui.ui import Userinterface
 
 
 def main():
-    ui = Userinterface()  # pylint: disable=invalid-name
-    ui.execute()
+
+    userinterface = Userinterface()
+    userinterface.execute()
 
 
 

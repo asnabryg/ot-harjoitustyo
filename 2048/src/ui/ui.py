@@ -20,26 +20,29 @@ class Userinterface:
     def __init__(self):
         """Luokan konstruktori, joka käynnistää pelin.
         """
-        self.size = 5
+        self.size = 4
         self.cell_size = 80
+        self.screen_size = (self.size*self.cell_size + 2*self.cell_size + 300,
+                            self.size*self.cell_size + 2*self.cell_size)
         self.game = Game2048(self.size)
+        self.game_view = None
         self.game.add_new_tile()
         self.rep = ScoreRepository()
 
     def get_game_view(self, screen):
-        game = GameView(self.game, self.cell_size)
+        self.game_view = GameView(self.game, self.cell_size, self.screen_size)
         screen.fill((0, 0, 200))
-        game.all_sprites.draw(screen)
+        self.game_view.all_sprites.draw(screen)
         pg.display.flip()
 
     def execute(self):
         pg.init()
-        screen = pg.display.set_mode((self.size*self.cell_size + 2*self.cell_size+300, 
-                                        self.size*self.cell_size + 2*self.cell_size))
+        screen = pg.display.set_mode(self.screen_size)
         pg.display.set_caption("2048")
         clock = pg.time.Clock()
 
         self.get_game_view(screen)
+        buttons = self.game_view.buttons
 
         auto_play = False
         auto_counter = 0
@@ -48,6 +51,27 @@ class Userinterface:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     exit()
+                
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    mouse_pos = event.pos
+                    for button in buttons:
+                        if button.rect.collidepoint(mouse_pos):
+                            if button.tag == "b_up":
+                                self.game.move_up()
+                                pressed = True
+                                auto_play = False
+                            if button.tag == "b_down":
+                                self.game.move_down()
+                                pressed = True
+                                auto_play = False
+                            if button.tag == "b_right":
+                                self.game.move_right()
+                                pressed = True
+                                auto_play = False
+                            if button.tag == "b_left":
+                                self.game.move_left()
+                                pressed = True
+                                auto_play = False
                 
                 if event.type == pg.KEYDOWN:
                     if event.key == pg.K_LEFT:
