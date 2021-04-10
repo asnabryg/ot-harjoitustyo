@@ -10,3 +10,4 @@
 |       | 5    | UI koodin kirjoitus aloitettu |
 | 9.4   | 3    | Lisätty nuolinäppäimet käyttöjärjestelmään |
 |       | 2    | Lisätty menu ja restart nappi + muita ui:n parannuksia |
+| 10.4  | 3    | Lisätty pop-up ikkunat ja restart toiminto peliin |
