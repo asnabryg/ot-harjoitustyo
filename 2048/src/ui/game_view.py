@@ -5,6 +5,8 @@ from ui.tile import Tile
 from ui.text import Text
 from ui.button import Button
 from game2048 import Game2048
+import PIL.ImageFilter
+import PIL.Image
 
 class GameView():
     """Luokka, jossa alustetaan pelilaudan sprite näytölle.
@@ -23,6 +25,8 @@ class GameView():
         self.tiles = pg.sprite.Group()
         self.texts = pg.sprite.Group()
         self.buttons = pg.sprite.Group()
+        self.pop_ups = pg.sprite.Group()
+        self.pop_up_buttons = pg.sprite.Group()
         self.cell_size = cell_size
         self.all_sprites = pg.sprite.Group()
         self.m_x = (310//8)
@@ -69,6 +73,11 @@ class GameView():
         self.all_sprites.add(self.tiles, self.texts)
     
     def update_buttons(self, b_press=set()):
+        """Renderöi kaikki napit ja nappien värin vaihdon
+
+        Args:
+            b_press (set(str), valinnainen): Renderöi kaikki setissä olevat napit painetuiksi.
+        """
         b_size = 70
         x = self.m_x + self.cell_size * self.game.get_size()
         y = self.cell_size * self.game.get_size()
@@ -170,4 +179,68 @@ class GameView():
         self.buttons.add(b_menu)
 
         self.all_sprites.add(self.buttons)
+    
+    
+    def update_pop_ups(self, tag: str, b_press=set()):
+        """Renderöi pop-up ikkunat näkyville tagin perusteella. Myös sen napit.
 
+        Args:
+            tag (str): mikä pop-up ikkuna halutaan näkyville.
+            b_press (set(str), valinnainen): Renderöi kaikki setissä olevat napit painetuiksi.
+        """
+        size = (350, 250)
+        x = (self.screen_size[0] - size[0]) // 2
+        y = (self.screen_size[1] - size[1]) // 2
+        restart_pop = Tile(0, x, y, color=(100, 100, 100))
+        restart_pop.color = (230, 200, 200)
+        restart_pop.image = pg.transform.scale(restart_pop.img, size)
+        self.pop_ups.add(restart_pop)
+
+        # Buttons:
+
+        margin = 15
+        b_size = (90, 35)
+        if "b_yes" in b_press:
+            b_color = (0, 100, 0)
+        else:
+            b_color = (0, 200, 0)
+        b_yes = Button(tag="b_yes",
+                        text="Yes",
+                        text_color=(240, 240, 240),
+                        img_file="default",
+                        b_color=b_color,
+                        position=(x + size[0] // 2 - b_size[0] * 1.5+ 20,
+                                    y + size[1] // 1.5),
+                        size=b_size,
+                        rotate=0)
+        
+        if "b_no" in b_press:
+            b_color = (100, 0, 0)
+        else:
+            b_color = (200, 0, 0)
+        b_no = Button(tag="b_no",
+                        text="No",
+                        text_color=(240, 240, 240),
+                        img_file="default",
+                        b_color=b_color,
+                        position=(x + size[0] // 2 + b_size[0] * .5 - 20,
+                                    y + size[1] // 1.5),
+                        size=b_size,
+                        rotate=0)
+        
+        self.pop_up_buttons.add(b_yes)
+        self.pop_up_buttons.add(b_no)
+        
+        # Text:
+        x = x + margin
+        y = y + margin
+        s = ""
+        if tag == "restart":
+            s = "Are you sure you want restart?"
+        elif tag == "menu":
+            s = "Return to the main menu?"
+        text = Text(s,
+                    x, y, 25, (255, 255, 255),
+                    size[0] - margin * 2, 40, (100, 100, 100))
+        
+        self.pop_ups.add(text)
