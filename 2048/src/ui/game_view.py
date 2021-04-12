@@ -5,8 +5,6 @@ from ui.tile import Tile
 from ui.text import Text
 from ui.button import Button
 from game2048 import Game2048
-import PIL.ImageFilter
-import PIL.Image
 
 class GameView():
     """Luokka, jossa alustetaan pelilaudan sprite näytölle.

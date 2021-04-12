@@ -22,7 +22,7 @@ class Userinterface:
     def __init__(self):
         """Luokan konstruktori, joka käynnistää pelin.
         """
-        self.size = 4
+        self.size = 5
         self.cell_size = 80
         self.screen_size = (self.size*self.cell_size + 2*self.cell_size + 300,
                             self.size*self.cell_size + 2*self.cell_size)

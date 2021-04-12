@@ -9,6 +9,7 @@ def drop_tables(connection):
     """
     cursor = connection.cursor()
     cursor.execute("DROP TABLE IF EXISTS Highscores;")
+    cursor.close()
     connection.commit()
 
 def create_tables(connection):
@@ -19,6 +20,7 @@ def create_tables(connection):
     """
     cursor = connection.cursor()
     cursor.execute("CREATE TABLE Highscores (board_size INTEGER, player_name TEXT, score INT);")
+    cursor.close()
     connection.commit()
 
 def initialize_database():
@@ -40,4 +42,5 @@ def create_tables_if_not_exists():
     cursor = connection.cursor()
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS Highscores (board_size INTEGER, player_name TEXT, score INT);")
+    cursor.close()
     connection.commit()
