@@ -1,5 +1,4 @@
 
-import sqlite3
 from database_connection import get_database_connection, get_fake_database_connection
 
 def drop_tables(connection):
@@ -21,8 +20,8 @@ def create_tables(connection):
     """
     cursor = connection.cursor()
     cursor.execute("CREATE TABLE Highscores (board_size INTEGER, player_name TEXT, score INT);")
-    cursor.close()
     connection.commit()
+    cursor.close()
 
 def initialize_database():
     """Luo uuden tyhjän tietokantatiedoston."""

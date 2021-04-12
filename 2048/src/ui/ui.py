@@ -29,7 +29,7 @@ class Userinterface:
         self.game = Game2048(self.size)
         self.game_view = None
         self.game.add_new_tile()
-        self.rep = ScoreRepository()
+        # self.rep = ScoreRepository()
 
     def get_game_view(self, screen, pop_up_tag=None, pop_up_b=None):
         self.game_view = GameView(self.game, self.cell_size, self.screen_size)

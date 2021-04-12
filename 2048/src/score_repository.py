@@ -19,7 +19,8 @@ class ScoreRepository:
             oletuksena tekee itse uuden, jos tarvittava
         """
 
-        create_tables_if_not_exists()
+        # ei toimi vielä kunnolla 
+        # create_tables_if_not_exists()
         if connection is None:
             self.connection = get_database_connection()
         else:
