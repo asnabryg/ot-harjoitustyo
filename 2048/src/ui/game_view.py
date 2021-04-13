@@ -1,10 +1,10 @@
 
 import pygame as pg
-from pygame.transform import rotate
 from ui.tile import Tile
 from ui.text import Text
 from ui.button import Button
 from game2048 import Game2048
+from ui.game_files import GameFiles
 
 class GameView():
     """Luokka, jossa alustetaan pelilaudan sprite näytölle.
@@ -29,6 +29,7 @@ class GameView():
         self.all_sprites = pg.sprite.Group()
         self.m_x = (310//8)
         self.m_y = (240//2)
+        self.files = GameFiles()
         self.initialize()
 
     def initialize(self):
@@ -56,14 +57,15 @@ class GameView():
 
         for y in range(size):
             for x in range(size):
-                cell = board[y][x]
+                value = board[y][x]
                 normalized_x = x * self.cell_size + self.m_x
                 normalized_y = y * self.cell_size + self.m_y
 
-                self.tiles.add(Tile(0, normalized_x, normalized_y, self.cell_size))  # tausta
-                if cell == 0:
+                self.tiles.add(Tile(0, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile0(), font=self.files.font24))  # tausta
+                if value == 0:
                     continue
-                self.tiles.add(Tile(cell, normalized_x, normalized_y, self.cell_size))  # tile
+                self.tiles.add(
+                    Tile(value, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile(), font=self.files.font24))  # tile
 
 
         self.update_buttons()

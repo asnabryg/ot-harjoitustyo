@@ -10,9 +10,6 @@ import PIL.ImageFilter
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
-# polku tämän tiedoston hakemistoon
-dirname = os.path.dirname(__file__)
-
 class Userinterface:
     """Luokka, jonka avulla pelin käyttöliittymä toimii.
     Attrbutes:
