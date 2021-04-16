@@ -9,7 +9,7 @@ class Tile(pg.sprite.Sprite):
     Luokka perii pygamesta sprite luokan.
     """
 
-    def __init__(self, tile_value=0, x=0, y=0, cell_size=80, color=None, image=None, font=None):
+    def __init__(self, tile_value=0, x=0, y=0, cell_size=80, color=None, image=None, files=None):
         """Luokan konstruktori, joka luo uuden laatan ja antaa arvon ja xy -koordinaatti
         positioni siihen.
         Jos arvo on 0, laatta on taustalaatta.
@@ -148,7 +148,7 @@ class Tile(pg.sprite.Sprite):
                 div2 = 1.75
                 size = 20
             
-            self.font = font
+            self.font = files.get_font(size)
             self.text = self.font.render(str(tile_value), 1, (255, 255, 255))
 
             R, G, B = self.color[0] - 60, self.color[1] - 60, self.color[2] - 60

@@ -8,7 +8,7 @@ class Button(pg.sprite.Sprite):
     """Luokka, jolla luodaan nappi.
     """
 
-    def __init__(self, tag: str, text=None, text_color=(255, 255, 255), img_file="button.png", b_color=(0, 0, 0), position=(0, 0), size=(80, 80), rotate=0):
+    def __init__(self, tag: str, text=None, text_color=(255, 255, 255), img_file_str="button.png", b_color=(0, 0, 0), position=(0, 0), size=(80, 80), rotate=0):
         """Luokan konstruktori, joka luo uuden napin.
 
         Args:
@@ -20,15 +20,13 @@ class Button(pg.sprite.Sprite):
             position (tuple): Napin positio näytöllä,
             size (tuple): Napin leveys ja korkeus. Oletus (50, 50).
             rotate (int): Napin kiertokulma. Oletus 0.
+            files (GameFiles()): Pelin kaikki avatut tiedostot
         """
 
         super().__init__()
         self.tag = tag
-        if img_file == "default" or img_file is None:
-            img_file = "button.png"
 
-        self.img = pg.image.load(os.path.join(
-            dirname, "./../assets", img_file)).convert_alpha()
+        self.img = pg.image.fromstring(img_file_str, (128, 128), "RGBA")
         
         self.img.fill(b_color, None, pg.BLEND_RGB_MULT)
         

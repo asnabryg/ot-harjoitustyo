@@ -61,11 +61,11 @@ class GameView():
                 normalized_x = x * self.cell_size + self.m_x
                 normalized_y = y * self.cell_size + self.m_y
 
-                self.tiles.add(Tile(0, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile0(), font=self.files.font24))  # tausta
+                self.tiles.add(Tile(0, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile0_img_str(), files=self.files))  # tausta
                 if value == 0:
                     continue
                 self.tiles.add(
-                    Tile(value, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile(), font=self.files.font24))  # tile
+                    Tile(value, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile_img_str(), files=self.files))  # tile
 
 
         self.update_buttons()
@@ -93,7 +93,7 @@ class GameView():
         b_up = Button(tag="b_up",
                       text=None,
                       text_color=None,
-                      img_file="button_up.png",
+                      img_file_str=self.files.get_button_up_img_str(),
                       b_color=b_color,
                       position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2),
                                 (self.m_y + y // 2) - b_size * 1.5 + y_margin),
@@ -107,7 +107,7 @@ class GameView():
         b_down = Button(tag="b_down",
                         text=None,
                         text_color=None,
-                        img_file="button_up.png",
+                        img_file_str=self.files.get_button_up_img_str(),
                         b_color=b_color,
                         position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2),
                                   (self.m_y + y // 2) - b_size * 1.5 + b_size * 2 + y_margin),
@@ -121,7 +121,7 @@ class GameView():
         b_right = Button(tag="b_right",
                          text=None,
                          text_color=None,
-                         img_file="button_up.png",
+                         img_file_str=self.files.get_button_up_img_str(),
                          b_color=b_color,
                          position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2) + b_size,
                                    (self.m_y + y // 2) - b_size * 1.5 + b_size + y_margin),
@@ -135,7 +135,7 @@ class GameView():
         b_left = Button(tag="b_left",
                         text=None,
                         text_color=None,
-                        img_file="button_up.png",
+                        img_file_str=self.files.get_button_up_img_str(),
                         b_color=b_color,
                         position=((((self.screen_size[0] - x) // 2) + x) - (b_size // 2) - b_size,
                                   (self.m_y + y // 2) - b_size * 1.5 + b_size + y_margin),
@@ -154,7 +154,7 @@ class GameView():
         b_restart = Button(tag="b_restart",
                         text="Restart",
                         text_color=(240, 240, 240),
-                        img_file="default",
+                           img_file_str=self.files.get_button_img_str(),
                         b_color=b_color,
                         position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) - 90//1.5,
                                   self.m_y),
@@ -168,7 +168,7 @@ class GameView():
         b_menu = Button(tag="b_menu",
                            text="Menu",
                            text_color=(240, 240, 240),
-                           img_file="default",
+                           img_file_str=self.files.get_button_img_str(),
                            b_color=b_color,
                            position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) + 90//1.5,
                                        self.m_y),
@@ -207,7 +207,7 @@ class GameView():
         b_yes = Button(tag="b_yes",
                         text="Yes",
                         text_color=(240, 240, 240),
-                        img_file="default",
+                        img_file_str=self.files.get_button_img_str(),
                         b_color=b_color,
                         position=(x + size[0] // 2 - b_size[0] * 1.5+ 20,
                                     y + size[1] // 1.5),
@@ -221,7 +221,7 @@ class GameView():
         b_no = Button(tag="b_no",
                         text="No",
                         text_color=(240, 240, 240),
-                        img_file="default",
+                        img_file_str=self.files.get_button_img_str(),
                         b_color=b_color,
                         position=(x + size[0] // 2 + b_size[0] * .5 - 20,
                                     y + size[1] // 1.5),

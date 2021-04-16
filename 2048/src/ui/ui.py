@@ -78,6 +78,9 @@ class Userinterface:
                                     pressed = True
                                     pop_up_tag = None
                                 if button.tag == "b_yes":
+                                    self.get_game_view(screen, pop_up_tag, button.tag)
+                                    time.sleep(0.08)
+                                    pressed = True
                                     if pop_up_tag == "restart":
                                         restart = True
                                         break
