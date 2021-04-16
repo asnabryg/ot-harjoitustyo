@@ -177,9 +177,6 @@ class Userinterface:
                     auto_counter = -1
 
             clock.tick(25)
-
-        if restart:
-            pass
             
     def get_blur(self, screen, img_mode="RGBA"):
         img = pg.image.tostring(screen, img_mode)
