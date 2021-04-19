@@ -12,4 +12,4 @@
 |       | 2    | Lisätty menu ja restart nappi + muita ui:n parannuksia |
 | 10.4  | 3    | Lisätty pop-up ikkunat ja restart toiminto peliin |
 | 16.4  | 2    | Opitmoitu pelin kuvatiedostojen haku/lisääminen peliin |
-| *Yht.*  | *28* |
+| **Yht.**  | **28** |
