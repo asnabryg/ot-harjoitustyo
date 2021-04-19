@@ -165,7 +165,7 @@ class Userinterface:
             clock.tick(25)
 
         if new_scene == "game":
-            self.execute_game(5)
+            self.execute_game(4)
         elif new_scene == "scores":
             # TODO score scene
             pass
