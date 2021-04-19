@@ -13,4 +13,5 @@
 | 10.4  | 3    | Lisätty pop-up ikkunat ja restart toiminto peliin |
 | 16.4  | 2    | Optimoitu pelin kuvatiedostojen haku/lisääminen peliin |
 | 19.4  | 2    | Menu-valikon teko. |
-| **Yht.**  | **30** |
+|       | 2    | Arkkitehtuuri.md kirjoittelua ja kaavioiden tekoa. |
+| **Yht.**  | **32** |
