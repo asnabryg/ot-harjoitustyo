@@ -25,7 +25,10 @@ Metodit ```move_right()```, ```move_left()```, ```move_up()``` ja ```move_down()
 ## Pelin pysyväistallennus
 [ScoreRepository](../2048/src/repositories/score_repository.py)-luokka huolehtii pelin parhaimpien pisteiden talletuksesta. Tiedot tallennetaan SQLite-tietokantaan.
 Tietokanta on yksinkertainen, vain yksi taulu kannassa.  
-SQL schema: ```CREATE TABLE Highscores (board_size INTEGER, player_name TEXT, score INTEGER);```  
+SQL schema:
+```bash
+CREATE TABLE Highscores (board_size INTEGER, player_name TEXT, score INTEGER);
+```
 Jos uusi pistetulos on suurempi kuin top5 pelaajan tulos, niin se tallennetaan tietokantaan. Samassa tietokannassa on kaikkien eri pelialuekokojen tulokset. Nämä voidaan erotella board_size kohdan avulla.
 
 ## Luokka/pakkauskaavio:
