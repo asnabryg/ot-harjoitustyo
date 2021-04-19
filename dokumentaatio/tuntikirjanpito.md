@@ -12,5 +12,5 @@
 |       | 2    | Lisätty menu ja restart nappi + muita ui:n parannuksia |
 | 10.4  | 3    | Lisätty pop-up ikkunat ja restart toiminto peliin |
 | 16.4  | 2    | Optimoitu pelin kuvatiedostojen haku/lisääminen peliin |
-|       | 2    | Menu-valikon teko. Optimoitu ui.Text oliota. |
+| 19.4  | 2    | Menu-valikon teko. Optimoitu ui.Text oliota. |
 | **Yht.**  | **30** |
