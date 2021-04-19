@@ -10,6 +10,6 @@ Pakkaus *ui* sisältää käyttöliittymästä, *game_logic* pelilogiikasta ja *
 Käyttöliittymä sisältää kolme eri näkymää:
 - Menu
 - Peli näkymä
-- Tulostaulu näkymän
+- Tulostaulu näkymän  
 
-Jokaisen näkymän luominen tapahtuu eri luokissa. Näkymien näyttämisestä määrää [Userinterface](../2048/src/ui(ui.py) -luokka.
+Jokaisen näkymän luominen tapahtuu eri luokissa. Näkymien näyttämisestä sekä käyttäjän syötteiden tarkistamisesta määrää [Userinterface](../2048/src/ui/ui.py)-luokka. Käyttöliittymän on eristetty pelilogiikkasta, se vain kutsuu pelilogiikan metodeja.
