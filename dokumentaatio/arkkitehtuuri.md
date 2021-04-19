@@ -3,3 +3,13 @@
 ## Rakenne
 Koodin pakkausrakenne on seuraavanlainen:  
 ![Pakkausrakenne](./kuvat/Pakkausrakenne.png)
+
+Pakkaus *ui* sisältää käyttöliittymästä, *game_logic* pelilogiikasta ja *repositories* tuloksien tallennuksesta vastaavan koodin.
+
+## Käyttöliittymä
+Käyttöliittymä sisältää kolme eri näkymää:
+- Menu
+- Peli näkymä
+- Tulostaulu näkymän
+
+Jokaisen näkymän luominen tapahtuu eri luokissa. Näkymien näyttämisestä määrää [Userinterface](../2048/src/ui(ui.py) -luokka.
