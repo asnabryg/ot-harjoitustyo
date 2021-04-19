@@ -4,6 +4,7 @@ import os
 
 dirname = os.path.dirname(__file__)
 
+
 class Tile(pg.sprite.Sprite):
     """Luokka, jossa on pelilaatan kaikki tiedot. (arvo, xy -koordinaatti, kuva).
     Luokka perii pygamesta sprite luokan.
@@ -31,7 +32,8 @@ class Tile(pg.sprite.Sprite):
             self.img = pg.image.fromstring(image, (64, 64), "RGBA")
         else:
             file = "tile.png" if tile_value > 0 else "tile0.png"
-            self.img = pg.image.load(os.path.join(dirname, "./../assets", file)).convert_alpha()
+            self.img = pg.image.load(os.path.join(
+                dirname, "./../assets", file)).convert_alpha()
 
         self.color = color
         if tile_value > 0:
@@ -45,7 +47,7 @@ class Tile(pg.sprite.Sprite):
                 self.color = (247, 178, 123)
                 self.img.fill(self.color, None, pg.BLEND_RGBA_MULT)
             elif tile_value == 16:
-                self.color=(239, 146, 99)
+                self.color = (239, 146, 99)
                 self.img.fill(self.color, None, pg.BLEND_RGBA_MULT)
             elif tile_value == 32:
                 self.color = (247, 123, 95)
@@ -147,18 +149,20 @@ class Tile(pg.sprite.Sprite):
                 div = 2.7
                 div2 = 1.75
                 size = 20
-            
+
             self.font = files.get_font(size)
             self.text = self.font.render(str(tile_value), 1, (255, 255, 255))
 
-            R, G, B = self.color[0] - 60, self.color[1] - 60, self.color[2] - 60
+            R, G, B = self.color[0] - \
+                60, self.color[1] - 60, self.color[2] - 60
             R = 0 if R < 0 else R
             G = 0 if G < 0 else G
             B = 0 if B < 0 else B
             self.text_outline = self.font.render(
                 str(tile_value), 1, (R, G, B))
 
-            text_x = self.img.get_width() // 2 if div == 5 else self.img.get_width() // 2 - self.text.get_width() // div
+            text_x = self.img.get_width() // 2 if div == 5 else self.img.get_width() // 2 - \
+                self.text.get_width() // div
             text_y = self.img.get_height() // div2
             self.image.blit(self.text_outline, (text_x+1, text_y+1))
             self.image.blit(self.text_outline, (text_x-1, text_y-1))

@@ -7,7 +7,7 @@ class Text(pg.sprite.Sprite):
     Luokka perii pygamesta sprite luokan.
     """
 
-    def __init__(self, text: str, x, y, size: int, text_color: tuple, width, height, back_color):
+    def __init__(self, text: str, x, y, size: int, text_color: tuple, width, height, back_color, outline="thin", outline_style="full"):
         """Luokan konstruktori, joka luo uuden teksti spriten.
 
         Args:
@@ -36,8 +36,15 @@ class Text(pg.sprite.Sprite):
         self.image.fill(back_color)
         W = width/2 - self.textSurf.get_width()/2
         H = height/2 - self.textSurf.get_height()/2
-        self.image.blit(self.text_outline, (W+1, H+1))
-        self.image.blit(self.text_outline, (W-1, H-1))
-        self.image.blit(self.text_outline, (W+1, H-1))
-        self.image.blit(self.text_outline, (W-1, H+1))
+        if outline_style != "None" or outline_style is not None:
+            if outline == "thin":
+                increase = 1
+            elif outline == "fat":
+                increase = 5
+            if outline_style == "full" or outline_style == "shadow":
+                self.image.blit(self.text_outline, (W+increase, H+increase))
+            if outline_style == "full":
+                self.image.blit(self.text_outline, (W-increase, H-increase))
+                self.image.blit(self.text_outline, (W+increase, H-increase))
+                self.image.blit(self.text_outline, (W-increase, H+increase))
         self.image.blit(self.textSurf, [W, H])

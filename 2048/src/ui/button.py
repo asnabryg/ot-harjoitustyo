@@ -8,7 +8,7 @@ class Button(pg.sprite.Sprite):
     """Luokka, jolla luodaan nappi.
     """
 
-    def __init__(self, tag: str, text=None, text_color=(255, 255, 255), img_file_str="button.png", b_color=(0, 0, 0), position=(0, 0), size=(80, 80), rotate=0):
+    def __init__(self, tag: str, text=None, font=None, text_color=(255, 255, 255), img_file_str="button.png", b_color=(0, 0, 0), position=(0, 0), size=(80, 80), rotate=0):
         """Luokan konstruktori, joka luo uuden napin.
 
         Args:
@@ -39,7 +39,10 @@ class Button(pg.sprite.Sprite):
         self.image = pg.transform.scale(self.image, size)
 
         if text is not None:
-            self.font = pg.font.SysFont("default", 30)
+            if font is None:
+                self.font = pg.font.SysFont("default", 30)
+            else:
+                self.font = font
             self.text = self.font.render(text, 1, text_color)
         
             R, G, B = b_color[0] - 60, b_color[1] - 60, b_color[2] - 60

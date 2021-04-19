@@ -1,6 +1,7 @@
 
 import random
 
+
 class Game2048:
     """Luokka, jossa on pelin logiikka ja pelialusta.
 
@@ -44,7 +45,7 @@ class Game2048:
             list[list]: pelialusta
         """
         return self.__board
-    
+
     def get_score(self):
         """Palauttaa sen hetkisen pelin pistetilanteen
 
@@ -75,8 +76,8 @@ class Game2048:
             jos löytyi vähintään yksi koordinaatti, muuten None
         """
         empty_places = []
-        for y in range(self.__size): # pylint: disable=invalid-name
-            for x in range(self.__size): # pylint: disable=invalid-name
+        for y in range(self.__size):  # pylint: disable=invalid-name
+            for x in range(self.__size):  # pylint: disable=invalid-name
                 if self.__board[y][x] == 0:
                     empty_places.append((y, x))
         if len(empty_places) == 0:

@@ -4,13 +4,13 @@ from ui.tile import Tile
 from ui.text import Text
 from ui.button import Button
 from game2048 import Game2048
-from ui.game_files import GameFiles
+
 
 class GameView():
     """Luokka, jossa alustetaan pelilaudan sprite näytölle.
     """
 
-    def __init__(self, game: Game2048, cell_size, screen_size):
+    def __init__(self, game: Game2048, cell_size, screen_size, files):
         """Luokan konstruktori.
 
         Args:
@@ -29,7 +29,7 @@ class GameView():
         self.all_sprites = pg.sprite.Group()
         self.m_x = (310//8)
         self.m_y = (240//2)
-        self.files = GameFiles()
+        self.files = files
         self.initialize()
 
     def initialize(self):
@@ -61,17 +61,17 @@ class GameView():
                 normalized_x = x * self.cell_size + self.m_x
                 normalized_y = y * self.cell_size + self.m_y
 
-                self.tiles.add(Tile(0, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile0_img_str(), files=self.files))  # tausta
+                self.tiles.add(Tile(0, normalized_x, normalized_y, self.cell_size, color=None,
+                               image=self.files.get_tile0_img_str(), files=self.files))  # tausta
                 if value == 0:
                     continue
                 self.tiles.add(
                     Tile(value, normalized_x, normalized_y, self.cell_size, color=None, image=self.files.get_tile_img_str(), files=self.files))  # tile
 
-
         self.update_buttons()
 
         self.all_sprites.add(self.tiles, self.texts)
-    
+
     def update_buttons(self, b_press=set()):
         """Renderöi kaikki napit ja nappien värin vaihdon
 
@@ -113,7 +113,7 @@ class GameView():
                                   (self.m_y + y // 2) - b_size * 1.5 + b_size * 2 + y_margin),
                         size=(b_size, b_size),
                         rotate=180)
-        
+
         if "b_right" in b_press:
             b_color = b_press_down_color
         else:
@@ -152,35 +152,34 @@ class GameView():
         else:
             b_color = (200, 0, 0)
         b_restart = Button(tag="b_restart",
-                        text="Restart",
-                        text_color=(240, 240, 240),
+                           text="Restart",
+                           text_color=(240, 240, 240),
                            img_file_str=self.files.get_button_img_str(),
-                        b_color=b_color,
-                        position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) - 90//1.5,
-                                  self.m_y),
-                        size=(90, 35),
-                        rotate=0)
-        
+                           b_color=b_color,
+                           position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) - 90//1.5,
+                                     self.m_y),
+                           size=(90, 35),
+                           rotate=0)
+
         if "b_menu" in b_press:
             b_color = (100, 0, 0)
         else:
             b_color = (200, 0, 0)
         b_menu = Button(tag="b_menu",
-                           text="Menu",
-                           text_color=(240, 240, 240),
-                           img_file_str=self.files.get_button_img_str(),
-                           b_color=b_color,
-                           position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) + 90//1.5,
-                                       self.m_y),
-                           size=(90, 35),
-                           rotate=0)
+                        text="Menu",
+                        text_color=(240, 240, 240),
+                        img_file_str=self.files.get_button_img_str(),
+                        b_color=b_color,
+                        position=((((self.screen_size[0] - x) // 2) + x) - (90 // 2) + 90//1.5,
+                                  self.m_y),
+                        size=(90, 35),
+                        rotate=0)
 
         self.buttons.add(b_restart)
         self.buttons.add(b_menu)
 
         self.all_sprites.add(self.buttons)
-    
-    
+
     def update_pop_ups(self, tag: str, b_press=set()):
         """Renderöi pop-up ikkunat näkyville tagin perusteella. Myös sen napit.
 
@@ -205,32 +204,32 @@ class GameView():
         else:
             b_color = (0, 200, 0)
         b_yes = Button(tag="b_yes",
-                        text="Yes",
-                        text_color=(240, 240, 240),
-                        img_file_str=self.files.get_button_img_str(),
-                        b_color=b_color,
-                        position=(x + size[0] // 2 - b_size[0] * 1.5+ 20,
-                                    y + size[1] // 1.5),
-                        size=b_size,
-                        rotate=0)
-        
+                       text="Yes",
+                       text_color=(240, 240, 240),
+                       img_file_str=self.files.get_button_img_str(),
+                       b_color=b_color,
+                       position=(x + size[0] // 2 - b_size[0] * 1.5 + 20,
+                                 y + size[1] // 1.5),
+                       size=b_size,
+                       rotate=0)
+
         if "b_no" in b_press:
             b_color = (100, 0, 0)
         else:
             b_color = (200, 0, 0)
         b_no = Button(tag="b_no",
-                        text="No",
-                        text_color=(240, 240, 240),
-                        img_file_str=self.files.get_button_img_str(),
-                        b_color=b_color,
-                        position=(x + size[0] // 2 + b_size[0] * .5 - 20,
-                                    y + size[1] // 1.5),
-                        size=b_size,
-                        rotate=0)
-        
+                      text="No",
+                      text_color=(240, 240, 240),
+                      img_file_str=self.files.get_button_img_str(),
+                      b_color=b_color,
+                      position=(x + size[0] // 2 + b_size[0] * .5 - 20,
+                                y + size[1] // 1.5),
+                      size=b_size,
+                      rotate=0)
+
         self.pop_up_buttons.add(b_yes)
         self.pop_up_buttons.add(b_no)
-        
+
         # Text:
         x = x + margin
         y = y + margin
@@ -242,5 +241,5 @@ class GameView():
         text = Text(s,
                     x, y, 25, (255, 255, 255),
                     size[0] - margin * 2, 40, (100, 100, 100))
-        
+
         self.pop_ups.add(text)
