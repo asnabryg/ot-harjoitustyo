@@ -6,15 +6,20 @@ näiden kahden laatan summa. Tavoitteena on saada laatta, jossa on numero 2048. 
 suurentaa myös, jolloin pelin tavoitelaatan numerokin suurentuu. Peliä myös voidaan jatkaa tavoitteen saavuttamisen jälkeen.
 
 ## Pelattavuus
-- Peliä pelataan nuolinäppäimillä tai pelissä olevalla käyttöliittymällä hiirellä painattaessa.
-- Uusi laatta ilmestyy kentälle, jokaisella liu'utuksella, uuden laatan numero on 2 tai 4.
-- Pisteitä keräntyy aina, kun pelaaja saa yhdistettyä kaksi laattaa.
+- Peliä pelataan nuolinäppäimillä tai pelissä olevalla käyttöliittymällä hiirellä painattaessa. **Tehty**
+- Uusi laatta ilmestyy kentälle, jokaisella liu'utuksella, uuden laatan numero on 2 tai 4. **Tehty**
+- Pisteitä keräntyy aina, kun pelaaja saa yhdistettyä kaksi laattaa. **Tehty**
 - Kun ruudukossa ei ole enää tyhjiä ruutuja, eikä pelaaja pysty yhdistämään laattoja, peli loppuu.
 - Pelin loputtua, peli tallentaa tuloksen top5 taulukkoon, jos pistemäärä on enemmän kuin taulukossa olevalla.
   - Samalla peli pyytää pelaajan nimimerkkiä, jolloin nähdään kuka tuloksen saavutti.
   
 ## Käyttöliittymä luonnos
-![](./kuvat/2048_hahmotelma.jpg)
+![](./kuvat/2048_hahmotelma.jpg)  
+Peli koostuu kolmesta eri näkymästä: Menu, Peli ja Parhaat tulokset -näkymistä.
+Pelin käynnittäessä Menu valikko tulee ensin näkyviin, jostta voidaan siirtyä peliin, parhaimpiin tuloksiin tai lopettaa peli.  
+Menu: **Tehty**  
+Peli: **Tehty**  
+Parhaat tulokset: **kesken**
 
 ## Pelin toimintaympäristö rajoitteet
 - ohjelmiston tulee toimia Linux- ja OSX-käytöjärjestelmillä
