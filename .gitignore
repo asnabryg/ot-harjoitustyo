@@ -20,3 +20,5 @@ laskarit/viikko2/maksukortti/src/tests/__pycache__/maksukortti_test.cpython-38-p
 /releases
 2048/.vscode/
 tile_pics_kra/
+2048/src/game_logic/__pycache__/
+2048/src/repositories/__pycache__/
