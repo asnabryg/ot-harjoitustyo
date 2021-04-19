@@ -16,3 +16,17 @@ Jokaisen näkymän luominen tapahtuu eri luokissa. Näkymien näyttämisestä se
 
 ## Pelilogiikka
 Pelin logiikka ja laskenta tapahtuu [Game2048](../2048/src/game_logic/game2048.py)-luokassa.
+
+![Pelilogiikka](./kuvat/Pelilogiikka.png)
+
+## Pelin pysyväistallennus
+[ScoreRepository](../2048/src/repositories/score_repository.py)-luokka huolehtii pelin parhaimpien piesteiden talletuksesta. Tiedot tallennetaan SQLite-tietokantaan.
+Tietokanta on yksinkertainen, vain yksi taulu kannassa.  
+SQL schema: ```CREATE TABLE Highscores (board_size INTEGER, player_name TEXT, score INTEGER);```
+Jos uusi pistetulos on suurempi kuin top5 pelaajan tulos, niin se tallennetaan tietokantaan. Samassa tietokannassa on kaikkien eri pelialuekokojen tulokset. Nämä voidaan erotella board_size kohdan avulla.
+
+## Luokka/pakkauskaavio:
+![Luokkakaavio](./kuvat/Luokkakaavio.png)
+
+
+
