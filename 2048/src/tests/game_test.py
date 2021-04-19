@@ -1,6 +1,6 @@
 
 import unittest
-from game2048 import Game2048
+from game_logic.game2048 import Game2048
 
 
 class TestGame(unittest.TestCase):

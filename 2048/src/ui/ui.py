@@ -1,6 +1,6 @@
 
-from score_repository import ScoreRepository
-from game2048 import Game2048
+from repositories.score_repository import ScoreRepository
+from game_logic.game2048 import Game2048
 import pygame as pg
 import os
 from ui.game_view import GameView

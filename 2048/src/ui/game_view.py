@@ -3,7 +3,7 @@ import pygame as pg
 from ui.tile import Tile
 from ui.text import Text
 from ui.button import Button
-from game2048 import Game2048
+from game_logic.game2048 import Game2048
 
 
 class GameView():

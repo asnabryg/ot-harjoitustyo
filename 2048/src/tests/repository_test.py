@@ -1,8 +1,8 @@
 
 import unittest
-from score_repository import ScoreRepository
-from initialize_database import initialize_fake_database
-from database_connection import get_fake_database_connection
+from repositories.score_repository import ScoreRepository
+from repositories.initialize_database import initialize_fake_database
+from repositories.database_connection import get_fake_database_connection
 
 class TestRepository(unittest.TestCase):
 

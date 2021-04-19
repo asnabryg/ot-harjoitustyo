@@ -1,6 +1,6 @@
 
-from initialize_database import create_tables_if_not_exists
-from database_connection import get_database_connection
+from repositories.initialize_database import create_tables_if_not_exists
+from repositories.database_connection import get_database_connection
 
 
 class ScoreRepository:

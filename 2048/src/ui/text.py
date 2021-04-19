@@ -1,6 +1,6 @@
 
 import pygame as pg
-from pygame.constants import BLEND_RGB_MULT
+
 
 class Text(pg.sprite.Sprite):
     """Luokka, jolla alustetaan teksti ruudulle.
