@@ -18,4 +18,5 @@
 |       | 3    | Peli tunnistaa gameoverin ja tallentaa pisteet tietokantaan nimimerkillä. |
 |       | 1    | Bugeja ja pylinttiä korjattu. Testejä muutettu paremmaksi |
 |       | 1    | Tehty sekvenssiokaavio pelaamisesta |
+|       | 1    | Bugin korjaus ja releasen teko |
 | **Yht.**  | **39** |
