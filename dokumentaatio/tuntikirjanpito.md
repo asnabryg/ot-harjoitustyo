@@ -17,4 +17,5 @@
 | 24.4  | 2    | Lisätty eri pelialueiden koon valitseminen menuun. |
 |       | 3    | Peli tunnistaa gameoverin ja tallentaa pisteet tietokantaan nimimerkillä. |
 |       | 1    | Bugeja ja pylinttiä korjattu. Testejä muutettu paremmaksi |
-| **Yht.**  | **38** |
+|       | 1    | Tehty sekvenssiokaavio pelaamisesta |
+| **Yht.**  | **39** |
