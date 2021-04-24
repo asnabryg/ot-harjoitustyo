@@ -9,9 +9,10 @@ suurentaa myös, jolloin pelin tavoitelaatan numerokin suurentuu. Peliä myös v
 - Peliä pelataan nuolinäppäimillä tai pelissä olevalla käyttöliittymällä hiirellä painattaessa. **Tehty**
 - Uusi laatta ilmestyy kentälle, jokaisella liu'utuksella, uuden laatan numero on 2 tai 4. **Tehty**
 - Pisteitä keräntyy aina, kun pelaaja saa yhdistettyä kaksi laattaa. **Tehty**
-- Kun ruudukossa ei ole enää tyhjiä ruutuja, eikä pelaaja pysty yhdistämään laattoja, peli loppuu.
+- Kun ruudukossa ei ole enää tyhjiä ruutuja, eikä pelaaja pysty yhdistämään laattoja, peli loppuu. **Tehty**
 - Pelin loputtua, peli tallentaa tuloksen top5 taulukkoon, jos pistemäärä on enemmän kuin taulukossa olevalla.
-  - Samalla peli pyytää pelaajan nimimerkkiä, jolloin nähdään kuka tuloksen saavutti.
+  - Samalla peli pyytää pelaajan nimimerkkiä, jolloin nähdään kuka tuloksen saavutti. **Tehty**
+- Pelaaja voi tarkastella parhaimpia tuloksia Highscores -näkymässä.
   
 ## Käyttöliittymä luonnos
 ![](./kuvat/2048_hahmotelma.jpg)  
