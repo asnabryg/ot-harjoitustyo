@@ -51,6 +51,11 @@ class Userinterface:
                 self.game_view.pop_up_buttons.draw(screen)
         elif self.current_scene == "menu":
             self.menu_view.all_sprites.draw(screen)
+            if pop_up_tag is not None:
+                screen.blit(self.get_blur(screen), (0, 0))
+                self.menu_view.update_pop_ups(pop_up_tag, {pop_up_b})
+                self.menu_view.pop_ups.draw(screen)
+                self.menu_view.pop_up_buttons.draw(screen)
         pg.display.flip()
 
     def press_button_anim(self, button_tag: str, screen, sleep_time=0.02):
@@ -125,10 +130,10 @@ class Userinterface:
             screen.fill((100, 100, 100))
             pg.display.flip()
 
-    def get_menu_view(self, screen):
+    def get_menu_view(self, screen, pop_up_tag=None, pop_up_b=None):
         self.menu_view = MenuView(self.screen_size, self.files)
         screen.fill((0, 0, 200))
-        self.update_screen(screen)
+        self.update_screen(screen, pop_up_tag, pop_up_b)
 
     def execute_menu(self):
         self.current_scene = "menu"
@@ -140,36 +145,54 @@ class Userinterface:
         buttons = self.menu_view.buttons
         pressed = False
         new_scene = None
+        pop_up_tag = None
+
         while True:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     exit()
                 if event.type == pg.MOUSEBUTTONDOWN:
                     mouse_pos = event.pos
-                    for button in buttons:
-                        if button.rect.collidepoint(mouse_pos):
-                            if button.tag == "b_play":
-                                new_scene = "game"
-                            if button.tag == "b_scores":
-                                # new_scene = "scores"
-                                pass
-                            if button.tag == "b_quit":
-                                new_scene = "quit"
-                            pressed = True
-                            self.press_button_anim(button.tag, screen)
+                    if pop_up_tag is not None:
+                        pop_up_buttons = self.menu_view.pop_up_buttons
+                        for button in pop_up_buttons:
+                            if button.rect.collidepoint(mouse_pos):
+                                self.get_menu_view(screen, pop_up_tag, button.tag)
+                                time.sleep(0.08)
+                                pressed = True
+                                if button.tag == "b_4x4":
+                                    new_scene = ("game", 4)
+                                elif button.tag == "b_5x5":
+                                    new_scene = ("game", 5)
+                                elif button.tag == "b_6x6":
+                                    new_scene = ("game", 6)
+                                elif button.tag == "b_back":
+                                    pop_up_tag = None
+                    else:
+                        for button in buttons:
+                            if button.rect.collidepoint(mouse_pos) and pop_up_tag is None:
+                                if button.tag == "b_play":
+                                    pop_up_tag = "play"
+                                if button.tag == "b_scores":
+                                    # new_scene = ("scores",)
+                                    pass
+                                if button.tag == "b_quit":
+                                    new_scene = ("quit",)
+                                pressed = True
+                                self.press_button_anim(button.tag, screen)
             if pressed:
-                self.get_menu_view(screen)
+                self.get_menu_view(screen, pop_up_tag)
                 pressed = False
                 if new_scene is not None:
                     break
             clock.tick(25)
 
-        if new_scene == "game":
-            self.execute_game(4)
-        elif new_scene == "scores":
+        if new_scene[0] == "game":
+            self.execute_game(new_scene[1])
+        elif new_scene[0] == "scores":
             # TODO score scene
             pass
-        elif new_scene == "quit":
+        elif new_scene[0] == "quit":
             exit()
 
     def execute_game(self, game_size):
