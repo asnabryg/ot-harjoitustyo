@@ -15,5 +15,5 @@
 | 19.4  | 2    | Menu-valikon teko. |
 |       | 2    | Arkkitehtuuri.md kirjoittelua ja kaavioiden tekoa. |
 | 24.4  | 2    | Lisätty eri pelialueiden koon valitseminen menuun. |
-| 24.4  | 3    | Peli tunnistaa gameoverin ja tallentaa pisteet tietokantaan nimimerkillä. |
+|       | 3    | Peli tunnistaa gameoverin ja tallentaa pisteet tietokantaan nimimerkillä. |
 | **Yht.**  | **37** |
