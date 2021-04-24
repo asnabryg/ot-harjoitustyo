@@ -12,7 +12,7 @@ Käyttöliittymä sisältää kolme eri näkymää:
 - Peli näkymä
 - Tulostaulu näkymän  
 
-Jokaisen näkymän luominen tapahtuu eri luokissa. Näkymien näyttämisestä sekä käyttäjän syötteiden tarkistamisesta määrää [Userinterface](../2048/src/ui/ui.py)-luokka. Käyttöliittymän on eristetty pelilogiikkasta, se vain kutsuu pelilogiikan metodeja. Tiettyhen pelilogiikka metodikutsujen jälkeen ui-koodi päivittää peliruudun.
+Jokaisen näkymän luominen tapahtuu eri luokissa. Näkymien näyttämisestä sekä käyttäjän syötteiden tarkistamisesta määrää [Userinterface](../2048/src/ui/ui.py)-luokka. Käyttöliittymän on eristetty pelilogiikkasta, se vain kutsuu pelilogiikan metodeja. Tiettyjen pelilogiikka metodikutsujen jälkeen ui-koodi päivittää peliruudun.
 
 ## Pelilogiikka
 Pelin logiikka ja laskenta tapahtuu [Game2048](../2048/src/game_logic/game2048.py)-luokassa.  
@@ -35,6 +35,6 @@ Jos uusi pistetulos on suurempi kuin top5 pelaajan tulos, niin se tallennetaan t
 ![Luokkakaavio](./kuvat/Luokkakaavio.png)
 
 ## Sekvenssikaavio pelaamisesta
-Tämä sekvenssikaavio kuvaa, miten yhden pelin pelaamisen logiikka toimii alusta lähtien. Pelaaja valtisee menu valikosta pelialueen koon (grid_size). Tietyn ajan pelattuaan, pelialue täyttyy laatoista ja tilalle ei mahdu uusia laattoja, eikä pystytä liiuttamaan laattoja enää mihinkään suuntaan; peli päättyy. Jolloin tarkistetaan onko tulos top5 ainesta. Jos on, niin peli kysyy nimeä ja tallentaa sen tietokantaan.
+Tämä sekvenssikaavio kuvaa, miten yhden pelin pelaamisen logiikka toimii alusta lähtien. Pelaaja valtisee menu valikosta pelialueen koon (grid_size). Tietyn ajan pelattuaan, pelialue täyttyy laatoista ja tilalle ei mahdu uusia laattoja, eikä pystytä liikuttamaan laattoja enää mihinkään suuntaan; peli päättyy. Jolloin tarkistetaan onko tulos top5 ainesta. Jos on, niin peli kysyy nimeä ja tallentaa sen tietokantaan.
 
 ![Sekvenssikaavio](./kuvat/Sekvenssikaavio.png)
