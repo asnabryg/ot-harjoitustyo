@@ -18,11 +18,11 @@ class TestRepository(unittest.TestCase):
         self.rep.add_new_highscore("pelaaja3", 0)
         self.rep.add_new_highscore("pelaaja4", 15)
         self.rep.add_new_highscore("pelaaja5", 240)
-        top5 = self.rep.get_top5()
+        top5 = self.rep.get_top5(4)
         self.assertEqual(top5, [("pelaaja5", 240), ("pelaaja2", 150),
                          ("pelaaja1", 100), ("pelaaja4", 15), ("pelaaja3", 0)])
         self.rep.add_new_highscore("pelaaja6", 200)
-        top5 = self.rep.get_top5()
+        top5 = self.rep.get_top5(4)
         self.assertEqual(top5, [("pelaaja5", 240), ("pelaaja6", 200),
                          ("pelaaja2", 150), ("pelaaja1", 100), ("pelaaja4", 15)])
     
@@ -31,11 +31,11 @@ class TestRepository(unittest.TestCase):
         self.rep.add_new_highscore("pelaaja2", 150)
         self.rep.add_new_highscore("pelaaja3", 0)
         self.rep.add_new_highscore("pelaaja4", 15)
-        bool = self.rep.check_if_highscore(2)
+        bool = self.rep.check_if_highscore(2, 4)
         self.assertEqual(bool, True)
         self.rep.add_new_highscore("pelaaja5", 240)
-        bool = self.rep.check_if_highscore(20)
+        bool = self.rep.check_if_highscore(20, 4)
         self.assertEqual(bool, True)
         self.rep.add_new_highscore("pelaaja5", 250)
-        bool = self.rep.check_if_highscore(2)
+        bool = self.rep.check_if_highscore(2, 4)
         self.assertEqual(bool, False)

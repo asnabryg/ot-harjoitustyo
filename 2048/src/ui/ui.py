@@ -245,7 +245,7 @@ class Userinterface:
                 # Tallennetaan tulos
                 score = self.game.get_score()
                 self.execute_score_saving(screen, self.get_blur(
-                    screen), self.rep.check_if_highscore(score))
+                    screen), self.rep.check_if_highscore(score), self.board_size)
             else:
                 # GAME
                 for event in pg.event.get():
@@ -372,7 +372,7 @@ class Userinterface:
                     self.execute_game(self.board_size)
                 elif event == "menu":
                     self.execute_score_saving(screen, self.get_blur(
-                        screen), self.rep.check_if_highscore(self.game.get_score()))
+                        screen), self.rep.check_if_highscore(self.game.get_score(), self.board_size))
             clock.tick(25)
 
     def get_blur(self, screen, img_mode="RGBA"):

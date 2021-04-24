@@ -26,11 +26,11 @@ class ScoreRepository:
             # testaukeen tarkoitettu
             self.connection = connection
 
-    def get_top5(self, board_size=4):
+    def get_top5(self, board_size: int):
         """Hakee top 5 pelaajaa ja tulosta tietokannasta
 
         Args:
-            board_size (int, valinnainen): pelialustan leveys ja pituus. Oletus: 4
+            board_size (int): pelialustan leveys ja pituus
 
         Returns:
             list: lista top5 pelaajista
@@ -66,7 +66,7 @@ class ScoreRepository:
         self.connection.commit()
         cursor.close()
 
-    def check_if_highscore(self, score: int):
+    def check_if_highscore(self, score: int, board_size: int):
         """Tarkistaa, onko tulos parempi, kuin viidennen parhaan pelajan tulos.
 
         Args:
@@ -75,8 +75,10 @@ class ScoreRepository:
         Returns:
             boolean: True, jos on parempi
         """
+        if score == 0:
+            return False
 
-        top5 = self.get_top5()
+        top5 = self.get_top5(board_size)
         if len(top5) == 5:
             last_player = top5[len(top5)-1]
             if last_player[1] < score:
