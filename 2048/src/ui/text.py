@@ -40,7 +40,7 @@ class Text(pg.sprite.Sprite):
             self.image.fill(back_color)
         W = width/2 - self.textSurf.get_width()/2
         H = height/2 - self.textSurf.get_height()/2
-        if outline_style != "None" or outline_style is not None:
+        if outline_style is not None:
             if outline == "thin":
                 increase = 1
             elif outline == "fat":

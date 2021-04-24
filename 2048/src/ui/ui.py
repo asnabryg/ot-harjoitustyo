@@ -96,6 +96,7 @@ class Userinterface:
         x, y = monitors[0].width // 5, monitors[0].height // 5
         os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x, y)
         pg.display.set_caption("2048")
+        self.score_saving_view = None
         self.execute_menu()
         # print("0")
         # while True:
@@ -160,7 +161,8 @@ class Userinterface:
                         pop_up_buttons = self.menu_view.pop_up_buttons
                         for button in pop_up_buttons:
                             if button.rect.collidepoint(mouse_pos):
-                                self.get_menu_view(screen, pop_up_tag, button.tag)
+                                self.get_menu_view(
+                                    screen, pop_up_tag, button.tag)
                                 time.sleep(0.08)
                                 pressed = True
                                 if button.tag == "b_4x4":
@@ -199,26 +201,28 @@ class Userinterface:
         elif new_scene[0] == "quit":
             exit()
 
-    def get_score_saving_view(self, screen, background, b_press=set(), char="", backspace=False):
+    def get_score_saving_view(self, screen, background, b_press=set(), char="", backspace=False, is_highscore=True):
         if self.score_saving_view is None:
             screen.blit(background, (0, 0))
-            self.score_saving_view = ScoreSavingView(self.files, self.screen_size, self.game.get_score())
+            self.score_saving_view = ScoreSavingView(
+                self.files, self.screen_size, self.game.get_score(), is_highscore)
             self.score_saving_view.pop_ups.draw(screen)
             self.score_saving_view.texts.draw(screen)
-        self.score_saving_view.update_name(char, backspace)
+        if is_highscore:
+            self.score_saving_view.update_name(char, backspace)
+            self.score_saving_view.name_surface.draw(screen)
         self.score_saving_view.update_buttons(b_press)
-        self.score_saving_view.name_surface.draw(screen)
         self.score_saving_view.buttons.draw(screen)
         pg.display.flip()
-    
-    def execute_score_saving(self, screen, background):
-        self.get_score_saving_view(screen, background)
+
+    def execute_score_saving(self, screen, background, is_highscore):
+        self.get_score_saving_view(screen, background, is_highscore=is_highscore)
         pressed = False
         chars = "abcdefghijklmnopqrstuvwxyzåäö"
         chars = chars + chars.upper() + " 1234567890_"
         char = ""
         backspace = False
-        submit = False
+        event_scene = ""
         while True:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
@@ -229,10 +233,21 @@ class Userinterface:
                     for button in buttons:
                         if button.rect.collidepoint(mouse_pos):
                             if button.tag == "b_submit":
-                                self.get_score_saving_view(screen, background, {button.tag})
+                                self.get_score_saving_view(
+                                    screen, background, {button.tag}, is_highscore=is_highscore)
                                 pressed = True
                                 time.sleep(0.08)
-                                submit = True
+                                event_scene = "submit"
+                            if button.tag == "b_menu":
+                                self.get_score_saving_view(screen, background, {button.tag}, is_highscore=is_highscore)
+                                pressed = True
+                                time.sleep(0.08)
+                                event_scene = "menu"
+                            if button.tag == "b_restart":
+                                self.get_score_saving_view(screen, background, {button.tag}, is_highscore=is_highscore)
+                                pressed = True
+                                time.sleep(0.08)
+                                event_scene = "restart"
                 if event.type == pg.KEYDOWN:
                     if event.key == pg.K_BACKSPACE:
                         pressed = True
@@ -244,14 +259,21 @@ class Userinterface:
                         backspace = False
             if pressed:
                 pressed = False
-                self.get_score_saving_view(screen, background, char=char, backspace=backspace)
+                self.get_score_saving_view(
+                    screen, background, char=char, backspace=backspace, is_highscore=is_highscore)
                 char = ""
                 backspace = False
-            if submit:
-                self.rep.add_new_highscore(self.score_saving_view.name, self.game.get_score(), self.board_size)
+            if event_scene == "submit":
+                self.rep.add_new_highscore(
+                    self.score_saving_view.name, self.game.get_score(), self.board_size)
                 self.score_saving_view = None
                 self.execute()
-                            
+            elif event_scene == "menu":
+                self.score_saving_view = None
+                self.execute()
+            elif event_scene == "restart":
+                self.score_saving_view = None
+                self.execute_game(self.board_size)
 
     def execute_game(self, game_size):
         self.current_scene = "game"
@@ -272,18 +294,14 @@ class Userinterface:
         event = False
 
         while True:
-
             if self.game.is_gameover():
-                #GAMEOVER
+                # GAMEOVER
                 # Tallennetaan tulos
                 score = self.game.get_score()
-                if self.rep.check_if_highscore(score):
-                    self.execute_score_saving(screen, self.get_blur(screen))
-                else:
-                    pass
-                break
+                self.execute_score_saving(screen, self.get_blur(
+                    screen), self.rep.check_if_highscore(score))
             else:
-                #GAME
+                # GAME
                 for event in pg.event.get():
                     if event.type == pg.QUIT:
                         # self.end = True
@@ -317,12 +335,14 @@ class Userinterface:
                             for button in buttons:
                                 if button.rect.collidepoint(mouse_pos):
                                     if button.tag == "b_restart" and pop_up_tag is None:
-                                        self.press_button_anim("b_restart", screen)
+                                        self.press_button_anim(
+                                            "b_restart", screen)
                                         pop_up_tag = "restart"
                                         auto_play = False
                                         pressed = True
                                     if button.tag == "b_menu" and pop_up_tag is None:
-                                        self.press_button_anim("b_menu", screen)
+                                        self.press_button_anim(
+                                            "b_menu", screen)
                                         pop_up_tag = "menu"
                                         auto_play = False
                                         pressed = True
@@ -333,17 +353,20 @@ class Userinterface:
                                         pressed = True
                                         auto_play = False
                                     if button.tag == "b_down" and pop_up_tag is None:
-                                        self.press_button_anim("b_down", screen)
+                                        self.press_button_anim(
+                                            "b_down", screen)
                                         self.game.move_down()
                                         pressed = True
                                         auto_play = False
                                     if button.tag == "b_right" and pop_up_tag is None:
-                                        self.press_button_anim("b_right", screen)
+                                        self.press_button_anim(
+                                            "b_right", screen)
                                         self.game.move_right()
                                         pressed = True
                                         auto_play = False
                                     if button.tag == "b_left" and pop_up_tag is None:
-                                        self.press_button_anim("b_left", screen)
+                                        self.press_button_anim(
+                                            "b_left", screen)
                                         self.game.move_left()
                                         pressed = True
                                         auto_play = False
@@ -401,15 +424,11 @@ class Userinterface:
                         auto_counter = -1
 
                 if event == "restart":
-                    self.game.add_new_tile()
-                    self.execute_game(game_size)
+                    # self.game.add_new_tile()
+                    self.execute_game(self.board_size)
                 elif event == "menu":
-                    if self.rep.check_if_highscore(self.game.get_score()):
-                        self.execute_score_saving(screen, self.get_blur(screen))
-                    else:
-                        self.score_saving_view = None
-                        self.execute()
-
+                    self.execute_score_saving(screen, self.get_blur(
+                        screen), self.rep.check_if_highscore(self.game.get_score()))
             clock.tick(25)
 
     def get_blur(self, screen, img_mode="RGBA"):
