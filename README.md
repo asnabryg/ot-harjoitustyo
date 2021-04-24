@@ -16,16 +16,18 @@ Peli toimii 3.6.0 tai siitä uudemmalla Python-versiolla
 
 ## Asennus
 
-1. Mene kansioon **2048/** ja suorita seuraavat komennot siellä.
+1. Lataa projektin viimeisin [lähdekoodi](https://github.com/asnabryg/ot-harjoitustyo/releases) valitsemalla *Assets*-osion alta *2048_source_code_*(versionumero).zip.
+
+2. Mene kansioon **2048/** ja suorita seuraavat komennot siellä.
 
 
-2. Asenna kaikki riippuvuudet komennolla:
+3. Asenna kaikki riippuvuudet komennolla:
 
 ```bash
 poetry install
 ```
 
-3. Käynnistä peli komennolla:
+4. Käynnistä peli komennolla:
 
 ```bash
 poetry run invoke start
