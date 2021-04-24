@@ -1,5 +1,6 @@
 
 import pygame as pg
+from repositories.score_repository import ScoreRepository
 from ui.tile import Tile
 from ui.text import Text
 from ui.button import Button
@@ -10,7 +11,7 @@ class GameView():
     """Luokka, jossa alustetaan pelilaudan sprite näytölle.
     """
 
-    def __init__(self, game: Game2048, cell_size, screen_size, files):
+    def __init__(self, game: Game2048, cell_size, screen_size, files, highscore):
         """Luokan konstruktori.
 
         Args:
@@ -19,6 +20,7 @@ class GameView():
             screen_size (tuple): Näytön leveys ja korkeus
         """
         self.game = game
+        self.highscore = highscore
         self.screen_size = screen_size
         self.tiles = pg.sprite.Group()
         self.texts = pg.sprite.Group()
@@ -47,8 +49,7 @@ class GameView():
         self.texts.add(Text(text, score_x, score_y, 30, (255, 255, 255),
                        W, 50, (0, 0, 180)))
 
-        highscore = self.game.get_score()
-        text = "Best score: " + str(highscore)
+        text = "Best score: " + str(self.highscore)
         margin = 15
         score_x = self.m_x + self.cell_size*self.game.get_size() + margin
         score_y = self.m_y - (self.cell_size - margin)

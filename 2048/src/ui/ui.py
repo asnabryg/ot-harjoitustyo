@@ -37,10 +37,11 @@ class Userinterface:
         self.score_saving_view = None
         self.files = GameFiles()
         self.rep = ScoreRepository()
+        self.pre_highscore = 0
 
     def get_game_view(self, screen, pop_up_tag=None, pop_up_b=None):
         self.game_view = GameView(
-            self.game, self.cell_size, self.screen_size, self.files)
+            self.game, self.cell_size, self.screen_size, self.files, self.pre_highscore)
         screen.fill((0, 0, 200))
         self.update_screen(screen, pop_up_tag, pop_up_b)
 
@@ -137,6 +138,7 @@ class Userinterface:
 
         if new_scene[0] == "game":
             self.board_size = new_scene[1]
+            self.pre_highscore = self.rep.get_highscore(self.board_size)
             self.execute_game(self.board_size)
         elif new_scene[0] == "scores":
             # TODO score scene
@@ -213,12 +215,15 @@ class Userinterface:
                 self.rep.add_new_highscore(
                     self.score_saving_view.name, self.game.get_score(), self.board_size)
                 self.score_saving_view = None
+                self.pre_highscore = self.rep.get_highscore(self.board_size)
                 self.execute()
             elif event_scene == "menu":
                 self.score_saving_view = None
+                self.pre_highscore = self.rep.get_highscore(self.board_size)
                 self.execute()
             elif event_scene == "restart":
                 self.score_saving_view = None
+                self.pre_highscore = self.rep.get_highscore(self.board_size)
                 self.execute_game(self.board_size)
 
     def execute_game(self, game_size):
@@ -369,6 +374,7 @@ class Userinterface:
                         auto_counter = -1
 
                 if event == "restart":
+                    self.pre_highscore = self.rep.get_highscore(self.board_size)
                     self.execute_game(self.board_size)
                 elif event == "menu":
                     self.execute_score_saving(screen, self.get_blur(
