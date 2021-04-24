@@ -19,4 +19,4 @@
 |       | 1    | Bugeja ja pylinttiä korjattu. Testejä muutettu paremmaksi |
 |       | 1    | Tehty sekvenssiokaavio pelaamisesta |
 |       | 1    | Bugin korjaus ja releasen teko |
-| **Yht.**  | **39** |
+| **Yht.**  | **40** |
