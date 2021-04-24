@@ -250,7 +250,7 @@ class Userinterface:
                 # Tallennetaan tulos
                 score = self.game.get_score()
                 self.execute_score_saving(screen, self.get_blur(
-                    screen), self.rep.check_if_highscore(score), self.board_size)
+                    screen), self.rep.check_if_highscore(score, self.board_size))
             else:
                 # GAME
                 for event in pg.event.get():
