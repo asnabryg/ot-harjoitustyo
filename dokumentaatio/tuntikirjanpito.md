@@ -16,4 +16,5 @@
 |       | 2    | Arkkitehtuuri.md kirjoittelua ja kaavioiden tekoa. |
 | 24.4  | 2    | Lisätty eri pelialueiden koon valitseminen menuun. |
 |       | 3    | Peli tunnistaa gameoverin ja tallentaa pisteet tietokantaan nimimerkillä. |
-| **Yht.**  | **37** |
+|       | 1    | Bugeja ja pylinttiä korjattu. Testejä muutettu paremmaksi |
+| **Yht.**  | **38** |
