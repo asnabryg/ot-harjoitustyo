@@ -65,7 +65,7 @@ class TestGame(unittest.TestCase):
         self.assertEqual(bool, False)
         self.assertEqual(self.game_test1.is_gameover(), False)
         self.game_test1.move_down()
-        self.assertEqual(self.game_test1.is_gameover(), True)
+        self.assertEqual(self.game_test1.is_gameover(), False)
 
         bool = self.game_test2._check_if_gameover()
         self.assertEqual(bool, False)

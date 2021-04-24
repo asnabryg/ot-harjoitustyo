@@ -30,10 +30,11 @@ class Game2048:
         if r_seed is not None:
             # for pytests only
             random.seed(r_seed)
-    
+
     def is_gameover(self):
         """Palauttaa booleanin, onko peli päättynyt. self.__gameover muuttuja muutetaan metodissa
-        self._check_if_gameover, joten tämä metodi palauttaa vain totuusarvon, mikä on laskettu aikaisemmin,
+        self._check_if_gameover, joten tämä metodi palauttaa vain totuusarvon,
+        mikä on laskettu aikaisemmin,
         eikä laske tai muuta sitä itse.
 
         Returns:
@@ -105,7 +106,6 @@ class Game2048:
         yx_coordinate = self.get_random_empty_place()
         if yx_coordinate is None:
             # Gameover
-            # ei tyhjiä kohtia enään
             return False
         rnd = random.randint(0, 2)
         if rnd == 2:
@@ -167,11 +167,8 @@ class Game2048:
             for _ in range(self.__size - len(new_row)):
                 new_row.append(0)
             self.__board[y] = new_row
-        if not self.add_new_tile():
-            print("ei tilaa")
-            if self._check_if_gameover:
-                print("game_over")
-                self.__game_over = True
+        if not self.add_new_tile() and self._check_if_gameover():
+            self.__game_over = True
 
     def move_right(self):
         """Liikuttaa ensin pelin laattoja kokonaan oikealle,
@@ -206,11 +203,8 @@ class Game2048:
 
             self.__board[y] = new_row
 
-        if not self.add_new_tile():
-            print("ei tilaa")
-            if self._check_if_gameover:
-                print("game_over")
-                self.__game_over = True
+        if not self.add_new_tile() and self._check_if_gameover():
+            self.__game_over = True
 
     def move_up(self):
         """Liikuttaa ensin pelin laattoja kokonaan ylös,
@@ -245,11 +239,8 @@ class Game2048:
             for y in range(self.__size):  # pylint: disable=invalid-name
                 self.__board[y][x] = new_row[y]
 
-        if not self.add_new_tile():
-            print("ei tilaa")
-            if self._check_if_gameover:
-                print("game_over")
-                self.__game_over = True
+        if not self.add_new_tile() and self._check_if_gameover():
+            self.__game_over = True
 
     def move_down(self):
         """Liikuttaa ensin pelin laattoja kokonaan alas,
@@ -283,18 +274,6 @@ class Game2048:
                 new_row.insert(0, 0)
             for y in range(self.__size):  # pylint: disable=invalid-name
                 self.__board[y][x] = new_row[y]
-        
-        if not self.add_new_tile():
-            print("ei tilaa")
-            if self._check_if_gameover:
-                print("game_over")
-                self.__game_over = True
 
-    def print_board(self):
-        """Tulostaa komentoriville pelialustan matriisina.
-        """
-
-        print()
-        for row in self.__board:
-            print(row)
-        print()
+        if not self.add_new_tile() and self._check_if_gameover():
+            self.__game_over = True

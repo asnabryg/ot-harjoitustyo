@@ -69,28 +69,6 @@ class Userinterface:
         self.update_screen(screen)
         time.sleep(sleep_time)
 
-    def testi_run(self):
-        while True:
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    exit()
-            # pg.init()
-            screen = pg.display.set_mode((400, 200))
-            # window.position = (0,0)
-            screen.fill((0, 0, 0))
-            pg.display.flip()
-            time.sleep(2)
-            break
-        pg.quit()
-        while True:
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    exit()
-            screen = pg.display.set_mode((800, 100))
-            # window.position = (0,0)
-            screen.fill((100, 100, 100))
-            pg.display.flip()
-
     def execute(self):
         monitors = get_monitors()
         x, y = monitors[0].width // 5, monitors[0].height // 5
@@ -98,41 +76,6 @@ class Userinterface:
         pg.display.set_caption("2048")
         self.score_saving_view = None
         self.execute_menu()
-        # print("0")
-        # while True:
-        #     print("loop")
-        #     if not self.end:
-        #         print("1")
-        #         pg.init()
-        #         self.execute_game(8)
-        #         print("2")
-        #     else:
-        #         break
-        # # pg.quit()
-        # # pg.init()
-        # for i in range(10):
-        #     print(i)
-        # pg.quit()
-        # pg.init()
-        # self.asd(4)
-
-    def asd(self, game_size):
-        self.game = Game2048(game_size)
-        self.game.add_new_tile()
-        self.screen_size = (game_size*self.cell_size + 2*self.cell_size + 300,
-                            game_size*self.cell_size + 2*self.cell_size)
-        screens = pg.display.set_mode(self.screen_size)
-        pg.display.set_caption("2048")
-        clock = pg.time.Clock()
-        self.get_game_view(screens)
-        # buttons = self.game_view.buttons
-        while True:
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    exit()
-            screen = pg.display.set_mode((800, 100))
-            screen.fill((100, 100, 100))
-            pg.display.flip()
 
     def get_menu_view(self, screen, pop_up_tag=None, pop_up_b=None):
         self.menu_view = MenuView(self.screen_size, self.files)
@@ -216,7 +159,8 @@ class Userinterface:
         pg.display.flip()
 
     def execute_score_saving(self, screen, background, is_highscore):
-        self.get_score_saving_view(screen, background, is_highscore=is_highscore)
+        self.get_score_saving_view(
+            screen, background, is_highscore=is_highscore)
         pressed = False
         chars = "abcdefghijklmnopqrstuvwxyzåäö"
         chars = chars + chars.upper() + " 1234567890_"
@@ -239,12 +183,14 @@ class Userinterface:
                                 time.sleep(0.08)
                                 event_scene = "submit"
                             if button.tag == "b_menu":
-                                self.get_score_saving_view(screen, background, {button.tag}, is_highscore=is_highscore)
+                                self.get_score_saving_view(
+                                    screen, background, {button.tag}, is_highscore=is_highscore)
                                 pressed = True
                                 time.sleep(0.08)
                                 event_scene = "menu"
                             if button.tag == "b_restart":
-                                self.get_score_saving_view(screen, background, {button.tag}, is_highscore=is_highscore)
+                                self.get_score_saving_view(
+                                    screen, background, {button.tag}, is_highscore=is_highscore)
                                 pressed = True
                                 time.sleep(0.08)
                                 event_scene = "restart"
@@ -304,7 +250,6 @@ class Userinterface:
                 # GAME
                 for event in pg.event.get():
                     if event.type == pg.QUIT:
-                        # self.end = True
                         exit()
                     if event.type == pg.MOUSEBUTTONDOWN:
                         mouse_pos = event.pos
@@ -424,7 +369,6 @@ class Userinterface:
                         auto_counter = -1
 
                 if event == "restart":
-                    # self.game.add_new_tile()
                     self.execute_game(self.board_size)
                 elif event == "menu":
                     self.execute_score_saving(screen, self.get_blur(
@@ -436,17 +380,3 @@ class Userinterface:
         img = PIL.Image.frombytes(img_mode, self.screen_size, img).filter(
             PIL.ImageFilter.GaussianBlur(radius=6))
         return pg.image.fromstring(img.tobytes("raw", img_mode), self.screen_size, img_mode)
-
-    def execute_test(self):
-        print(self.rep.get_top5())
-        pelaajat = [("Mixu", 123), ("Pelaaja2", 12),
-                    ("ASDSADSAd", 1233451), ("Testi1", 1233)]
-        for pelaaja in pelaajat:
-            print(self.rep.add_new_highscore(pelaaja[0], pelaaja[1]))
-        print(self.rep.get_top5())
-        p1 = "asd"
-        s1 = 0
-        print("asd", self.rep.check_if_highscore(123))
-        print("asd", self.rep.check_if_highscore(1))
-        print(self.rep.add_new_highscore(p1, s1))
-        print(self.rep.get_top5())
