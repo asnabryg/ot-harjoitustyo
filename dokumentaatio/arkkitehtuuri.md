@@ -34,5 +34,8 @@ Jos uusi pistetulos on suurempi kuin top5 pelaajan tulos, niin se tallennetaan t
 ## Luokka/pakkauskaavio:
 ![Luokkakaavio](./kuvat/Luokkakaavio.png)
 
+## Päätoiminnallisuudet
+### Sekvenssikaaviona
+Tämä sekvenssikaavio kuvaa, miten yhden pelin pelaamisen logiikka toimii alusta lähtien. Pelaaja valtisee menu valikosta pelialueen koon (grid_size). Tietyn ajan pelattuaan, pelialue täyttyy laatoista ja tilalle ei mahdu uusia laattoja, eikä pystytä liiuttamaan laattoja enää mihinkään suuntaan; peli päättyy. Jolloin tarkistetaan onko tulos top5 ainesta. Jos on, niin peli kysyy nimeä ja tallentaa sen tietokantaan.
 
-
+![Sekvenssiokaavio](.kuvat/Sekvenssiokaavio.png)
