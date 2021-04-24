@@ -53,14 +53,29 @@ class TestGame(unittest.TestCase):
         self.assertEqual(bool, False)
 
     def test_game_over(self):
-        bool = self.game_full.check_if_gameover()
+        bool = self.game_full._check_if_gameover()
+        self.game_full.move_down()
+        self.game_full.move_up()
+        self.game_full.move_left()
+        self.game_full.move_right()
         self.assertEqual(bool, True)
-        bool = self.game_test1.check_if_gameover()
+        self.assertEqual(self.game_full.is_gameover(), True)
+
+        bool = self.game_test1._check_if_gameover()
         self.assertEqual(bool, False)
-        bool = self.game_test2.check_if_gameover()
+        self.assertEqual(self.game_test1.is_gameover(), False)
+        self.game_test1.move_down()
+        self.assertEqual(self.game_test1.is_gameover(), True)
+
+        bool = self.game_test2._check_if_gameover()
         self.assertEqual(bool, False)
-        bool = self.game.check_if_gameover()
+        self.game_test2.move_down()
+        self.assertEqual(self.game_test2.is_gameover(), False)
+
+        bool = self.game._check_if_gameover()
         self.assertEqual(bool, False)
+        self.game.move_down()
+        self.assertEqual(self.game.is_gameover(), False)
 
     def test_move_left(self):
         self.game_test_horizontal.move_left()
