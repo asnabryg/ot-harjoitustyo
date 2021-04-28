@@ -8,6 +8,7 @@ import time
 import PIL.Image
 import PIL.ImageFilter
 from screeninfo import get_monitors
+from ui.highscore_view import HighscoreView
 from ui.menu_view import MenuView
 from ui.game_files import GameFiles
 from ui.score_saving_view import ScoreSavingView
@@ -31,6 +32,7 @@ class Userinterface:
         self.screen_size = ()
         self.game_view = None
         self.menu_view = None
+        self.highscore_view = None
         self.current_scene = "menu"
         self.end = False
         self.board_size = None
@@ -60,6 +62,8 @@ class Userinterface:
                 self.menu_view.update_pop_ups(pop_up_tag, {pop_up_b})
                 self.menu_view.pop_ups.draw(screen)
                 self.menu_view.pop_up_buttons.draw(screen)
+        elif self.current_scene == "highscores":
+            self.highscore_view.all_sprites.draw(screen)
         pg.display.flip()
 
     def press_button_anim(self, button_tag: str, screen, sleep_time=0.02):
@@ -67,6 +71,8 @@ class Userinterface:
             self.game_view.update_buttons({button_tag})
         elif self.current_scene == "menu":
             self.menu_view.update_buttons({button_tag})
+        elif self.current_scene == "highscores":
+            self.highscore_view.update_buttons({button_tag})
         self.update_screen(screen)
         time.sleep(sleep_time)
 
@@ -123,8 +129,7 @@ class Userinterface:
                                 if button.tag == "b_play":
                                     pop_up_tag = "play"
                                 if button.tag == "b_scores":
-                                    # new_scene = ("scores",)
-                                    pass
+                                    new_scene = ("scores",)
                                 if button.tag == "b_quit":
                                     new_scene = ("quit",)
                                 pressed = True
@@ -141,8 +146,7 @@ class Userinterface:
             self.pre_highscore = self.rep.get_highscore(self.board_size)
             self.execute_game(self.board_size)
         elif new_scene[0] == "scores":
-            # TODO score scene
-            pass
+            self.execute_highscores()
         elif new_scene[0] == "quit":
             exit()
 
@@ -225,6 +229,48 @@ class Userinterface:
                 self.score_saving_view = None
                 self.pre_highscore = self.rep.get_highscore(self.board_size)
                 self.execute_game(self.board_size)
+    
+    def get_highscore_view(self, screen, btns_down = {"b_4x4"}):
+        score_list = []
+        if "b_4x4" in btns_down:
+            score_list = self.rep.get_top5(4)
+        elif "b_5x5" in btns_down:
+            score_list = self.rep.get_top5(5)
+        elif "b_6x6" in btns_down:
+            score_list = self.rep.get_top5(6)
+        self.highscore_view = HighscoreView(self.screen_size, self.rep, self.files, score_list, btns_down)
+        screen.fill((0, 0, 200))
+        self.update_screen(screen)
+
+    def execute_highscores(self):
+        self.current_scene = "highscores"
+        screen = pg.display.set_mode(self.screen_size)
+        clock = pg.time.Clock()
+        self.get_highscore_view(screen)
+
+        buttons = self.highscore_view.buttons
+        pressed = False
+        back = False
+
+        while True:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    exit()
+                if event.type == pg.MOUSEBUTTONDOWN:
+                    mouse_pos = event.pos
+                    for button in buttons:
+                        if button.rect.collidepoint(mouse_pos):
+                            if button.tag == "b_back":
+                                back = True
+                            self.get_highscore_view(screen, {button.tag})
+                    if back:
+                        break
+            if pressed:
+                pressed = False
+            if back:
+                break
+            clock.tick(25)
+        self.execute_menu()
 
     def execute_game(self, game_size):
         self.current_scene = "game"

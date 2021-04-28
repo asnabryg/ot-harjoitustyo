@@ -1,5 +1,4 @@
 
-from typing import Text
 import pygame as pg
 from ui.button import Button
 from ui.text import Text

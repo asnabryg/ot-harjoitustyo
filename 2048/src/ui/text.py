@@ -7,7 +7,7 @@ class Text(pg.sprite.Sprite):
     Luokka perii pygamesta sprite luokan.
     """
 
-    def __init__(self, text: str, x, y, size: int, text_color: tuple, width, height, back_color, outline="thin", outline_style="full"):
+    def __init__(self, text: str, x, y, size: int, text_color: tuple, width, height, back_color, outline="thin", outline_style="full", text_position="center"):
         """Luokan konstruktori, joka luo uuden teksti spriten.
 
         Args:
@@ -38,7 +38,13 @@ class Text(pg.sprite.Sprite):
         self.rect.y = y
         if back_color is not None:
             self.image.fill(back_color)
-        W = width/2 - self.textSurf.get_width()/2
+        margin = 10
+        if text_position == "center":
+            W = width/2 - self.textSurf.get_width()/2
+        elif text_position == "left":
+            W = margin
+        elif text_position == "right":
+            W = width - self.textSurf.get_width() - margin
         H = height/2 - self.textSurf.get_height()/2
         if outline_style is not None:
             if outline == "thin":
