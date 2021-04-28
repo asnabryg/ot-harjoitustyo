@@ -23,6 +23,7 @@ Ohjelma luo aluksi tyhjän pelialueen ```new_board()``` metodilla ja kutsuu ```a
 Metodit ```move_right()```, ```move_left()```, ```move_up()``` ja ```move_down()``` siirtävät pelin laattoja metodissa mainittuun suuntaan ja yhdistävät kaikki vierekkäiset saman numeroiset laatat, samalla lisää muuttujaan *score* näiden kahden laatan summan.
 
 ## Pelin pysyväistallennus
+![Pysyväistallennus](./kuvat/Pysyväistallennus.png)  
 [ScoreRepository](../2048/src/repositories/score_repository.py)-luokka huolehtii pelin parhaimpien pisteiden talletuksesta. Tiedot tallennetaan SQLite-tietokantaan.
 Tietokanta on yksinkertainen, vain yksi taulu kannassa.  
 SQL schema:
