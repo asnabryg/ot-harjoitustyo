@@ -12,7 +12,7 @@ suurentaa myös, jolloin pelin tavoitelaatan numerokin suurentuu. Peliä myös v
 - Kun ruudukossa ei ole enää tyhjiä ruutuja, eikä pelaaja pysty yhdistämään laattoja, peli loppuu. **Tehty**
 - Pelin loputtua, peli tallentaa tuloksen top5 taulukkoon, jos pistemäärä on enemmän kuin taulukossa olevalla.
   - Samalla peli pyytää pelaajan nimimerkkiä, jolloin nähdään kuka tuloksen saavutti. **Tehty**
-- Pelaaja voi tarkastella parhaimpia tuloksia Highscores -näkymässä.
+- Pelaaja voi tarkastella parhaimpia tuloksia Highscores -näkymässä. **Tehty**
   
 ## Käyttöliittymä luonnos
 ![](./kuvat/2048_hahmotelma.jpg)  
@@ -20,12 +20,11 @@ Peli koostuu kolmesta eri näkymästä: Menu, Peli ja Parhaat tulokset -näkymis
 Pelin käynnittäessä Menu valikko tulee ensin näkyviin, jostta voidaan siirtyä peliin, parhaimpiin tuloksiin tai lopettaa peli.  
 Menu: **Tehty**  
 Peli: **Tehty**  
-Parhaat tulokset: **kesken**
+Parhaat tulokset: **Tehty**
 
 ## Pelin toimintaympäristö rajoitteet
 - ohjelmiston tulee toimia Linux- ja OSX-käytöjärjestelmillä
 - pelin parhaimmat tulokset tallennetaan paikallisen koneen levylle
 
 ## Jatkokehitysideoita
-- 5x5 ja 6x6 lisä vaihtoehtoina pelialueena
-- kaikkiin pelialueisiin oma top5 pelaajatulokset
+- Top 5 luettolo olisi netissä myös, jottai voitaisiin nähäd tuloksia muiltkin pelaajilta, kuin vain paikalliset.
