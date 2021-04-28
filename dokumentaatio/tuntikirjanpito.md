@@ -20,4 +20,5 @@
 |       | 1    | Tehty sekvenssiokaavio pelaamisesta |
 |       | 1    | Bugin korjaus ja releasen teko |
 | 28.4  | 2    | Lisätty Highscores näkymä |
-| **Yht.**  | **42** |
+|       | 1    | Kirjoitettu Docstringiä |
+| **Yht.**  | **43** |
