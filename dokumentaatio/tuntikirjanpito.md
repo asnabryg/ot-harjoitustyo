@@ -19,4 +19,5 @@
 |       | 1    | Bugeja ja pylinttiä korjattu. Testejä muutettu paremmaksi |
 |       | 1    | Tehty sekvenssiokaavio pelaamisesta |
 |       | 1    | Bugin korjaus ja releasen teko |
-| **Yht.**  | **40** |
+| 28.4  | 2    | Lisätty Highscores näkymä |
+| **Yht.**  | **42** |
