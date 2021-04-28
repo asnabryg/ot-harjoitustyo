@@ -6,8 +6,19 @@ from ui.button import Button
 
 
 class ScoreSavingView():
+    """Luokka, jossa alustetaan pop-up ikkuna, joka näyttää pistetuloksen kun, eli päättyy.
+        Pyytää myös nimeä, jos uusi ennätys.
+    """
 
     def __init__(self, files, screen_size: tuple, score, is_highscore):
+        """Luokan konstruktori.
+
+        Args:
+            files (Gamefiles): Pelin tiedostot.
+            screen_size (tuple): Näytön leveys ja koko.
+            score (int): Saavutettu pistetulos.
+            is_highscore (bool): Jos saavutettu tulos on uusi ennätys.
+        """
         self.buttons = pg.sprite.Group()
         self.texts = pg.sprite.Group()
         self.name_surface = pg.sprite.Group()
@@ -24,6 +35,8 @@ class ScoreSavingView():
             self.show_score()
 
     def initialize(self):
+        """Luo pop-up ikkunan, jossa pyydetään nimeä ennätyksen tallentamiseen.
+        """
         self.surface_size = (
             int(self.screen_size[0] * 0.7), int(self.screen_size[1] * 0.7))
         if self.surface_size[0] > 546 or self.surface_size[1] > 336:
@@ -58,6 +71,11 @@ class ScoreSavingView():
         self.texts.add(text)
 
     def update_buttons(self, b_press=set()):
+        """Renderöi kaikki napit ja nappien värin vaihdon.
+
+        Args:
+            b_press (set(str), valinnainen): Renderöi kaikki setissä olevat napit painetuiksi.
+        """
         if self.is_highscore:
             self.buttons = pg.sprite.Group()
             b_size = (120, 35)
@@ -111,6 +129,12 @@ class ScoreSavingView():
             self.buttons.add(b_restart)
 
     def update_name(self, char="", backspace=False):
+        """Renderöi kirjoitetun nimen näytölle.
+
+        Args:
+            char (str): Merkki, joka juuri painettu näppäimistöllä.
+            backspace (bool): True, näppäimistössä on painettu 'backspace' -nappia.
+        """
         self.name_surface = pg.sprite.Group()
         self.name = self.name + char
         if backspace:
@@ -123,6 +147,9 @@ class ScoreSavingView():
         self.name_surface.add(text)
 
     def show_score(self):
+        """Renderöi pop-up ikkunan, mikä näyttää juuri saavutetun tuloksen ja
+        menu ja restart napit.
+        """
         self.surface_size = (
             int(self.screen_size[0] * 0.7), int(self.screen_size[1] * 0.7))
         if self.surface_size[0] > 546 or self.surface_size[1] > 336:

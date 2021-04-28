@@ -1,26 +1,22 @@
 
 import pygame as pg
-import os
-
-dirname = os.path.dirname(__file__)
 
 class Button(pg.sprite.Sprite):
     """Luokka, jolla luodaan nappi.
     """
 
-    def __init__(self, tag: str, text=None, font=None, text_color=(255, 255, 255), img_file_str="button.png", b_color=(0, 0, 0), position=(0, 0), size=(80, 80), rotate=0):
+    def __init__(self, tag: str, text=None, font=None, text_color=(255, 255, 255), img_file_str="", b_color=(0, 0, 0), position=(0, 0), size=(80, 80), rotate=0):
         """Luokan konstruktori, joka luo uuden napin.
 
         Args:
-            tag (str): Napin tag, jotta nappi voidaan tunnistaa,
-            text (str, valinnainen): Napin teksti. Oletus None,
-            text_color (tuple, valinnainen): Napin tekstin väri. Oletus (255, 255, 255)
-            img_file (str, valinnainen): Napin kuva. Oletus "button.png",
-            b_color (tuple): Napin väri. Oletus (0, 0, 0),
-            position (tuple): Napin positio näytöllä,
+            tag (str): Napin tag, jotta nappi voidaan tunnistaa.
+            text (str, valinnainen): Napin teksti. Oletus None.
+            text_color (tuple, valinnainen): Napin tekstin väri. Oletus (255, 255, 255).
+            img_file_str (str): Napin kuvan data stringinä.
+            b_color (tuple): Napin väri. Oletus (0, 0, 0).
+            position (tuple): Napin positio näytöllä.
             size (tuple): Napin leveys ja korkeus. Oletus (50, 50).
             rotate (int): Napin kiertokulma. Oletus 0.
-            files (GameFiles()): Pelin kaikki avatut tiedostot
         """
 
         super().__init__()

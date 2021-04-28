@@ -3,7 +3,7 @@ import pygame as pg
 
 
 class Text(pg.sprite.Sprite):
-    """Luokka, jolla alustetaan teksti ruudulle.
+    """Luokka, jolla alustetaan teksti ruudulle. Tekstillä on taustalla laatta ja tekstiin voidaan lisätä ääriviivat.
     Luokka perii pygamesta sprite luokan.
     """
 
@@ -11,14 +11,17 @@ class Text(pg.sprite.Sprite):
         """Luokan konstruktori, joka luo uuden teksti spriten.
 
         Args:
-            text (str): teksti,
-            x (int): x koordinaatti
-            y (int): y koordinaatti
-            size (int): fontin koko
-            text_color (tuple): tekstin väri
-            width (int): spriten leveys
-            height (int): spriten korkeus
-            back_color (tuple): tausta spriten väri
+            text (str): teksti.
+            x (int): x koordinaatti.
+            y (int): y koordinaatti.
+            size (int): fontin koko.
+            text_color (tuple): tekstin väri.
+            width (int): spriten leveys.
+            height (int): spriten korkeus.
+            back_color (tuple): tausta spriten väri.
+            outline_style (str): Tekstin ääriviiva tyyli, Oletus: "full", muita vaihtoehtoja: "None", "shadow".
+            outline (str): Ääriviivan leveys, Oletus: "thin", muita vaihtoehtoja: "fat".
+            text_position (str): Tekstin kohta laatassa, Oletus: "center", muita vaihtoehtoja: "left", "right".
         """
 
         super().__init__()
@@ -46,7 +49,7 @@ class Text(pg.sprite.Sprite):
         elif text_position == "right":
             W = width - self.textSurf.get_width() - margin
         H = height/2 - self.textSurf.get_height()/2
-        if outline_style is not None:
+        if outline_style is not None and outline_style is not "none" and outline_style is not "None":
             if outline == "thin":
                 increase = 1
             elif outline == "fat":

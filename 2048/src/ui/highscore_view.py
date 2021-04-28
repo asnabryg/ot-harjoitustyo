@@ -6,8 +6,19 @@ from ui.text import Text
 from ui.game_files import GameFiles
 
 class HighscoreView:
+    """Luokka, jossa alustetaan Highscores -näkymä.
+    """
 
-    def __init__(self, screen_size:int, repository: ScoreRepository, files: GameFiles, score_list, buttons_down=set()):
+    def __init__(self, screen_size:tuple, repository: ScoreRepository, files: GameFiles, score_list, buttons_down=set()):
+        """Luokan kostruktori.
+
+        Args:
+            screen_size (tuple): Näytön leveys ja korkeus.
+            repository (ScoreRepository): Pelin pysyväistallennus luokka.
+            files (GameFiles): Pelin tiedostot.
+            score_list (list): Lista parhaimmista tuloksista.
+            buttons_down (set(str), valinnainen): Renderöi napit setissä painetuiksi.
+        """
         self.buttons = pg.sprite.Group()
         self.score_list = score_list
         self.texts = pg.sprite.Group()
@@ -19,7 +30,8 @@ class HighscoreView:
         self.initialize()
     
     def initialize(self):
-        print(self.score_list)
+        """Luo sprite ryhmän, jossa scenen spritet on asetettu järjestykseen.
+        """
         surface_size = (300, 60)
         self.texts.add(Text(text="Highscores",
                             x=self.screen_size[0] // 2 - surface_size[0] // 2,
@@ -119,6 +131,11 @@ class HighscoreView:
         self.all_sprites.add(self.texts)
     
     def update_buttons(self, b_press=set()):
+        """Renderöi kaikki napit ja nappien värin vaihdon.
+
+        Args:
+            b_press (set(str)): Renderöi setissä olevat napit painetuiksi.
+        """
         self.all_sprites.remove(self.buttons)
         if b_press == set():
             b_press = self.btns_down

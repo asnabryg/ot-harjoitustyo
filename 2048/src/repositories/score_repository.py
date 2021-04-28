@@ -71,6 +71,7 @@ class ScoreRepository:
 
         Args:
             score (int): tulos
+            board_size (int): pelialueen koko
 
         Returns:
             boolean: True, jos on parempi
@@ -88,6 +89,14 @@ class ScoreRepository:
         return False
     
     def get_highscore(self, grid_size):
+        """Hakee top1 tuloksen.
+
+        Args:
+            grid_size (int): Pelinalueen koko.
+
+        Returns:
+            int: Paras tulos.
+        """
         top5 = self.get_top5(grid_size)
         if len(top5) > 0:
             return top5[0][1]

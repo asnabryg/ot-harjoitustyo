@@ -6,8 +6,16 @@ from ui.tile import Tile
 
 
 class MenuView:
+    """Luokka, jossa alustetaan Menu valikko näytölle.
+    """
 
     def __init__(self, screen_size, files):
+        """Luokan kostruktori.
+
+        Args:
+            screen_size (tuple): Näytön leveys ja korkeus.
+            files (GameFiles): Pelin tiedostot.
+        """
         self.buttons = pg.sprite.Group()
         self.texts = pg.sprite.Group()
         self.all_sprites = pg.sprite.Group()
@@ -18,6 +26,8 @@ class MenuView:
         self.initialize()
 
     def initialize(self):
+        """Luo sprite ryhmän, jossa menun spritet on asetettu järjestykseen.
+        """
         surface_size = (400, 100)
         self.texts.add(Text(text="2048",
                             x=self.screen_size[0] // 2 - surface_size[0] // 2,
@@ -35,7 +45,11 @@ class MenuView:
         self.update_buttons()
 
     def update_buttons(self, b_press=set()):
+        """Renderöi kaikki napit ja nappien värin vaihdon.
 
+        Args:
+            b_press (set(str), valinnainen): Renderöi kaikki setissä olevat napit painetuiksi.
+        """
         b_size = (150, 60)
 
         b_press_up_color = (0, 200, 0)

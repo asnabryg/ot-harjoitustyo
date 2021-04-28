@@ -18,13 +18,10 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 class Userinterface:
     """Luokka, jonka avulla pelin käyttöliittymä toimii.
-    Attrbutes:
-            game: uusi peli, 
-            rep: Pisteiden hallinta
     """
 
     def __init__(self):
-        """Luokan konstruktori, joka käynnistää pelin.
+        """Luokan konstruktori, joka alustaa muuttujia.
         """
         pg.init()
         self.game = None
@@ -48,6 +45,13 @@ class Userinterface:
         self.update_screen(screen, pop_up_tag, pop_up_b)
 
     def update_screen(self, screen, pop_up_tag=None, pop_up_b=None):
+        """Renderöi ruudulle kaikki spritet, jotka haettu.
+
+        Args:
+            screen (pygame.display): pygamen näyttö
+            pop_up_tag (str, valinnainen): Pop_up ikkunan tag. Oletus: None.
+            pop_up_b (set(), valinnainen): Painetun napin tag. Oletus: None.
+        """
         if self.current_scene == "game":
             self.game_view.all_sprites.draw(screen)
             if pop_up_tag is not None:
@@ -67,6 +71,13 @@ class Userinterface:
         pg.display.flip()
 
     def press_button_anim(self, button_tag: str, screen, sleep_time=0.02):
+        """Hakee nappi spritet, mutta painettuina.
+
+        Args:
+            button_tag (str): Napin tag, joka painettu.
+            screen (pygame.display): pygamen näyttö.
+            sleep_time (float, valinnainen): Kuinka kauan napin painus kestää. Oletus: 0.02.
+        """
         if self.current_scene == "game":
             self.game_view.update_buttons({button_tag})
         elif self.current_scene == "menu":
@@ -77,6 +88,8 @@ class Userinterface:
         time.sleep(sleep_time)
 
     def execute(self):
+        """Metodi, joka käynnistää pelin.
+        """
         monitors = get_monitors()
         x, y = monitors[0].width // 5, monitors[0].height // 5
         os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x, y)
@@ -85,11 +98,20 @@ class Userinterface:
         self.execute_menu()
 
     def get_menu_view(self, screen, pop_up_tag=None, pop_up_b=None):
+        """Hakee kaikki spritet valmiiksi, mitä Menu -valikossa tarvitaan.
+
+        Args:
+            screen (pygame.display): pygamen näyttö
+            pop_up_tag (str, valinnainen): Pop_up ikkunan tag. Oletus: None.
+            pop_up_b (set(), valinnainen): Painetun napin tag. Oletus: None.
+        """
         self.menu_view = MenuView(self.screen_size, self.files)
         screen.fill((0, 0, 200))
         self.update_screen(screen, pop_up_tag, pop_up_b)
 
     def execute_menu(self):
+        """Metodi, joka suorittaa Menu -valikon käyttöliittymän.
+        """
         self.current_scene = "menu"
         self.screen_size = (720, 480)
         screen = pg.display.set_mode(self.screen_size)
@@ -151,6 +173,17 @@ class Userinterface:
             exit()
 
     def get_score_saving_view(self, screen, background, b_press=set(), char="", backspace=False, is_highscore=True):
+        """Hakee kaikki spritet valmiiksi, mitä ScoreSavingView -pop-up ikkunassa tarvitaan,
+        ja päivittää ruudun.
+
+        Args:
+            screen (pygame.display): pygamen näyttö.
+            background (pygame.image): taustakuva
+            b_press (set(), valinnainen): Napit joita painettu.
+            char (str): Näppäimistön Painetun näppäimistö napin kirjain tai numero. 
+            backspace (bool): True, jos painettu 'backspace' näppäintä.
+            is_highscore (bool): True, jos on uusi ennätys.
+        """
         if self.score_saving_view is None:
             screen.blit(background, (0, 0))
             self.score_saving_view = ScoreSavingView(
@@ -165,6 +198,13 @@ class Userinterface:
         pg.display.flip()
 
     def execute_score_saving(self, screen, background, is_highscore):
+        """Metodi, joka suorittaa pop-up ikkunan käyttöliittymän, kun peli päättyy.
+
+        Args:
+            screen (pygame.display): pygamen näyttö
+            background (pygame.image): taustakuva
+            is_highscore (bool): True, jos on uusi ennätys.
+        """
         self.get_score_saving_view(
             screen, background, is_highscore=is_highscore)
         pressed = False
@@ -231,6 +271,12 @@ class Userinterface:
                 self.execute_game(self.board_size)
     
     def get_highscore_view(self, screen, btns_down = {"b_4x4"}):
+        """Hakee kaikki spritet valmiiksi, mitä Highscore -valikossa tarvitaan.
+
+        Args:
+            screen (pygame.display): pygamen näyttö
+            btns_down (set): Painetun napin tag.
+        """
         score_list = []
         if "b_4x4" in btns_down:
             score_list = self.rep.get_top5(4)
@@ -243,6 +289,8 @@ class Userinterface:
         self.update_screen(screen)
 
     def execute_highscores(self):
+        """Metodi, joka suorittaa Highscore -valikon käyttöliittymän.
+        """
         self.current_scene = "highscores"
         screen = pg.display.set_mode(self.screen_size)
         clock = pg.time.Clock()
@@ -273,6 +321,11 @@ class Userinterface:
         self.execute_menu()
 
     def execute_game(self, game_size):
+        """Metodi, joka suorittaa pelin pelaamisen käyttöliittymän.
+
+        Args:
+            game_size (int): Pelialueen koko.
+        """
         self.current_scene = "game"
         self.game = Game2048(game_size)
         self.game.add_new_tile()
@@ -428,6 +481,15 @@ class Userinterface:
             clock.tick(25)
 
     def get_blur(self, screen, img_mode="RGBA"):
+        """Metodi sumentaa näytön kuvan ja palauttaa sen string muodossa.
+
+        Args:
+            screen (pygame.display): pygamen näyttö
+            img_mode (str, valinnainen): Kuvan värimalli. Oletus: "RGBA".
+
+        Returns:
+            str: summennetun näytön kuva string muodossa.
+        """
         img = pg.image.tostring(screen, img_mode)
         img = PIL.Image.frombytes(img_mode, self.screen_size, img).filter(
             PIL.ImageFilter.GaussianBlur(radius=6))

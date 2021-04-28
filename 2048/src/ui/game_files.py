@@ -70,7 +70,7 @@ class GameFiles():
 
     def get_font(self, size):
         """Palauttaa fontti tyypin tietyllä koolla.
-        Mahdolliset koot 20, 21, 24, 28 ja 33.
+        Mahdolliset koot 20, 21, 24, 28, 33 ja 40.
 
         Args:
             size (int): fontin koko

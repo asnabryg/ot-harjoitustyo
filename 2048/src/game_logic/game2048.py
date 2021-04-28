@@ -4,18 +4,13 @@ import random
 
 class Game2048:
     """Luokka, jossa on pelin logiikka ja pelialusta.
-
-    Attributes:
-        __n: pelialustan pituus ja leveys,
-        __board: pelialusta 2d matriisina,
-        __score: pelin pistetilanne
     """
 
     def __init__(self, size, board=None, r_seed=None):
         """Luokan konstruktori, joka luo uuden pelialusta.
 
         Args:
-            n (int): pelialustan koko (leveys ja pituus)
+            size (int): pelialustan koko (leveys ja pituus)
             board (list[list], valinnainen): Aloitus pelialusta. Oletus: None,
             r_seed (int, valinnainen): Käytetään pytesteihin. Oletus: None,
         """
@@ -114,7 +109,6 @@ class Game2048:
             rnd = 2
         self.__board[yx_coordinate[0]][yx_coordinate[1]] = rnd
         return True
-    
 
     def _check_if_gameover(self):
         """Tarkistaa onko peli tilanteessa, missä pelaaja ei enää pysty liikuttamaan

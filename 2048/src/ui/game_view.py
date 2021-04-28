@@ -1,6 +1,5 @@
 
 import pygame as pg
-from repositories.score_repository import ScoreRepository
 from ui.tile import Tile
 from ui.text import Text
 from ui.button import Button
@@ -15,9 +14,11 @@ class GameView():
         """Luokan konstruktori.
 
         Args:
-            game (Game2048): Peli
-            cell_size (int): Peli laattojen koko
-            screen_size (tuple): Näytön leveys ja korkeus
+            game (Game2048): Peli.
+            cell_size (int): Peli laattojen koko.
+            screen_size (tuple): Näytön leveys ja korkeus.
+            files (GameFiles): Pelin tiedostot.
+            highscore: (int): Top1 tulos
         """
         self.game = game
         self.highscore = highscore

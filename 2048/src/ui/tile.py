@@ -17,12 +17,13 @@ class Tile(pg.sprite.Sprite):
         Laatan väri muuttuu arvon mukaan.
 
         Args:
-            tile_value (int): Laatan arvo,
-            x (int): x arvo,
-            y (int): y arvo,
-            cell_size (int): cell width and heigth size
+            tile_value (int): Laatan arvo.
+            x (int): x arvo.
+            y (int): y arvo.
+            cell_size (int): cell width and heigth size.
             color (tuple, valinnainen): valinnainen väri laatalle. Oletus None.
-            image (pygame.image): laatan kuva
+            image (pygame.image): laatan kuva.
+            files (GameFiles): Pelin tiedostot
         """
 
         super().__init__()

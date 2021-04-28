@@ -1,5 +1,4 @@
 
-# from database_connection import get_database_connection, get_fake_database_connection
 try:
     import repositories.database_connection as db
 except ModuleNotFoundError:
