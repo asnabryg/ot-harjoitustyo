@@ -37,3 +37,7 @@ Kun olet saavuttanut uuden ennätyksen, ja lopettanut pelin tai peli on päätty
 
 Pelin ennätykset löytyy Highscores -valikosta Menussa. Voit valita minkä pelikoon tuloksia näytetään yllä olevista napeista. Tulokset näytetään top 5 asti:  
 <img src="./kuvat/parhaat-tulokset.png" width="450" height="320">  
+Jos haluat nollata ennätykset, kirjoita seuraava komento terminaaliin kansiossa 2408/:  
+```bash
+poetry run invoke initialize-db
+```
