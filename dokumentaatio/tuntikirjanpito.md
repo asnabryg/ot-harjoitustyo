@@ -21,4 +21,5 @@
 |       | 1    | Bugin korjaus ja releasen teko |
 | 28.4  | 2    | Lisätty Highscores näkymä |
 |       | 1    | Kirjoitettu Docstringiä |
-| **Yht.**  | **43** |
+| 29.4  | 1    | Kirjoitettu Käyttöohjetta ja otettu screenshot kuvat pelistä |
+| **Yht.**  | **44** |
