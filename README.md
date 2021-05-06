@@ -12,6 +12,7 @@ Peli toimii 3.6.0 tai siitä uudemmalla Python-versiolla
 - [Käyttöohje](./dokumentaatio/kayttoohje.md)
 - [Vaatimuusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
+- [Testausdokumentti](./dokumentaatio/testaus.md)
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 
 ## Asennus

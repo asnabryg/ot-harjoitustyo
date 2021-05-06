@@ -22,5 +22,7 @@
 | 28.4  | 2    | Lisätty Highscores näkymä |
 |       | 1    | Kirjoitettu Docstringiä |
 | 29.4  | 1    | Kirjoitettu Käyttöohjetta ja otettu screenshot kuvat pelistä |
-| 6.5   | 2    | Kirjoitettu lisää pelilogiikkaa, docstringiä ja testejä. Korjailtu pylint virheitä |
-| **Yht.**  | **46** |
+| 6.5   | 2    | Kirjoitettu lisää pelilogiikkaa (voidaanko liu'uttaa laattoja tiettyyn suuntaan), docstringiä ja testejä. Korjailtu pylint virheitä |
+|       | 2    | Implementoitu käyttöjärjestelmään uusi pelilogiikka ^. Korjattu gameover bugi. Vaihdettu väriteemaa hieman. |
+|       | 1    | Kirjoitettu testausdokumentaatio ja muokattu vaatimuusmääritteylydokumenttia. |
+| **Yht.**  | **49** |
