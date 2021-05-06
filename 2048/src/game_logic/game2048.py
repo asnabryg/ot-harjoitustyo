@@ -169,16 +169,20 @@ class Game2048:
                         voidaanko liikuttaa lattoja.
         """
 
+        board = []
         board_copy = []
         if check_if_can_move:
-            for row in self.__board:
+            for row in self.__board.copy():
                 board_copy.append(row.copy())
+            board = board_copy
+        else:
+            board = self.__board
 
         for y in range(self.__size):  # pylint: disable=invalid-name
             row = []
             for x in range(self.__size):  # pylint: disable=invalid-name
-                if self.__board[y][x] != 0:
-                    row.append(self.__board[y][x])
+                if board[y][x] != 0:
+                    row.append(board[y][x])
             new_row = []
             if len(row) >= 2:
                 x = 0  # pylint: disable=invalid-name
@@ -198,7 +202,7 @@ class Game2048:
                 new_row = row
             for _ in range(self.__size - len(new_row)):
                 new_row.append(0)
-            self.__board[y] = new_row
+            board[y] = new_row
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
@@ -223,17 +227,20 @@ class Game2048:
             boolean: Palauttaa totuusarvon, vain jos metodin parametri on True. Palauttaa,
                         voidaanko liikuttaa lattoja.
         """
-
+        board = []
         board_copy = []
         if check_if_can_move:
-            for row in self.__board:
+            for row in self.__board.copy():
                 board_copy.append(row.copy())
+            board = board_copy
+        else:
+            board = self.__board
 
         for y in range(self.__size):  # pylint: disable=invalid-name
             row = []
             for x in range(self.__size):  # pylint: disable=invalid-name
-                if self.__board[y][x] != 0:
-                    row.append(self.__board[y][x])
+                if board[y][x] != 0:
+                    row.append(board[y][x])
             new_row = []
             if len(row) >= 2:
                 x = len(row)-1  # pylint: disable=invalid-name
@@ -254,7 +261,7 @@ class Game2048:
             for _ in range(self.__size - len(new_row)):
                 new_row.insert(0, 0)
 
-            self.__board[y] = new_row
+            board[y] = new_row
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
@@ -279,17 +286,20 @@ class Game2048:
             boolean: Palauttaa totuusarvon, vain jos metodin parametri on True. Palauttaa,
                         voidaanko liikuttaa lattoja.
         """
-
+        board = []
         board_copy = []
         if check_if_can_move:
-            for row in self.__board:
+            for row in self.__board.copy():
                 board_copy.append(row.copy())
+            board = board_copy
+        else:
+            board = self.__board
 
         for x in range(self.__size):  # pylint: disable=invalid-name
             row = []
             for y in range(self.__size):  # pylint: disable=invalid-name
-                if self.__board[y][x] != 0:
-                    row.append(self.__board[y][x])
+                if board[y][x] != 0:
+                    row.append(board[y][x])
             new_row = []
             if len(row) >= 2:
                 y = 0  # pylint: disable=invalid-name
@@ -310,7 +320,7 @@ class Game2048:
             for _ in range(self.__size - len(new_row)):
                 new_row.append(0)
             for y in range(self.__size):  # pylint: disable=invalid-name
-                self.__board[y][x] = new_row[y]
+                board[y][x] = new_row[y]
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
@@ -336,16 +346,20 @@ class Game2048:
                         voidaanko liikuttaa lattoja.
         """
 
+        board = []
         board_copy = []
         if check_if_can_move:
-            for row in self.__board:
+            for row in self.__board.copy():
                 board_copy.append(row.copy())
+            board = board_copy
+        else:
+            board = self.__board
 
         for x in range(self.__size):  # pylint: disable=invalid-name
             row = []
             for y in range(self.__size):  # pylint: disable=invalid-name
-                if self.__board[y][x] != 0:
-                    row.append(self.__board[y][x])
+                if board[y][x] != 0:
+                    row.append(board[y][x])
             new_row = []
             if len(row) >= 2:
                 y = len(row) - 1  # pylint: disable=invalid-name
@@ -366,7 +380,7 @@ class Game2048:
             for _ in range(self.__size - len(new_row)):
                 new_row.insert(0, 0)
             for y in range(self.__size):  # pylint: disable=invalid-name
-                self.__board[y][x] = new_row[y]
+                board[y][x] = new_row[y]
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():

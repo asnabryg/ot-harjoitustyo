@@ -10,7 +10,7 @@ class GameView():
     """Luokka, jossa alustetaan pelilaudan sprite näytölle.
     """
 
-    def __init__(self, game: Game2048, cell_size, screen_size, files, highscore):
+    def __init__(self, game: Game2048, cell_size, screen_size, files, highscore, can_move=(True, True, True, True)):
         """Luokan konstruktori.
 
         Args:
@@ -18,9 +18,11 @@ class GameView():
             cell_size (int): Peli laattojen koko.
             screen_size (tuple): Näytön leveys ja korkeus.
             files (GameFiles): Pelin tiedostot.
-            highscore: (int): Top1 tulos
+            highscore (int): Top1 tulos
+            can_move (tuple): Kaikki suunnat mihin voi liikuttaa laattoja (up, down, right, left)
         """
         self.game = game
+        self.can_move = can_move
         self.highscore = highscore
         self.screen_size = screen_size
         self.tiles = pg.sprite.Group()
@@ -80,18 +82,24 @@ class GameView():
         Args:
             b_press (set(str), valinnainen): Renderöi kaikki setissä olevat napit painetuiksi.
         """
+        self.buttons.empty()
+        # print(self.can_move)
         b_size = 70
         x = self.m_x + self.cell_size * self.game.get_size()
         y = self.cell_size * self.game.get_size()
 
         b_press_up_color = (0, 0, 220)
         b_press_down_color = (0, 0, 100)
+        b_gray = (0, 0, 90)
         y_margin = 30
 
         if "b_up" in b_press:
             b_color = b_press_down_color
         else:
-            b_color = b_press_up_color
+            if self.can_move[0]:
+                b_color = b_press_up_color
+            else:
+                b_color = b_gray
         b_up = Button(tag="b_up",
                       text=None,
                       text_color=None,
@@ -105,7 +113,10 @@ class GameView():
         if "b_down" in b_press:
             b_color = b_press_down_color
         else:
-            b_color = b_press_up_color
+            if self.can_move[1]:
+                b_color = b_press_up_color
+            else:
+                b_color = b_gray
         b_down = Button(tag="b_down",
                         text=None,
                         text_color=None,
@@ -119,7 +130,10 @@ class GameView():
         if "b_right" in b_press:
             b_color = b_press_down_color
         else:
-            b_color = b_press_up_color
+            if self.can_move[2]:
+                b_color = b_press_up_color
+            else:
+                b_color = b_gray
         b_right = Button(tag="b_right",
                          text=None,
                          text_color=None,
@@ -133,7 +147,10 @@ class GameView():
         if "b_left" in b_press:
             b_color = b_press_down_color
         else:
-            b_color = b_press_up_color
+            if self.can_move[3]:
+                b_color = b_press_up_color
+            else:
+                b_color = b_gray
         b_left = Button(tag="b_left",
                         text=None,
                         text_color=None,

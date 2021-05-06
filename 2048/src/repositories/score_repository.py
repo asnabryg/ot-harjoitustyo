@@ -62,7 +62,7 @@ class ScoreRepository:
 
         cursor = self.connection.cursor()
         sql = "INSERT INTO Highscores VALUES (?, ?, ?);"
-        cursor.execute(sql, (board_size, player_name, score))
+        cursor.execute(sql, (board_size, player_name.strip(), score))
         self.connection.commit()
         cursor.close()
 

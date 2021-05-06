@@ -25,6 +25,7 @@ class Userinterface:
         """
         pg.init()
         self.game = None
+        self.can_move = (True, True, True, True)  # (up, down, right, left)
         self.cell_size = 80
         self.screen_size = ()
         self.game_view = None
@@ -39,8 +40,15 @@ class Userinterface:
         self.pre_highscore = 0
 
     def get_game_view(self, screen, pop_up_tag=None, pop_up_b=None):
+        """Hakee kaikki spritet valmiiksi, mitä Peli ruudussa tarvitaan.
+
+        Args:
+            screen (pygame.display): pygamen näyttö
+            pop_up_tag (str, valinnainen): Pop_up ikkunan tag. Oletus: None.
+            pop_up_b (set(), valinnainen): Painetun napin tag. Oletus: None.
+        """
         self.game_view = GameView(
-            self.game, self.cell_size, self.screen_size, self.files, self.pre_highscore)
+            self.game, self.cell_size, self.screen_size, self.files, self.pre_highscore, self.can_move)
         screen.fill((0, 0, 200))
         self.update_screen(screen, pop_up_tag, pop_up_b)
 
@@ -223,11 +231,12 @@ class Userinterface:
                     for button in buttons:
                         if button.rect.collidepoint(mouse_pos):
                             if button.tag == "b_submit":
-                                self.get_score_saving_view(
-                                    screen, background, {button.tag}, is_highscore=is_highscore)
-                                pressed = True
-                                time.sleep(0.08)
-                                event_scene = "submit"
+                                if self.score_saving_view.name.strip() != "":
+                                    self.get_score_saving_view(
+                                        screen, background, {button.tag}, is_highscore=is_highscore)
+                                    pressed = True
+                                    time.sleep(0.08)
+                                    event_scene = "submit"
                             if button.tag == "b_menu":
                                 self.get_score_saving_view(
                                     screen, background, {button.tag}, is_highscore=is_highscore)
@@ -269,8 +278,8 @@ class Userinterface:
                 self.score_saving_view = None
                 self.pre_highscore = self.rep.get_highscore(self.board_size)
                 self.execute_game(self.board_size)
-    
-    def get_highscore_view(self, screen, btns_down = {"b_4x4"}):
+
+    def get_highscore_view(self, screen, btns_down={"b_4x4"}):
         """Hakee kaikki spritet valmiiksi, mitä Highscore -valikossa tarvitaan.
 
         Args:
@@ -284,7 +293,8 @@ class Userinterface:
             score_list = self.rep.get_top5(5)
         elif "b_6x6" in btns_down:
             score_list = self.rep.get_top5(6)
-        self.highscore_view = HighscoreView(self.screen_size, self.rep, self.files, score_list, btns_down)
+        self.highscore_view = HighscoreView(
+            self.screen_size, self.rep, self.files, score_list, btns_down)
         screen.fill((0, 0, 200))
         self.update_screen(screen)
 
@@ -383,97 +393,109 @@ class Userinterface:
                         else:
                             for button in buttons:
                                 if button.rect.collidepoint(mouse_pos):
-                                    if button.tag == "b_restart" and pop_up_tag is None:
-                                        self.press_button_anim(
-                                            "b_restart", screen)
-                                        pop_up_tag = "restart"
-                                        auto_play = False
-                                        pressed = True
-                                    if button.tag == "b_menu" and pop_up_tag is None:
-                                        self.press_button_anim(
-                                            "b_menu", screen)
-                                        pop_up_tag = "menu"
-                                        auto_play = False
-                                        pressed = True
+                                    if pop_up_tag is None:
+                                        if button.tag == "b_restart":
+                                            self.press_button_anim(
+                                                "b_restart", screen)
+                                            pop_up_tag = "restart"
+                                            auto_play = False
+                                            pressed = True
+                                        if button.tag == "b_menu":
+                                            self.press_button_anim(
+                                                "b_menu", screen)
+                                            pop_up_tag = "menu"
+                                            auto_play = False
+                                            pressed = True
 
-                                    if button.tag == "b_up" and pop_up_tag is None:
-                                        self.press_button_anim("b_up", screen)
-                                        self.game.move_up()
-                                        pressed = True
-                                        auto_play = False
-                                    if button.tag == "b_down" and pop_up_tag is None:
-                                        self.press_button_anim(
-                                            "b_down", screen)
-                                        self.game.move_down()
-                                        pressed = True
-                                        auto_play = False
-                                    if button.tag == "b_right" and pop_up_tag is None:
-                                        self.press_button_anim(
-                                            "b_right", screen)
-                                        self.game.move_right()
-                                        pressed = True
-                                        auto_play = False
-                                    if button.tag == "b_left" and pop_up_tag is None:
-                                        self.press_button_anim(
-                                            "b_left", screen)
-                                        self.game.move_left()
-                                        pressed = True
-                                        auto_play = False
+                                        if button.tag == "b_up" and self.can_move[0]:
+                                            print("press up")
+                                            self.press_button_anim(
+                                                "b_up", screen)
+                                            self.game.move_up()
+                                            pressed = True
+                                            auto_play = False
+                                        if button.tag == "b_down" and self.can_move[1]:
+                                            self.press_button_anim(
+                                                "b_down", screen)
+                                            self.game.move_down()
+                                            pressed = True
+                                            auto_play = False
+                                        if button.tag == "b_right" and self.can_move[2]:
+                                            self.press_button_anim(
+                                                "b_right", screen)
+                                            self.game.move_right()
+                                            pressed = True
+                                            auto_play = False
+                                        if button.tag == "b_left" and self.can_move[3]:
+                                            self.press_button_anim(
+                                                "b_left", screen)
+                                            self.game.move_left()
+                                            pressed = True
+                                            auto_play = False
 
                     if event.type == pg.KEYDOWN:
-                        if event.key == pg.K_LEFT and pop_up_tag is None:
-                            self.press_button_anim("b_left", screen)
-                            self.game.move_left()
-                            pressed = True
-                            auto_play = False
-                        if event.key == pg.K_RIGHT and pop_up_tag is None:
-                            self.press_button_anim("b_right", screen)
-                            self.game.move_right()
-                            pressed = True
-                            auto_play = False
-                        if event.key == pg.K_UP and pop_up_tag is None:
-                            self.press_button_anim("b_up", screen)
-                            self.game.move_up()
-                            pressed = True
-                            auto_play = False
-                        if event.key == pg.K_DOWN and pop_up_tag is None:
-                            self.press_button_anim("b_down", screen)
-                            self.game.move_down()
-                            pressed = True
-                            auto_play = False
-                        if event.key == pg.K_SPACE and pop_up_tag is None:
-                            if auto_play:
+                        if pop_up_tag is None:
+                            if event.key == pg.K_LEFT and self.can_move[3]:
+                                self.press_button_anim("b_left", screen)
+                                self.game.move_left()
+                                pressed = True
                                 auto_play = False
-                            else:
-                                auto_play = True
-                            time.sleep(0.02)
+                            if event.key == pg.K_RIGHT and self.can_move[2]:
+                                self.press_button_anim("b_right", screen)
+                                self.game.move_right()
+                                pressed = True
+                                auto_play = False
+                            if event.key == pg.K_UP and self.can_move[0]:
+                                self.press_button_anim("b_up", screen)
+                                self.game.move_up()
+                                pressed = True
+                                auto_play = False
+                            if event.key == pg.K_DOWN and self.can_move[1]:
+                                self.press_button_anim("b_down", screen)
+                                self.game.move_down()
+                                pressed = True
+                                auto_play = False
+                            if event.key == pg.K_SPACE:
+                                if auto_play:
+                                    auto_play = False
+                                else:
+                                    auto_play = True
+                                time.sleep(0.02)
 
                 if auto_play:
                     auto_counter += 1
                 if pressed:
+                    # (up, down, right, left)
+                    self.can_move = (self.game.move_up(check_if_can_move=True),
+                                     self.game.move_down(
+                                         check_if_can_move=True),
+                                     self.game.move_right(
+                                         check_if_can_move=True),
+                                     self.game.move_left(check_if_can_move=True))
                     self.get_game_view(screen, pop_up_tag)
                     pressed = False
                 if auto_play:
-                    if auto_counter == 0:
+                    if auto_counter == 0 and self.can_move[1]:
                         self.press_button_anim("b_down", screen, 0)
                         self.game.move_down()
                         self.get_game_view(screen)
-                    if auto_counter == 1:
+                    if auto_counter == 1 and self.can_move[3]:
                         self.press_button_anim("b_left", screen, 0)
                         self.game.move_left()
                         self.get_game_view(screen)
-                    if auto_counter == 2:
+                    if auto_counter == 2 and self.can_move[0]:
                         self.press_button_anim("b_up", screen, 0)
                         self.game.move_up()
                         self.get_game_view(screen)
-                    if auto_counter == 3:
+                    if auto_counter == 3 and self.can_move[2]:
                         self.press_button_anim("b_right", screen, 0)
                         self.game.move_right()
                         self.get_game_view(screen)
                         auto_counter = -1
 
                 if event == "restart":
-                    self.pre_highscore = self.rep.get_highscore(self.board_size)
+                    self.pre_highscore = self.rep.get_highscore(
+                        self.board_size)
                     self.execute_game(self.board_size)
                 elif event == "menu":
                     self.execute_score_saving(screen, self.get_blur(
