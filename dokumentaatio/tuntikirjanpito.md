@@ -22,4 +22,5 @@
 | 28.4  | 2    | Lisätty Highscores näkymä |
 |       | 1    | Kirjoitettu Docstringiä |
 | 29.4  | 1    | Kirjoitettu Käyttöohjetta ja otettu screenshot kuvat pelistä |
-| **Yht.**  | **44** |
+| 6.5   | 2    | Kirjoitettu lisää pelilogiikkaa, docstringiä ja testejä. Korjailtu pylint virheitä |
+| **Yht.**  | **46** |
