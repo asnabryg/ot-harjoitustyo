@@ -131,11 +131,48 @@ class Game2048:
             return False
         return True
 
-    def move_left(self):
-        """Liikuttaa ensin pelin laattoja kokonaan vasemmalle,
+    def _checks_can_you_move(self, board_copy):
+        """Metodi vertailee edellistä lautaa ja simoiloitua liikutettua lautaa,
+        jos ne ovat samanlaiset, niin se tarkoittaa,
+        että pelaaja ei voi liikuttaa pelissä tiettyyn suuntaan.
+        Simuloitu liikutettu lauta ei päivity pelissä tai näy siellä mitenkään.
+        Metodi palauttaa True, jos pelaaja voi liikuttaa laattoja tiettyyn suuntaan.
+
+        Args:
+            board_copy (2d matrix): Kopio laudasta, ennen kuin sitä on simuloidusti liikutettu.
+
+        Returns:
+            boolean: True, jos pelaaja voi liikuttaa laattoja tiettyyn suntaan.
+        """
+
+        similar = True
+        for i in range(self.__size):
+            if self.__board[i] != board_copy[i]:
+                similar = False
+                break
+        return not similar
+
+    def move_left(self, check_if_can_move=False):
+        """Jos metodin parametri on True, niin tämän metodin suoritus simuloidaan,
+        eikä päivitetä peliruudulle.
+        Liikuttaa ensin pelin laattoja kokonaan vasemmalle,
         sen jälkeen yhdistää vierekkäiset saman numeroiset laatat
         vaakasuoralla akselilla vasemmalta oikealle.
-        Lopuksi lisää uuden laattarivin pelialustaan."""
+        Lopuksi lisää uuden laattarivin pelialustaan, jos metodin parametri on False.
+
+        Args:
+            check_if_can_move (boolean, valinnainen): True, jos halutaan tarkistaa,
+                                                        voiko pelaaja liikuttaa laattoja.
+
+        Returns:
+            boolean: Palauttaa totuusarvon, vain jos metodin parametri on True. Palauttaa,
+                        voidaanko liikuttaa lattoja.
+        """
+
+        board_copy = []
+        if check_if_can_move:
+            for row in self.__board:
+                board_copy.append(row.copy())
 
         for y in range(self.__size):  # pylint: disable=invalid-name
             row = []
@@ -162,14 +199,35 @@ class Game2048:
             for _ in range(self.__size - len(new_row)):
                 new_row.append(0)
             self.__board[y] = new_row
-        if not self.add_new_tile() and self._check_if_gameover():
-            self.__game_over = True
 
-    def move_right(self):
-        """Liikuttaa ensin pelin laattoja kokonaan oikealle,
+        if not check_if_can_move:
+            if not self.add_new_tile() and self._check_if_gameover():
+                self.__game_over = True
+        else:
+            return self._checks_can_you_move(board_copy)
+        return None
+
+    def move_right(self, check_if_can_move=False):
+        """Jos metodin parametri on True, niin tämän metodin suoritus simuloidaan,
+        eikä päivitetä peliruudulle.
+        Liikuttaa ensin pelin laattoja kokonaan oikealle,
         sen jälkeen yhdistää vierekkäiset saman numeroiset laatat
         vaakasuoralla akselilla oikealta vasemmalle.
-        Lopuksi lisää uuden laattarivin pelialustaan."""
+        Lopuksi lisää uuden laattarivin pelialustaan, jos metodin parametri on False.
+
+        Args:
+            check_if_can_move (boolean, valinnainen): True, jos halutaan tarkistaa,
+                                                        voiko pelaaja liikuttaa laattoja.
+
+        Returns:
+            boolean: Palauttaa totuusarvon, vain jos metodin parametri on True. Palauttaa,
+                        voidaanko liikuttaa lattoja.
+        """
+
+        board_copy = []
+        if check_if_can_move:
+            for row in self.__board:
+                board_copy.append(row.copy())
 
         for y in range(self.__size):  # pylint: disable=invalid-name
             row = []
@@ -198,14 +256,34 @@ class Game2048:
 
             self.__board[y] = new_row
 
-        if not self.add_new_tile() and self._check_if_gameover():
-            self.__game_over = True
+        if not check_if_can_move:
+            if not self.add_new_tile() and self._check_if_gameover():
+                self.__game_over = True
+        else:
+            return self._checks_can_you_move(board_copy)
+        return None
 
-    def move_up(self):
-        """Liikuttaa ensin pelin laattoja kokonaan ylös,
+    def move_up(self, check_if_can_move=False):
+        """Jos metodin parametri on True, niin tämän metodin suoritus simuloidaan,
+        eikä päivitetä peliruudulle.
+        Liikuttaa ensin pelin laattoja kokonaan ylös,
         sen jälkeen yhdistää peräkkäiset saman numeroiset laatat
         pystysuoralla akselilla ylhäältä alas.
-        Lopuksi lisää uuden laattarivin pelialustaan."""
+        Lopuksi lisää uuden laattarivin pelialustaan, jos metodin parametri on False.
+
+        Args:
+            check_if_can_move (boolean, valinnainen): True, jos halutaan tarkistaa,
+                                                        voiko pelaaja liikuttaa laattoja.
+
+        Returns:
+            boolean: Palauttaa totuusarvon, vain jos metodin parametri on True. Palauttaa,
+                        voidaanko liikuttaa lattoja.
+        """
+
+        board_copy = []
+        if check_if_can_move:
+            for row in self.__board:
+                board_copy.append(row.copy())
 
         for x in range(self.__size):  # pylint: disable=invalid-name
             row = []
@@ -234,14 +312,34 @@ class Game2048:
             for y in range(self.__size):  # pylint: disable=invalid-name
                 self.__board[y][x] = new_row[y]
 
-        if not self.add_new_tile() and self._check_if_gameover():
-            self.__game_over = True
+        if not check_if_can_move:
+            if not self.add_new_tile() and self._check_if_gameover():
+                self.__game_over = True
+        else:
+            return self._checks_can_you_move(board_copy)
+        return None
 
-    def move_down(self):
-        """Liikuttaa ensin pelin laattoja kokonaan alas,
+    def move_down(self, check_if_can_move=False):
+        """Jos metodin parametri on True, niin tämän metodin suoritus simuloidaan,
+        eikä päivitetä peliruudulle.
+        Liikuttaa ensin pelin laattoja kokonaan alas,
         sen jälkeen yhdistää peräkkäiset saman numeroiset laatat
         pystysuoralla akselilla alhaalta ylös.
-        Lopuksi lisää uuden laattarivin pelialustaan."""
+        Lopuksi lisää uuden laattarivin pelialustaan, jos metodin parametri on False.
+
+        Args:
+            check_if_can_move (boolean, valinnainen): True, jos halutaan tarkistaa,
+                                                        voiko pelaaja liikuttaa laattoja.
+
+        Returns:
+            boolean: Palauttaa totuusarvon, vain jos metodin parametri on True. Palauttaa,
+                        voidaanko liikuttaa lattoja.
+        """
+
+        board_copy = []
+        if check_if_can_move:
+            for row in self.__board:
+                board_copy.append(row.copy())
 
         for x in range(self.__size):  # pylint: disable=invalid-name
             row = []
@@ -270,5 +368,9 @@ class Game2048:
             for y in range(self.__size):  # pylint: disable=invalid-name
                 self.__board[y][x] = new_row[y]
 
-        if not self.add_new_tile() and self._check_if_gameover():
-            self.__game_over = True
+        if not check_if_can_move:
+            if not self.add_new_tile() and self._check_if_gameover():
+                self.__game_over = True
+        else:
+            return self._checks_can_you_move(board_copy)
+        return None

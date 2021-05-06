@@ -87,7 +87,7 @@ class ScoreRepository:
         else:
             return True
         return False
-    
+
     def get_highscore(self, grid_size):
         """Hakee top1 tuloksen.
 
@@ -100,5 +100,4 @@ class ScoreRepository:
         top5 = self.get_top5(grid_size)
         if len(top5) > 0:
             return top5[0][1]
-        else:
-            return 0
+        return 0

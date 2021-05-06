@@ -27,6 +27,7 @@ class TestRepository(unittest.TestCase):
                          ("pelaaja2", 150), ("pelaaja1", 100), ("pelaaja4", 15)])
     
     def test_check_if_highscore(self):
+        self.assertEqual(self.rep.get_highscore(4), 0)
         self.rep.add_new_highscore("pelaaja1", 100)
         self.rep.add_new_highscore("pelaaja2", 150)
         self.rep.add_new_highscore("pelaaja3", 0)
@@ -39,3 +40,6 @@ class TestRepository(unittest.TestCase):
         self.rep.add_new_highscore("pelaaja5", 250)
         bool = self.rep.check_if_highscore(2, 4)
         self.assertEqual(bool, False)
+        bool = self.rep.check_if_highscore(0, 4)
+        self.assertEqual(bool, False)
+        self.assertEqual(self.rep.get_highscore(4), 250)
