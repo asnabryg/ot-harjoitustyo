@@ -25,4 +25,5 @@
 | 6.5   | 2    | Kirjoitettu lisää pelilogiikkaa (voidaanko liu'uttaa laattoja tiettyyn suuntaan), docstringiä ja testejä. Korjailtu pylint virheitä |
 |       | 2    | Implementoitu käyttöjärjestelmään uusi pelilogiikka ^. Korjattu gameover bugi. Vaihdettu väriteemaa hieman. |
 |       | 1    | Kirjoitettu testausdokumentaatio ja muokattu vaatimuusmääritteylydokumenttia. |
-| **Yht.**  | **49** |
+|       | 2    | Game2048 -luokan move_direction()-metodien refaktorointi yhteen move(direction) metodiin. |
+| **Yht.**  | **51** |
