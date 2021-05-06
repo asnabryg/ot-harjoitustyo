@@ -152,10 +152,20 @@ class Game2048:
                 break
         return not similar
 
-    def choose_board(self, copy=False):
+    def _get_board_copies(self, both_copy=False):
+        """Metodi palauttaa peli laudan sekä kopion siitä. Jos both_copy on
+        True, niin metodi palauttaa kaksi kopiota laudasta.
+
+        Args:
+            both_copy (bool, valinnainen): Jos True, metodipalauttaa
+                                            kaksi kopiota laudasta.
+
+        Returns:
+            tuple: (lauta, kopio laudasta)
+        """
         board = []
         board_copy = []
-        if copy:
+        if both_copy:
             for row in self.__board.copy():
                 board_copy.append(row.copy())
             board = board_copy
@@ -165,7 +175,7 @@ class Game2048:
 
     def move(self, direction, check_if_can_move=False):
         """Jos parametri check_if_can_move on True, niin tämän metodin suoritus simuloidaan,
-        eikä päivitetä peliruudulle.
+        eikä päivitetä peliruudulle, eikä oikealle pelilaudalle tule muutoksia lainkaan.
         Metodi liikuttaa ensin peli laattoja annettuun suuntaan kokonaan,
         sen jälkeen yhdistää vierekkäiset saman numeroiset laatat.
         Lopuksi lisää uuden laatan pelialustaan, jos metodin parametri oli False.
@@ -180,50 +190,40 @@ class Game2048:
             bool: Palauttaa totuusarvon, vain jos metodin parametri on True. Palauttaa,
                         voidaanko liikuttaa lattoja.
         """
-        board, board_copy = self.choose_board(check_if_can_move)
+        board, board_copy = self._get_board_copies(check_if_can_move)
+        horizontal, vertical = ("right", "left"), ("up", "down")
+        unreverse, reverse = ("left", "up"), ("right", "down")
+
 
         for board_y in range(self.__size):
-            row = []
+            row, new_row = [], []
             for board_x in range(self.__size):
-                if direction in ("right", "left"):
-                    if board[board_y][board_x] != 0:
-                        row.append(board[board_y][board_x])
-                else:
-                    if board[board_x][board_y] != 0:
-                        row.append(board[board_x][board_y])
-            new_row = []
-            if len(row) >= 2:
-                board_x, addition = (0, 1) if direction in (
-                    "left", "up") else (len(row)-1, -1)
+                if direction in horizontal and board[board_y][board_x] != 0:
+                    row.append(board[board_y][board_x])
+                if direction in vertical and board[board_x][board_y] != 0:
+                    row.append(board[board_x][board_y])
 
-                while (direction in ("left", "up") and board_x <= len(row)-1) or\
-                        (direction in ("right", "down") and board_x >= 0):
+            board_x, addition = (0, 1) if direction in unreverse else (len(row)-1, -1)
 
-                    if (direction in ("left", "up") and board_x+addition < len(row)) or\
-                            (direction in ("right", "down") and board_x+addition >= 0):
+            while ((direction in unreverse and board_x <= len(row)-1) or
+                   (direction in reverse and board_x >= 0)) and len(row) >= 2:
 
-                        if row[board_x] == row[board_x+addition]:
-                            value = row[board_x] + row[board_x+addition]
-                            new_row.append(value)
-                            self.__score += value
-                            board_x += addition
-                        else:
-                            new_row.append(row[board_x])
+                if (direction in unreverse and board_x+addition < len(row)) or\
+                        (direction in reverse and board_x+addition >= 0):
+                    if row[board_x] == row[board_x+addition]:
+                        value = row[board_x] + row[board_x+addition]
+                        new_row.append(value)
+                        self.__score += value
+                        board_x += addition
                     else:
                         new_row.append(row[board_x])
-                    board_x += addition
-            else:
-                new_row = row
+                else:
+                    new_row.append(row[board_x])
+                board_x += addition
 
-            for _ in range(self.__size - len(new_row)):
-                new_row.append(0)
-            if direction in ("right", "down"):
-                new_row.reverse()
-            if direction in ("right", "left"):
-                board[board_y] = new_row
-            else:
-                for board_x in range(self.__size):
-                    board[board_x][board_y] = new_row[board_x]
+            new_row = row if len(row) < 2 else new_row
+
+            self._change_rows_to_board(direction, board_y, board, new_row)
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
@@ -231,3 +231,24 @@ class Game2048:
         else:
             return self._checks_can_you_move(board_copy)
         return None
+
+    def _change_rows_to_board(self, direction, board_y, board, new_row):
+        """Metodi lisää uuden lasketun laattarivin laudalle.
+        Metodi myös lisää riville tyhjät kohdat nollina.
+
+        Args:
+            direction (str): Suunta mihin päin li'utetaan laattoja.
+                            ("up", "down", "right" or "left")
+            board_y (int): y koordinaatti laudalla
+            board (2d matrix): lauta, johon rivi lisätään
+            new_row (list): uusi rivi, mikä lisätään
+        """
+        for _ in range(self.__size - len(new_row)):
+            new_row.append(0)
+        if direction in ("right", "down"):
+            new_row.reverse()
+        if direction in ("right", "left"):
+            board[board_y] = new_row
+        else:
+            for board_x in range(self.__size):
+                board[board_x][board_y] = new_row[board_x]
