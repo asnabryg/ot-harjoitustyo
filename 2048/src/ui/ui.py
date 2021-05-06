@@ -408,51 +408,51 @@ class Userinterface:
                                         if button.tag == "b_up" and self.can_move[0]:
                                             self.press_button_anim(
                                                 "b_up", screen)
-                                            self.game.move_up()
+                                            self.game.move("up")
                                             pressed = True
                                         if button.tag == "b_down" and self.can_move[1]:
                                             self.press_button_anim(
                                                 "b_down", screen)
-                                            self.game.move_down()
+                                            self.game.move("down")
                                             pressed = True
                                         if button.tag == "b_right" and self.can_move[2]:
                                             self.press_button_anim(
                                                 "b_right", screen)
-                                            self.game.move_right()
+                                            self.game.move("right")
                                             pressed = True
                                         if button.tag == "b_left" and self.can_move[3]:
                                             self.press_button_anim(
                                                 "b_left", screen)
-                                            self.game.move_left()
+                                            self.game.move("left")
                                             pressed = True
 
                     if event.type == pg.KEYDOWN:
                         if pop_up_tag is None:
                             if event.key == pg.K_LEFT and self.can_move[3]:
                                 self.press_button_anim("b_left", screen)
-                                self.game.move_left()
+                                self.game.move("left")
                                 pressed = True
                             if event.key == pg.K_RIGHT and self.can_move[2]:
                                 self.press_button_anim("b_right", screen)
-                                self.game.move_right()
+                                self.game.move("right")
                                 pressed = True
                             if event.key == pg.K_UP and self.can_move[0]:
                                 self.press_button_anim("b_up", screen)
-                                self.game.move_up()
+                                self.game.move("up")
                                 pressed = True
                             if event.key == pg.K_DOWN and self.can_move[1]:
                                 self.press_button_anim("b_down", screen)
-                                self.game.move_down()
+                                self.game.move("down")
                                 pressed = True
 
                 if pressed:
                     # (up, down, right, left)
-                    self.can_move = (self.game.move_up(check_if_can_move=True),
-                                     self.game.move_down(
-                                         check_if_can_move=True),
-                                     self.game.move_right(
-                                         check_if_can_move=True),
-                                     self.game.move_left(check_if_can_move=True))
+                    self.can_move = (self.game.move("up", check_if_can_move=True),
+                                     self.game.move("down",
+                                                    check_if_can_move=True),
+                                     self.game.move("right",
+                                                    check_if_can_move=True),
+                                     self.game.move("left", check_if_can_move=True))
                     if not self.can_move[0] and not self.can_move[1] and not self.can_move[2] and not self.can_move[3]:
                         # Gameover
                         if self.game._check_if_gameover():

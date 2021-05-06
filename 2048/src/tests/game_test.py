@@ -71,38 +71,38 @@ class TestGame(unittest.TestCase):
 
     def test_game_over(self):
         bool = self.game_full._check_if_gameover()
-        self.game_full.move_down()
-        self.game_full.move_up()
-        self.game_full.move_left()
-        self.game_full.move_right()
+        self.game_full.move("down")
+        self.game_full.move("up")
+        self.game_full.move("left")
+        self.game_full.move("right")
         self.assertEqual(bool, True)
         self.assertEqual(self.game_full.is_gameover(), True)
 
         bool = self.game_test1._check_if_gameover()
         self.assertEqual(bool, False)
         self.assertEqual(self.game_test1.is_gameover(), False)
-        self.game_test1.move_down()
+        self.game_test1.move("down")
         self.assertEqual(self.game_test1.is_gameover(), False)
 
         bool = self.game_test2._check_if_gameover()
         self.assertEqual(bool, False)
-        self.game_test2.move_down()
+        self.game_test2.move("down")
         self.assertEqual(self.game_test2.is_gameover(), False)
 
         bool = self.game._check_if_gameover()
         self.assertEqual(bool, False)
-        self.game.move_down()
+        self.game.move("down")
         self.assertEqual(self.game.is_gameover(), False)
 
     def test_move_left(self):
-        self.game_test_horizontal.move_left()
+        self.game_test_horizontal.move("left")
         model_solution = [[2, 8, 2, 0],
                           [2, 0, 0, 0],
                           [4, 2, 0, 0],
                           [4, 4, 2, 0]]
         self.assertEqual(self.game_test_horizontal.get_board(), model_solution)
         self.assertEqual(self.game_test_horizontal.get_score(), 20)
-        self.game_full.move_left()
+        self.game_full.move("left")
         model_solution = [[2, 4, 8, 16],
                           [4, 2, 16, 8],
                           [2, 4, 8, 16],
@@ -111,14 +111,14 @@ class TestGame(unittest.TestCase):
         self.assertEqual(self.game_full.get_score(), 0)
 
     def test_move_right(self):
-        self.game_test_horizontal.move_right()
+        self.game_test_horizontal.move("right")
         model_solution = [[0, 2, 8, 2],
                           [0, 0, 0, 2],
                           [0, 0, 2, 4],
                           [2, 0, 4, 4]]
         self.assertEqual(self.game_test_horizontal.get_board(), model_solution)
         self.assertEqual(self.game_test_horizontal.get_score(), 20)
-        self.game_full.move_right()
+        self.game_full.move("right")
         model_solution = [[2, 4, 8, 16],
                           [4, 2, 16, 8],
                           [2, 4, 8, 16],
@@ -127,14 +127,14 @@ class TestGame(unittest.TestCase):
         self.assertEqual(self.game_full.get_score(), 0)
 
     def test_move_up(self):
-        self.game_test_vertical.move_up()
+        self.game_test_vertical.move("up")
         model_solution = [[2, 2, 4, 4],
                           [8, 0, 2, 4],
                           [2, 0, 0, 0],
                           [0, 0, 2, 0]]
         self.assertEqual(self.game_test_vertical.get_board(), model_solution)
         self.assertEqual(self.game_test_vertical.get_score(), 20)
-        self.game_full.move_up()
+        self.game_full.move("up")
         model_solution = [[2, 4, 8, 16],
                           [4, 2, 16, 8],
                           [2, 4, 8, 16],
@@ -143,14 +143,14 @@ class TestGame(unittest.TestCase):
         self.assertEqual(self.game_full.get_score(), 0)
 
     def test_move_down(self):
-        self.game_test_vertical.move_down()
+        self.game_test_vertical.move("down")
         model_solution = [[0, 0, 0, 0],
                           [2, 0, 0, 2],
                           [8, 0, 2, 4],
                           [2, 2, 4, 4]]
         self.assertEqual(self.game_test_vertical.get_board(), model_solution)
         self.assertEqual(self.game_test_vertical.get_score(), 20)
-        self.game_full.move_down()
+        self.game_full.move("down")
         model_solution = [[2, 4, 8, 16],
                           [4, 2, 16, 8],
                           [2, 4, 8, 16],
@@ -159,30 +159,30 @@ class TestGame(unittest.TestCase):
         self.assertEqual(self.game_full.get_score(), 0)
 
     def test_can_you_move_up(self):
-        result = self.game_test_chek_move_up.move_up(check_if_can_move=True)
+        result = self.game_test_chek_move_up.move("up", check_if_can_move=True)
         self.assertEqual(result, False)
-        result = self.game_test_chek_move_up.move_down(check_if_can_move=True)
+        result = self.game_test_chek_move_up.move("down", check_if_can_move=True)
         self.assertEqual(result, True)
 
     def test_can_you_move_down(self):
-        result = self.game_test_chek_move_down.move_down(
+        result = self.game_test_chek_move_down.move("down",
             check_if_can_move=True)
         self.assertEqual(result, False)
-        result = self.game_test_chek_move_down.move_up(check_if_can_move=True)
+        result = self.game_test_chek_move_down.move("up", check_if_can_move=True)
         self.assertEqual(result, True)
 
     def test_can_you_move_right(self):
-        result = self.game_test_chek_move_right.move_right(
+        result = self.game_test_chek_move_right.move("right",
             check_if_can_move=True)
         self.assertEqual(result, False)
-        result = self.game_test_chek_move_right.move_left(
+        result = self.game_test_chek_move_right.move("left",
             check_if_can_move=True)
         self.assertEqual(result, True)
 
     def test_can_you_move_left(self):
-        result = self.game_test_chek_move_left.move_left(
+        result = self.game_test_chek_move_left.move("left",
             check_if_can_move=True)
         self.assertEqual(result, False)
-        result = self.game_test_chek_move_left.move_right(
+        result = self.game_test_chek_move_left.move("right",
             check_if_can_move=True)
         self.assertEqual(result, True)
