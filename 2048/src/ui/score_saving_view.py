@@ -82,7 +82,7 @@ class ScoreSavingView():
             if "b_submit" in b_press:
                 b_color = (0, 100, 0)
             else:
-                b_color = (0, 200, 0)
+                b_color = (0, 185, 78)
             b_submit = Button(tag="b_submit",
                               text="Submit",
                               text_color=(240, 240, 240),
@@ -100,7 +100,7 @@ class ScoreSavingView():
             if "b_menu" in b_press:
                 b_color = (0, 100, 0)
             else:
-                b_color = (0, 200, 0)
+                b_color = (0, 185, 78)
             b_menu = Button(tag="b_menu",
                             text="Menu",
                             text_color=(240, 240, 240),
@@ -114,7 +114,7 @@ class ScoreSavingView():
             if "b_restart" in b_press:
                 b_color = (0, 100, 0)
             else:
-                b_color = (0, 200, 0)
+                b_color = (0, 185, 78)
             b_restart = Button(tag="b_restart",
                                text="Restart",
                                text_color=(240, 240, 240),

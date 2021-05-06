@@ -40,7 +40,7 @@ class HighscoreView:
                             text_color=(255, 255, 255),
                             width=surface_size[0],
                             height=surface_size[1],
-                            back_color=(0, 0, 200),
+                            back_color=(3, 57, 108),
                             outline="fat",
                             outline_style="shadow"))
         
@@ -58,7 +58,7 @@ class HighscoreView:
                                 text_color=(255, 255, 255),
                                 width=surface_size[0],
                                 height=surface_size[1],
-                                back_color=(0, 0, 120),
+                                back_color=(5, 41, 85),
                                 outline="thin",
                                 outline_style="outline",
                                 text_position="left"))
@@ -70,7 +70,7 @@ class HighscoreView:
                                 text_color=(255, 255, 255),
                                 width=225,
                                 height=surface_size[1],
-                                back_color=(0, 0, 120),
+                                back_color=(5, 41, 85),
                                 outline="thin",
                                 outline_style="outline",
                                 text_position="left"))
@@ -84,7 +84,7 @@ class HighscoreView:
                                     text_color=(255, 255, 255),
                                     width=40,
                                     height=surface_size[1],
-                                    back_color=(0, 0, 120),
+                                    back_color=(5, 41, 85),
                                     outline="thin",
                                     outline_style="outline"))
                 # name
@@ -95,7 +95,7 @@ class HighscoreView:
                                     text_color=(255, 255, 255),
                                     width=surface_size[0],
                                     height=surface_size[1],
-                                    back_color=(0, 0, 150),
+                                    back_color=(0, 70, 130),
                                     outline="thin",
                                     outline_style="outline",
                                     text_position="left"))
@@ -107,7 +107,7 @@ class HighscoreView:
                                     text_color=(255, 255, 255),
                                     width=225,
                                     height=surface_size[1],
-                                    back_color=(0, 0, 150),
+                                    back_color=(0, 70, 130),
                                     outline="thin",
                                     outline_style="outline",
                                     text_position="right"))
@@ -123,7 +123,7 @@ class HighscoreView:
                                 text_color=(255, 255, 255),
                                 width=surface_size[0],
                                 height=surface_size[1],
-                                back_color=(0, 0, 150),
+                                back_color=(0, 70, 130),
                                 outline="thin",
                                 outline_style="outline"))
         
@@ -142,8 +142,8 @@ class HighscoreView:
         
         margin = 15
         b_size = (75, 30)
-        b_press_up_color = (200, 0, 0)
-        b_press_down_color = (100, 0, 0)
+        b_press_up_color = (183, 40, 72)
+        b_press_down_color = (130, 10, 42)
         if "b_back" in b_press:
             b_color = b_press_down_color
         else:
@@ -161,8 +161,8 @@ class HighscoreView:
         b_size = (75, 30)
         c = (self.screen_size[0] // 2 - b_size[0] // 2) - b_size[0] -margin
         y_pos = b_size[1] + margin * 3
-        b_press_up_color = (0, 200, 0)
-        b_press_down_color = (0, 100, 0)
+        b_press_up_color = (0, 185, 78)
+        b_press_down_color = (0, 125, 38)
         if "b_4x4" in b_press:
             b_color = b_press_down_color
         else:
@@ -176,8 +176,8 @@ class HighscoreView:
                         position=(c, y_pos),
                         size=b_size,
                         rotate=0)
-        b_press_up_color = (0, 200, 0)
-        b_press_down_color = (0, 100, 0)
+        b_press_up_color = (0, 185, 78)
+        b_press_down_color = (0, 125, 38)
         if "b_5x5" in b_press:
             b_color = b_press_down_color
         else:
@@ -191,8 +191,8 @@ class HighscoreView:
                        position=(c + b_size[0] + margin, y_pos),
                        size=b_size,
                        rotate=0)
-        b_press_up_color = (0, 200, 0)
-        b_press_down_color = (0, 100, 0)
+        b_press_up_color = (0, 185, 78)
+        b_press_down_color = (0, 125, 38)
         if "b_6x6" in b_press:
             b_color = b_press_down_color
         else:

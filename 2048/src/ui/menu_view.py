@@ -36,7 +36,7 @@ class MenuView:
                             text_color=(255, 255, 255),
                             width=surface_size[0],
                             height=surface_size[1],
-                            back_color=(0, 0, 200),
+                            back_color=(3, 57, 108),
                             outline="fat",
                             outline_style="shadow"))
 
@@ -52,7 +52,7 @@ class MenuView:
         """
         b_size = (150, 60)
 
-        b_press_up_color = (0, 200, 0)
+        b_press_up_color = (0, 185, 78)
         b_press_down_color = (0, 100, 0)
         if "b_play" in b_press:
             b_color = b_press_down_color
@@ -70,7 +70,7 @@ class MenuView:
                         rotate=0)
 
         b_size = (150, 40)
-        b_press_up_color = (0, 200, 0)
+        b_press_up_color = (0, 185, 78)
         b_press_down_color = (0, 100, 0)
         if "b_scores" in b_press:
             b_color = b_press_down_color
@@ -88,8 +88,8 @@ class MenuView:
                           rotate=0)
 
         b_size = (110, 35)
-        b_press_up_color = (150, 0, 0)
-        b_press_down_color = (50, 0, 0)
+        b_press_up_color = (183, 40, 72)
+        b_press_down_color = (130, 10, 42)
         if "b_quit" in b_press:
             b_color = b_press_down_color
         else:
@@ -133,7 +133,7 @@ class MenuView:
         if "b_4x4" in b_press:
             b_color = (0, 100, 0)
         else:
-            b_color = (0, 200, 0)
+            b_color = (0, 185, 78)
         b_4x4 = Button(tag="b_4x4",
                        text="4x4",
                        text_color=(240, 240, 240),
@@ -148,7 +148,7 @@ class MenuView:
         if "b_5x5" in b_press:
             b_color = (0, 100, 0)
         else:
-            b_color = (0, 200, 0)
+            b_color = (0, 185, 78)
         b_5x5 = Button(tag="b_5x5",
                        text="5x5",
                        text_color=(240, 240, 240),
@@ -163,7 +163,7 @@ class MenuView:
         if "b_6x6" in b_press:
             b_color = (0, 100, 0)
         else:
-            b_color = (0, 200, 0)
+            b_color = (0, 185, 78)
         b_6x6 = Button(tag="b_6x6",
                        text="6x6",
                        text_color=(240, 240, 240),
@@ -177,9 +177,9 @@ class MenuView:
 
         b_size = (120, 35)
         if "b_back" in b_press:
-            b_color = (100, 0, 0)
+            b_color = (130, 10, 42)
         else:
-            b_color = (200, 0, 0)
+            b_color = (183, 40, 72)
         b_back = Button(tag="b_back",
                       text="Back",
                       text_color=(240, 240, 240),

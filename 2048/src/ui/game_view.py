@@ -50,14 +50,14 @@ class GameView():
         score_x = self.m_x + margin
         score_y = self.m_y - (self.cell_size - margin)
         self.texts.add(Text(text, score_x, score_y, 30, (255, 255, 255),
-                       W, 50, (0, 0, 180)))
+                       W, 50, (5, 41, 85)))
 
         text = "Best score: " + str(self.highscore)
         margin = 15
         score_x = self.m_x + self.cell_size*self.game.get_size() + margin
         score_y = self.m_y - (self.cell_size - margin)
         self.texts.add(Text(text, score_x, score_y, 30, (255, 255, 255),
-                       self.screen_size[0] - score_x - margin, 50, (0, 0, 180)))
+                       self.screen_size[0] - score_x - margin, 50, (5, 41, 85)))
 
         for y in range(size):
             for x in range(size):
@@ -88,9 +88,9 @@ class GameView():
         x = self.m_x + self.cell_size * self.game.get_size()
         y = self.cell_size * self.game.get_size()
 
-        b_press_up_color = (0, 0, 220)
-        b_press_down_color = (0, 0, 100)
-        b_gray = (0, 0, 90)
+        b_press_up_color = (15, 77, 138)
+        b_press_down_color = (5, 60, 100)
+        b_gray = (3, 57, 108)
         y_margin = 30
 
         if "b_up" in b_press:
@@ -167,9 +167,9 @@ class GameView():
         self.buttons.add(b_left)
 
         if "b_restart" in b_press:
-            b_color = (100, 0, 0)
+            b_color = (130, 10, 42)
         else:
-            b_color = (200, 0, 0)
+            b_color = (183, 40, 72)
         b_restart = Button(tag="b_restart",
                            text="Restart",
                            text_color=(240, 240, 240),
@@ -181,9 +181,9 @@ class GameView():
                            rotate=0)
 
         if "b_menu" in b_press:
-            b_color = (100, 0, 0)
+            b_color = (130, 10, 42)
         else:
-            b_color = (200, 0, 0)
+            b_color = (183, 40, 72)
         b_menu = Button(tag="b_menu",
                         text="Menu",
                         text_color=(240, 240, 240),
@@ -221,7 +221,7 @@ class GameView():
         if "b_yes" in b_press:
             b_color = (0, 100, 0)
         else:
-            b_color = (0, 200, 0)
+            b_color = (0, 185, 78)
         b_yes = Button(tag="b_yes",
                        text="Yes",
                        text_color=(240, 240, 240),
@@ -233,9 +233,9 @@ class GameView():
                        rotate=0)
 
         if "b_no" in b_press:
-            b_color = (100, 0, 0)
+            b_color = (130, 10, 42)
         else:
-            b_color = (200, 0, 0)
+            b_color = (183, 40, 72)
         b_no = Button(tag="b_no",
                       text="No",
                       text_color=(240, 240, 240),

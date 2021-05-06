@@ -16,7 +16,7 @@ class Game2048:
         """
         self.__size = size
         self.__score = 0
-        self.__game_over = False
+        self._game_over = False
         if board is None:
             self.__board = self.new_board(size)
         else:
@@ -35,7 +35,7 @@ class Game2048:
         Returns:
             boolean: True, jos peli on päättynyt
         """
-        return self.__game_over
+        return self._game_over
 
     def get_size(self):
         """Palauttaa pelialueen koon (leveys ja pituus)
@@ -206,7 +206,7 @@ class Game2048:
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
-                self.__game_over = True
+                self._game_over = True
         else:
             return self._checks_can_you_move(board_copy)
         return None
@@ -265,7 +265,7 @@ class Game2048:
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
-                self.__game_over = True
+                self._game_over = True
         else:
             return self._checks_can_you_move(board_copy)
         return None
@@ -324,7 +324,7 @@ class Game2048:
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
-                self.__game_over = True
+                self._game_over = True
         else:
             return self._checks_can_you_move(board_copy)
         return None
@@ -384,7 +384,7 @@ class Game2048:
 
         if not check_if_can_move:
             if not self.add_new_tile() and self._check_if_gameover():
-                self.__game_over = True
+                self._game_over = True
         else:
             return self._checks_can_you_move(board_copy)
         return None
