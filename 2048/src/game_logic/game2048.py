@@ -194,7 +194,6 @@ class Game2048:
         horizontal, vertical = ("right", "left"), ("up", "down")
         unreverse, reverse = ("left", "up"), ("right", "down")
 
-
         for board_y in range(self.__size):
             row, new_row = [], []
             for board_x in range(self.__size):
