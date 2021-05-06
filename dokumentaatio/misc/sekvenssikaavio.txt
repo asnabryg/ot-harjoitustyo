@@ -1,0 +1,75 @@
+title Pelin sekvenssikaavio
+
+main->*ui: Userinterface()
+ui->*repository: Scorerepository()
+repository->*DB: get_database_connection()
+ui->*files: GameFiles()
+main->ui: execute()
+ui->ui: execute_menu()
+ui->*menu_view:
+ui->+menu_view: get_menuview()
+menu_view->+files: get_img() or get_font()
+files->-menu_view: image or font
+menu_view->button:
+menu_view->text:
+menu_view->-ui: all sprites
+ui->ui: click "Play" and choose grid_size "4"
+destroy menu_view
+ui->ui:execute_game(grid_size)
+ui->*game_view:
+ui->+game_view: get_game_view()
+game_view->+files: get_img() or get_font()
+files->-game_view: image or font
+game_view->button:
+game_view->text:
+game_view->tile:
+game_view->-ui: all sprites
+ui->*game: Game2048(grid_size)
+game->game: new_board()
+ui->+game: add_new_tile()
+game->+game: get_random_emptyplace()
+game->-game: random empty coordinate
+game->-ui: True
+
+ui->ui: update_screen()
+ui->game: move_right()
+game->+game: add_new_tile()
+game->+game: get_random_emptyplace()
+game->-game: random empty coordinate
+game->-game: True
+game->+game: check_if_gameover()
+game->-game: False
+ui->+game: get_score()
+game->-ui: 2
+ui->+game: is_gameover()
+game->-ui: False
+ui->+game: get_board()
+game->-ui: 2d matrix
+ui->ui: update_screen(board)
+
+note over ui: Tässä välissä monta eri peli siirtoa
+
+ui->game: move_down()
+game->+game: add_new_tile()
+game->+game: get_random_emptyplace()
+game->-game: None
+game->-game: False
+game->+game: check_if_gameover()
+game->-game: False
+ui->+game: get_score()
+game->-ui: 2134
+ui->+game: is_gameover()
+game->-ui: True
+destroy game
+destroy game_view
+ui->ui: execute_score_saving_view()
+ui->+repository: check_if_highscore(score)
+repository->+repository: get_top5()
+repository->+DB: get_connection()
+DB->-repository: connection
+repository->-repository: top5_score
+repository->repository: if score > top5_score: True
+repository->-ui: True
+ui->repository: add_new_highscore(name, score, grid_size)
+ui->ui: execute_menu() 
+
