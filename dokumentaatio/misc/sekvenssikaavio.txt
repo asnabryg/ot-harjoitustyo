@@ -32,7 +32,8 @@ game->-game: random empty coordinate
 game->-ui: True
 
 ui->ui: update_screen()
-ui->game: move_right()
+ui->game: move("right")
+game->game: change_rows_to_board(direction, y, board, new_row)
 game->+game: add_new_tile()
 game->+game: get_random_emptyplace()
 game->-game: random empty coordinate
@@ -49,7 +50,8 @@ ui->ui: update_screen(board)
 
 note over ui: Tässä välissä monta eri peli siirtoa
 
-ui->game: move_down()
+ui->game: move("down")
+game->game: change_rows_to_board(direction, y, board, new_row)
 game->+game: add_new_tile()
 game->+game: get_random_emptyplace()
 game->-game: None
@@ -72,4 +74,3 @@ repository->repository: if score > top5_score: True
 repository->-ui: True
 ui->repository: add_new_highscore(name, score, grid_size)
 ui->ui: execute_menu() 
-
