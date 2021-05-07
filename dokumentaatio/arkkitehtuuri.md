@@ -21,7 +21,7 @@ Pelin logiikka ja laskenta tapahtuu [Game2048](../2048/src/game_logic/game2048.p
 Ohjelma luo aluksi tyhjän pelialueen ```new_board()``` metodilla ja kutsuu ```add_new_tile()``` metodin heti sen jälkeen, mikä lisää pelialueelle tyhjään kohtaan uuden laatan arvolla 2 tai 4. Satunnaisen tyhjän alueen koordinaatit saa metodilla ```get_random_empty_place()```.  
 
 Metodi ```move(direction)``` siirtää pelin laattoja metodissa mainittuun suuntaan ja yhdistävät kaikki vierekkäiset saman numeroiset laatat, samalla lisää muuttujaan *score* näiden kahden laatan summan.  
-Sama metodi voi myös simuloida laattojen liikkeen ilman, että liikkeet päivittyy ruudulle tai oikealle pelilaudalle. Tällöin kutsutaan ```move(direction, check_if_can_move=True)```, eli metodi tarkastaa voidaanko laattoja liikuttaa tiettyyn suuntaan. Tämä metodi käyttää apunaan ```get_board_copies()``` ja ```checks_can_you_move(board_copy)``` -metodeita.
+Sama metodi voi myös simuloida laattojen liikkeen ilman, että liikkeet päivittyy ruudulle tai oikealle pelilaudalle. Tällöin kutsutaan ```move(direction, check_if_can_move=True)```, eli metodi tarkastaa voidaanko laattoja liikuttaa tiettyyn suuntaan ja palauttaan *True* tai *False* tilanteen mukaan. Tämä metodi käyttää apunaan ```get_board_copies()``` ja ```checks_can_you_move(board_copy)``` -metodeita.
 
 ## Pelin pysyväistallennus
 ![Pysyväistallennus](./kuvat/Pysyväistallennus.png)  
