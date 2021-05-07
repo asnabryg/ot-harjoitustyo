@@ -15,8 +15,8 @@ Tietokannan yhteys on tekaistu toiseen tietokantatiedostoon, jotta testaus ei se
 `ScoreRepository`-luokka testataan 100%. Koodi testaa, että kaikki tallennukset menevät oikein ja ja tallentuvat myös. Testaa myös, että kaikki tulokset löytyvät tallennuksen jälkeen.
 
 ### Testauskattavuus
-Pelin testauksen haarautumiskattavuus on 98%. Käyttöjärjestelmä-koodi on jätetty ulos testauksesta.  
-![Coverage-report](./kuvat/testaus-raportti.png)  
+Pelin testauksen haarautumiskattavuus on 97%. Käyttöjärjestelmä-koodi on jätetty ulos testauksesta.  
+![Coverage-report](./kuvat/testi-raportti.png)  
 
 ## Järjestelmätestaus
 Peliä on järjestelmätestattu manuaalisesti.
