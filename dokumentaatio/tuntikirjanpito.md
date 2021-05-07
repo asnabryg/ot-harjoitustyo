@@ -26,4 +26,5 @@
 |       | 2    | Implementoitu käyttöjärjestelmään uusi pelilogiikka ^. Korjattu gameover bugi. Vaihdettu väriteemaa hieman. |
 |       | 1    | Kirjoitettu testausdokumentaatio ja muokattu vaatimuusmääritteylydokumenttia. |
 |       | 2    | Game2048 -luokan move_direction()-metodien refaktorointi yhteen move(direction) metodiin. |
+| 7.5   | 1    | Päivitetty arkkitehtuuri.md ja testaus.md dokumentit. Lisätty lopullinen release githubiin. |
 | **Yht.**  | **51** |
