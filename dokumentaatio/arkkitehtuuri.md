@@ -16,7 +16,7 @@ Jokaisen näkymän luominen tapahtuu eri luokissa. Näkymien näyttämisestä se
 
 ## Pelilogiikka
 Pelin logiikka ja laskenta tapahtuu [Game2048](../2048/src/game_logic/game2048.py)-luokassa.  
-![Pelilogiikka](./kuvat/Pelilogiikka.png)
+![Pelilogiikka](./kuvat/Pelilogiikka_kuva.png)
 
 Ohjelma luo aluksi tyhjän pelialueen ```new_board()``` metodilla ja kutsuu ```add_new_tile()``` metodin heti sen jälkeen, mikä lisää pelialueelle tyhjään kohtaan uuden laatan arvolla 2 tai 4. Satunnaisen tyhjän alueen koordinaatit saa metodilla ```get_random_empty_place()```.  
 
